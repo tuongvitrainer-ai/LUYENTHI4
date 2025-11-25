@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="512" height="512" rx="64" fill="url(#gradient2)"/>
+  <defs>
+    <linearGradient id="gradient2" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#a8d5ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gate icon (Vũ Môn) - Larger version -->
+  <g transform="translate(126, 100)">
+    <!-- Gate structure -->
+    <rect x="0" y="0" width="260" height="320" rx="20" fill="white" opacity="0.2"/>
+    <rect x="15" y="15" width="230" height="290" rx="15" fill="none" stroke="white" stroke-width="8"/>
+
+    <!-- Door panels -->
+    <line x1="130" y1="15" x2="130" y2="305" stroke="white" stroke-width="8"/>
+    <circle cx="100" cy="160" r="8" fill="white"/>
+    <circle cx="160" cy="160" r="8" fill="white"/>
+
+    <!-- Door decorations -->
+    <rect x="30" y="30" width="80" height="100" rx="8" fill="none" stroke="white" stroke-width="4"/>
+    <rect x="150" y="30" width="80" height="100" rx="8" fill="none" stroke="white" stroke-width="4"/>
+    <rect x="30" y="180" width="80" height="100" rx="8" fill="none" stroke="white" stroke-width="4"/>
+    <rect x="150" y="180" width="80" height="100" rx="8" fill="none" stroke="white" stroke-width="4"/>
+
+    <!-- Top decoration (roof) -->
+    <path d="M-10 0 L130 -40 L270 0" stroke="white" stroke-width="8" fill="none"/>
+    <path d="M0 -10 L130 -45 L260 -10" stroke="white" stroke-width="5" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- Text: VVM -->
+  <text x="256" y="450" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">VVM</text>
+  <text x="256" y="490" font-family="Arial, sans-serif" font-size="24" font-weight="normal" fill="white" text-anchor="middle" opacity="0.9">Vượt Vũ Môn</text>
+</svg>
