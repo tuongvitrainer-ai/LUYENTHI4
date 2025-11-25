@@ -1,0 +1,30 @@
+.game-btn {
+  font-family: var(--font-display); /* Font chuẩn */
+  border: none;
+  border-radius: var(--border-radius-lg); /* Bo góc chuẩn */
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.game-btn:active {
+  transform: scale(0.95);
+}
+
+/* Các biến thể màu sắc dựa trên index.css */
+.game-btn.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.game-btn.accent {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.game-btn.secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
