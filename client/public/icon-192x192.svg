@@ -1,0 +1,28 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="192" height="192" rx="24" fill="url(#gradient1)"/>
+  <defs>
+    <linearGradient id="gradient1" x1="0" y1="0" x2="192" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#a8d5ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gate icon (Vũ Môn) -->
+  <g transform="translate(46, 40)">
+    <!-- Gate structure -->
+    <rect x="0" y="0" width="100" height="120" rx="8" fill="white" opacity="0.2"/>
+    <rect x="5" y="5" width="90" height="110" rx="6" fill="none" stroke="white" stroke-width="3"/>
+
+    <!-- Door panels -->
+    <line x1="50" y1="5" x2="50" y2="115" stroke="white" stroke-width="3"/>
+    <circle cx="40" cy="60" r="3" fill="white"/>
+    <circle cx="60" cy="60" r="3" fill="white"/>
+
+    <!-- Top decoration -->
+    <path d="M0 0 L50 -15 L100 0" stroke="white" stroke-width="3" fill="none"/>
+  </g>
+
+  <!-- Text: VVM -->
+  <text x="96" y="160" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">VVM</text>
+</svg>
