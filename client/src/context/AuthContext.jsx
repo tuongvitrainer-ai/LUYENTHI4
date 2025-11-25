@@ -2,6 +2,8 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 import { loginAPI, getMeAPI } from '../services/authService';
+import { submitGameResultAPI } from '../services/gameService';
+import { getPendingRewards, clearPendingRewards, getTotalPendingStars } from '../services/pendingRewardService';
 
 // Tạo Context
 const AuthContext = createContext();
@@ -49,6 +51,52 @@ export const AuthProvider = ({ children }) => {
     initAuth();
   }, []);
 
+  // Hàm xử lý pending rewards sau khi đăng nhập
+  const processPendingRewards = async () => {
+    const pendingRewards = getPendingRewards();
+
+    if (pendingRewards.length === 0) {
+      return false; // Không có pending rewards
+    }
+
+    const totalStars = getTotalPendingStars();
+    message.loading(`Đang xử lý ${pendingRewards.length} phần thưởng chờ (${totalStars} sao)...`, 0);
+
+    let successCount = 0;
+    let failCount = 0;
+
+    for (const reward of pendingRewards) {
+      try {
+        await submitGameResultAPI(reward.gameId, {
+          answers: reward.answers || [],
+          score: reward.score,
+        });
+        successCount++;
+      } catch (error) {
+        console.error('Error submitting pending reward:', error);
+        failCount++;
+      }
+    }
+
+    // Xóa tất cả pending rewards sau khi xử lý
+    clearPendingRewards();
+
+    // Đóng loading message
+    message.destroy();
+
+    // Thông báo kết quả
+    if (successCount > 0) {
+      message.success(`Đã cộng ${totalStars} Sao từ ${successCount} ván chơi trước vào tài khoản của bạn!`, 5);
+      return true; // Có rewards được xử lý thành công
+    }
+
+    if (failCount > 0) {
+      message.warning(`Có ${failCount} phần thưởng không thể xử lý`, 3);
+    }
+
+    return successCount > 0;
+  };
+
   // Hàm đăng nhập
   const login = async (email, password) => {
     try {
@@ -64,6 +112,22 @@ export const AuthProvider = ({ children }) => {
 
         // Thông báo thành công
         message.success(response.message || 'Đăng nhập thành công!');
+
+        // Xử lý pending rewards (nếu có)
+        const hasRewards = await processPendingRewards();
+
+        // Nếu có rewards được claim, refresh user data để cập nhật wallet
+        if (hasRewards) {
+          try {
+            const userResponse = await getMeAPI();
+            if (userResponse.success) {
+              setUser(userResponse.user);
+              console.log('✅ User wallet updated after claiming rewards');
+            }
+          } catch (error) {
+            console.error('Error refreshing user data:', error);
+          }
+        }
 
         // Chuyển hướng về trang chủ
         navigate('/');

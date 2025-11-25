@@ -124,6 +124,9 @@ const login = async (req, res) => {
       });
     }
 
+    // Lấy full user data (bao gồm wallet) bằng findById
+    const fullUser = await userModel.findById(user.id);
+
     // Tạo JWT token (expires in 7 days)
     const token = jwt.sign(
       {
@@ -135,18 +138,23 @@ const login = async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    // Trả về token và thông tin user
+    // Trả về token và thông tin user (bao gồm wallet)
     return res.status(200).json({
       success: true,
       message: 'Đăng nhập thành công',
       token,
       user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        role: user.role,
-        fullName: user.full_name,
-        avatarUrl: user.avatar_url,
+        id: fullUser.id,
+        username: fullUser.username,
+        email: fullUser.email,
+        role: fullUser.role,
+        fullName: fullUser.full_name,
+        avatarUrl: fullUser.avatar_url,
+        wallet: {
+          coins: parseInt(fullUser.coins) || 0,
+          stars: parseInt(fullUser.stars) || 0,
+          accumulatedPoints: parseInt(fullUser.accumulated_points) || 0,
+        },
       },
     });
   } catch (error) {
@@ -178,7 +186,7 @@ const getMe = async (req, res) => {
       });
     }
 
-    // Trả về thông tin user (không bao gồm password)
+    // Trả về thông tin user (không bao gồm password) + wallet
     return res.status(200).json({
       success: true,
       user: {
@@ -190,6 +198,11 @@ const getMe = async (req, res) => {
         avatarUrl: user.avatar_url,
         createdAt: user.created_at,
         updatedAt: user.updated_at,
+        wallet: {
+          coins: parseInt(user.coins) || 0,
+          stars: parseInt(user.stars) || 0,
+          accumulatedPoints: parseInt(user.accumulated_points) || 0,
+        },
       },
     });
   } catch (error) {
