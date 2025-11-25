@@ -1,0 +1,238 @@
+/* ===== GAME CARD COMPONENT ===== */
+.game-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== VARIANTS ===== */
+
+/* Default Card */
+.game-card--default {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Gradient Card */
+.game-card--gradient {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+  box-shadow: var(--shadow-md);
+}
+
+/* Outlined Card */
+.game-card--outlined {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  box-shadow: none;
+}
+
+/* ===== BORDERED ===== */
+.game-card--bordered {
+  border: 1px solid var(--border-color);
+}
+
+/* ===== HOVERABLE ===== */
+.game-card--hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.game-card--gradient.game-card--hoverable:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===== CLICKABLE ===== */
+.game-card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.game-card--clickable:active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== HEADER ===== */
+.game-card__header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+.game-card--gradient .game-card__header {
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  color: var(--text-inverse);
+  border-bottom: none;
+}
+
+.game-card__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.game-card--gradient .game-card__title {
+  color: var(--text-inverse);
+}
+
+/* ===== BODY ===== */
+.game-card__body {
+  padding: var(--spacing-lg);
+  flex: 1;
+}
+
+.game-card__body:empty {
+  padding: 0;
+}
+
+/* ===== FOOTER ===== */
+.game-card__footer {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+.game-card--gradient .game-card__footer {
+  background: rgba(168, 213, 255, 0.1);
+  border-top: 1px solid rgba(168, 213, 255, 0.2);
+}
+
+/* ===== SPECIAL STATES ===== */
+
+/* Loading State */
+.game-card--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.game-card--loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.game-card--loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px solid var(--color-primary-light);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: card-loading-spinner 0.8s linear infinite;
+  z-index: 2;
+}
+
+@keyframes card-loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== CARD VARIANTS - SPECIAL USE CASES ===== */
+
+/* Game Info Card */
+.game-card--game-info {
+  border: 2px solid var(--color-primary-light);
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card--game-info::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--color-primary-light) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: game-card-pulse 3s ease-in-out infinite;
+}
+
+@keyframes game-card-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.15;
+  }
+}
+
+/* Stats Card */
+.game-card--stats {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-card--stats .game-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Achievement Card */
+.game-card--achievement {
+  border: 2px solid var(--color-accent);
+  background: linear-gradient(135deg, #fff9e6 0%, #fff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card--achievement::before {
+  content: '🏆';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 3rem;
+  opacity: 0.1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .game-card__header,
+  .game-card__body,
+  .game-card__footer {
+    padding: var(--spacing-md);
+  }
+
+  .game-card__title {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* ===== CARD GRID HELPER ===== */
+.game-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  .game-card-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+}
