@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Button, Layout, Menu, Dropdown, Avatar, Space } from 'antd';
-import { HomeOutlined, TrophyOutlined, UserOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
+import { HomeOutlined, TrophyOutlined, UserOutlined, LogoutOutlined, LoginOutlined, RocketOutlined } from '@ant-design/icons';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import GameListPage from './pages/game/GameListPage';
+import GamePlayPage from './pages/game/GamePlayPage';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -75,11 +77,14 @@ const MainLayout = () => {
           <Menu.Item key="1" icon={<HomeOutlined />}>
             <Link to="/">Trang chủ</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<TrophyOutlined />}>
+          <Menu.Item key="2" icon={<RocketOutlined />}>
+            <Link to="/games">Games</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<TrophyOutlined />}>
             <Link to="/leaderboard">Xếp hạng</Link>
           </Menu.Item>
           {isAuthenticated && (
-            <Menu.Item key="3" icon={<UserOutlined />}>
+            <Menu.Item key="4" icon={<UserOutlined />}>
               <Link to="/profile">Hồ sơ</Link>
             </Menu.Item>
           )}
@@ -112,6 +117,9 @@ const MainLayout = () => {
         <Content style={{ margin: '0 16px' }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            {/* Game Routes - Public (không cần đăng nhập) */}
+            <Route path="/games" element={<GameListPage />} />
+            <Route path="/game/:id" element={<GamePlayPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             {/* Profile route - Bảo vệ bằng ProtectedRoute */}
             <Route
