@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     const pendingRewards = getPendingRewards();
 
     if (pendingRewards.length === 0) {
-      return;
+      return false; // Không có pending rewards
     }
 
     const totalStars = getTotalPendingStars();
@@ -86,12 +86,15 @@ export const AuthProvider = ({ children }) => {
 
     // Thông báo kết quả
     if (successCount > 0) {
-      message.success(`Đã nhận ${totalStars} sao từ ${successCount} phần thưởng!`, 5);
+      message.success(`Đã cộng ${totalStars} Sao từ ${successCount} ván chơi trước vào tài khoản của bạn!`, 5);
+      return true; // Có rewards được xử lý thành công
     }
 
     if (failCount > 0) {
       message.warning(`Có ${failCount} phần thưởng không thể xử lý`, 3);
     }
+
+    return successCount > 0;
   };
 
   // Hàm đăng nhập
@@ -111,7 +114,20 @@ export const AuthProvider = ({ children }) => {
         message.success(response.message || 'Đăng nhập thành công!');
 
         // Xử lý pending rewards (nếu có)
-        await processPendingRewards();
+        const hasRewards = await processPendingRewards();
+
+        // Nếu có rewards được claim, refresh user data để cập nhật wallet
+        if (hasRewards) {
+          try {
+            const userResponse = await getMeAPI();
+            if (userResponse.success) {
+              setUser(userResponse.user);
+              console.log('✅ User wallet updated after claiming rewards');
+            }
+          } catch (error) {
+            console.error('Error refreshing user data:', error);
+          }
+        }
 
         // Chuyển hướng về trang chủ
         navigate('/');
