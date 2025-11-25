@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const db = require('./config/db'); // Test DB connection
 const authRoutes = require('./routes/authRoutes'); // Auth routes
+const gameRoutes = require('./routes/gameRoutes'); // Game routes
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,9 @@ app.get('/', (req, res) => {
 
 // Auth Routes
 app.use('/api/auth', authRoutes);
+
+// Game Routes (Support Public Play)
+app.use('/api/games', gameRoutes);
 
 // Test DB Route
 app.get('/api/test-db', async (req, res) => {
