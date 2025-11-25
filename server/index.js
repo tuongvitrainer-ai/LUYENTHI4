@@ -35,7 +35,35 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on http://localhost:${PORT}`);
-});
+// Hàm kiểm tra kết nối Database
+const testDatabaseConnection = async () => {
+  try {
+    const result = await db.query('SELECT NOW() as current_time, version() as version');
+    console.log('✅ Connected to PostgreSQL');
+    console.log(`   Database Version: ${result.rows[0].version.split(' ').slice(0, 2).join(' ')}`);
+    console.log(`   Current Time: ${result.rows[0].current_time}`);
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to connect to PostgreSQL');
+    console.error('   Error:', error.message);
+    return false;
+  }
+};
+
+// Khởi động Server
+const startServer = async () => {
+  // Kiểm tra kết nối Database trước
+  const isDbConnected = await testDatabaseConnection();
+
+  if (!isDbConnected) {
+    console.error('⚠️  Server starting without database connection. Please check your database configuration.');
+  }
+
+  // Start Server
+  app.listen(PORT, () => {
+    console.log(`✅ Server is running on http://localhost:${PORT}`);
+  });
+};
+
+// Gọi hàm khởi động
+startServer();
