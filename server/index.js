@@ -5,6 +5,7 @@ const morgan = require('morgan');
 require('dotenv').config();
 
 const db = require('./config/db'); // Test DB connection
+const authRoutes = require('./routes/authRoutes'); // Auth routes
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,9 @@ app.use(express.json()); // Parse JSON body
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Luyen Thi API 🚀' });
 });
+
+// Auth Routes
+app.use('/api/auth', authRoutes);
 
 // Test DB Route
 app.get('/api/test-db', async (req, res) => {
