@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment variables (QUAN TR?NG: KHÔNG PUSH FILE NÀY)
+.env
+*/.env
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
