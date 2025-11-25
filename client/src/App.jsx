@@ -6,6 +6,7 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import GameListPage from './pages/game/GameListPage';
 import GamePlayPage from './pages/game/GamePlayPage';
+import SoundDemo from './components/demo/SoundDemo';
 
 // Các trang giả lập (Placeholder Pages)
 const HomePage = () => {
@@ -68,6 +69,7 @@ function App() {
                   <Route path="/games" element={<GameListPage />} />
                   <Route path="/game/:id" element={<GamePlayPage />} />
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
+                  <Route path="/demo/sound" element={<SoundDemo />} />
                   <Route
                     path="/profile"
                     element={
