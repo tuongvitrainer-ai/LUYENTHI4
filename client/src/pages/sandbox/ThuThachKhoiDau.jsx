@@ -106,9 +106,17 @@ const ThuThachKhoiDau = () => {
     try {
       // Call API to get questions
       const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+      // Prepare subjects parameter
+      const subjectsParam = selectedSubjects.includes('all')
+        ? ''
+        : selectedSubjects.join(',');
+
       const response = await axios.get(`${API_BASE}/api/games/challenge/${selectedLevel}`, {
         params: {
-          limit: questionCount
+          limit: questionCount,
+          subjects: subjectsParam,
+          difficultyLevel: difficultyLevel
         }
       });
 

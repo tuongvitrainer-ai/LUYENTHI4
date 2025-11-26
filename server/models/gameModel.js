@@ -162,6 +162,94 @@ const getChallengeQuestions = async (gradeLevel, limit = 15) => {
 };
 
 /**
+ * Lấy câu hỏi với lọc môn học và độ khó
+ * @param {Object} params - { gradeLevel, subjects, difficultyLevel, limit }
+ * @returns {Promise<Array>} Danh sách câu hỏi
+ */
+const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], difficultyLevel = 6, limit = 15 }) => {
+  try {
+    // Map difficulty level to distribution
+    const difficultyMap = {
+      1: { easy: 1.0, medium: 0, hard: 0 },
+      2: { easy: 0.8, medium: 0.2, hard: 0 },
+      3: { easy: 0.6, medium: 0.4, hard: 0 },
+      4: { easy: 0.5, medium: 0.5, hard: 0 },
+      5: { easy: 0.2, medium: 0.8, hard: 0 },
+      6: { easy: 0, medium: 1.0, hard: 0 },
+      7: { easy: 0, medium: 0.8, hard: 0.2 },
+      8: { easy: 0, medium: 0.5, hard: 0.5 },
+      9: { easy: 0, medium: 0.2, hard: 0.8 },
+      10: { easy: 0, medium: 0, hard: 1.0 },
+    };
+
+    const distribution = difficultyMap[difficultyLevel] || difficultyMap[6];
+
+    // Calculate number of questions per difficulty
+    const easyCount = Math.round(limit * distribution.easy);
+    const mediumCount = Math.round(limit * distribution.medium);
+    const hardCount = Math.round(limit * distribution.hard);
+
+    // Build subject filter
+    let subjectFilter = '';
+    let queryParams = [gradeLevel];
+    let paramIndex = 2;
+
+    if (subjects.length > 0 && !subjects.includes('all')) {
+      subjectFilter = `AND subject = ANY($${paramIndex}::text[])`;
+      queryParams.push(subjects);
+      paramIndex++;
+    }
+
+    // Fetch questions by difficulty
+    const questions = [];
+
+    // Easy questions
+    if (easyCount > 0) {
+      const easyResult = await db.query(`
+        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty_level
+        FROM questions
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty_level IN (1, 2, 3)
+        ORDER BY RANDOM()
+        LIMIT $${paramIndex}
+      `, [...queryParams, easyCount]);
+      questions.push(...easyResult.rows);
+    }
+
+    // Medium questions
+    if (mediumCount > 0) {
+      const mediumResult = await db.query(`
+        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty_level
+        FROM questions
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty_level IN (4, 5, 6, 7)
+        ORDER BY RANDOM()
+        LIMIT $${paramIndex}
+      `, [...queryParams, mediumCount]);
+      questions.push(...mediumResult.rows);
+    }
+
+    // Hard questions
+    if (hardCount > 0) {
+      const hardResult = await db.query(`
+        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty_level
+        FROM questions
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty_level IN (8, 9, 10)
+        ORDER BY RANDOM()
+        LIMIT $${paramIndex}
+      `, [...queryParams, hardCount]);
+      questions.push(...hardResult.rows);
+    }
+
+    // Shuffle questions to mix difficulties
+    const shuffled = questions.sort(() => Math.random() - 0.5);
+
+    // Return exactly the requested limit (or what we have)
+    return shuffled.slice(0, limit);
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
  * Lấy chi tiết câu hỏi theo danh sách IDs
  * @param {Array<number>} questionIds - Mảng IDs của câu hỏi
  * @returns {Promise<Array>} Danh sách câu hỏi chi tiết
@@ -233,6 +321,7 @@ module.exports = {
   saveAttemptAnswer,
   getUserAttempts,
   getChallengeQuestions,
+  getChallengeQuestionsWithFilters,
   getQuestionsByIds,
   saveChallengeResult,
   saveChallengeAnswer,

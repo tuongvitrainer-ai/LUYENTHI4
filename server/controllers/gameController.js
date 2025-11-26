@@ -149,12 +149,21 @@ const submitGameResult = async (req, res) => {
  * Lấy câu hỏi cho game "Thử Thách Khởi Đầu"
  * GET /api/games/challenge/:gradeLevel
  * Access: Public
- * Query params: ?limit=15
+ * Query params: ?limit=15&subjects=Toán học,Tiếng Việt&difficultyLevel=6
  */
 const getChallengeQuestions = async (req, res) => {
   try {
     const { gradeLevel } = req.params;
     const limit = parseInt(req.query.limit) || 15;
+    const difficultyLevel = parseInt(req.query.difficultyLevel) || 6;
+
+    // Parse subjects from query string
+    let subjects = [];
+    if (req.query.subjects) {
+      subjects = typeof req.query.subjects === 'string'
+        ? req.query.subjects.split(',').map(s => s.trim())
+        : req.query.subjects;
+    }
 
     // Validate grade level
     if (![3, 4, 5].includes(parseInt(gradeLevel))) {
@@ -164,8 +173,21 @@ const getChallengeQuestions = async (req, res) => {
       });
     }
 
-    // Lấy câu hỏi từ database
-    const questionsFromDB = await gameModel.getChallengeQuestions(parseInt(gradeLevel), limit);
+    // Validate difficulty level
+    if (difficultyLevel < 1 || difficultyLevel > 10) {
+      return res.status(400).json({
+        success: false,
+        message: 'Difficulty level phải từ 1 đến 10',
+      });
+    }
+
+    // Lấy câu hỏi từ database với filters
+    const questionsFromDB = await gameModel.getChallengeQuestionsWithFilters({
+      gradeLevel: parseInt(gradeLevel),
+      subjects,
+      difficultyLevel,
+      limit
+    });
 
     // Transform data: parse options_json và tìm correctAnswerIndex
     const questions = questionsFromDB.map(q => {
