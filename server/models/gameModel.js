@@ -133,6 +133,34 @@ const getUserAttempts = async (userId, examId) => {
   }
 };
 
+/**
+ * Lấy câu hỏi ngẫu nhiên cho game "Thử Thách Khởi Đầu" theo grade level
+ * @param {number} gradeLevel - Lớp (3, 4, 5)
+ * @param {number} limit - Số câu hỏi cần lấy (mặc định 15)
+ * @returns {Promise<Array>} Danh sách câu hỏi
+ */
+const getChallengeQuestions = async (gradeLevel, limit = 15) => {
+  try {
+    const result = await db.query(`
+      SELECT
+        id,
+        question_text,
+        options_json,
+        correct_answer,
+        subject,
+        topic,
+        grade_level
+      FROM questions
+      WHERE grade_level = $1
+      ORDER BY RANDOM()
+      LIMIT $2
+    `, [gradeLevel, limit]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllGames,
   getGameById,
@@ -140,4 +168,5 @@ module.exports = {
   createAttempt,
   saveAttemptAnswer,
   getUserAttempts,
+  getChallengeQuestions, // Export function mới
 };
