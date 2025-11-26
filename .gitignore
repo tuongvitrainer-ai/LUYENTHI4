@@ -2,7 +2,7 @@
 node_modules/
 */node_modules/
 
-# Environment variables (QUAN TR?NG: KH�NG PUSH FILE N�Y)
+# Environment variables (QUAN TR?NG: KH�NG PUSH FILE N�Y)
 .env
 */.env
 
@@ -12,3 +12,12 @@ build/
 
 # Logs
 *.log
+
+# File rác của MacOS
+.DS_Store
+**/.DS_Store
+
+# File sinh ra khi chạy PWA (Quan trọng)
+dev-dist/
+client/dev-dist/
+**/dev-dist/
