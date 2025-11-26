@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import '../IframeGame.css';
 
 const OnTap1 = () => {
-  // CẬP NHẬT ĐƯỜNG DẪN MỚI (Thêm chữ '/learn' vào đầu)
-  // Cấu trúc thư mục: public/learn/lop2/toan/ontap1/index.html
-  // Đường dẫn truy cập: /learn/lop2/toan/ontap1/index.html
+  const [loading, setLoading] = useState(true);
+
+  // Đường dẫn tới game HTML5 độc lập
   const gameUrl = "/learn/lop2/toan/ontap1/index.html";
 
+  const handleIframeLoad = () => {
+    setLoading(false);
+  };
+
   return (
-    // Sử dụng h-[calc(100vh-xxx)] để set chiều cao vừa khít màn hình trừ đi Header
-    // Giả sử Header + Padding khoảng 100px-120px
-    <div className="w-full flex flex-col" style={{ height: 'calc(100vh - 100px)' }}>
-      
-      {/* Tiêu đề bài học */}
-      <div className="flex-shrink-0 mb-4">
-        <h2 className="text-xl font-bold text-[var(--primary-color)] flex items-center gap-2">
-          <span>📝</span> Ôn tập Toán Lớp 2 - Bài 1
+    <div className="iframe-game-wrapper">
+      {/* Title bar */}
+      <div className="iframe-game-title">
+        <h2>
+          <span>📝</span>
+          Ôn tập Toán Lớp 2 - Bài 1
         </h2>
       </div>
 
-      {/* Khung chứa Game/Bài học */}
-      {/* flex-1 sẽ giúp nó chiếm toàn bộ khoảng trống còn lại */}
-      <div className="flex-1 border-2 border-[var(--primary-color)] rounded-xl overflow-hidden shadow-md bg-white relative">
-        <iframe 
+      {/* Game container */}
+      <div className="iframe-game-container">
+        {loading && (
+          <div className="iframe-game-loading">
+            <div className="iframe-game-loading-spinner">⏳</div>
+            <p>Đang tải bài học...</p>
+          </div>
+        )}
+
+        <iframe
           src={gameUrl}
-          title="Bài tập Toán"
-          className="w-full h-full absolute inset-0" // absolute inset-0 giúp iframe bung hết cỡ khung cha
-          style={{ 
-            border: 'none',
-            // Xóa minHeight cứng để nó tự co giãn theo màn hình
-          }} 
+          title="Ôn tập Toán Lớp 2 - Bài 1"
+          onLoad={handleIframeLoad}
+          allow="fullscreen"
         />
       </div>
     </div>
