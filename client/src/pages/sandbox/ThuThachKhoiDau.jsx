@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import GameButton from '@/components/ui/GameButton';
 import GameCard from '@/components/ui/GameCard';
 import useGameSound from '@/hooks/useGameSound';
@@ -713,7 +714,9 @@ const ThuThachKhoiDau = () => {
                           <span className="subject-tag" style={{ backgroundColor: subjectConfig.color }}>
                             {subjectConfig.name}
                           </span>
-                          {review.question_text || 'Không có nội dung câu hỏi'}
+                          <ReactMarkdown>
+                            {review.question_text || 'Không có nội dung câu hỏi'}
+                          </ReactMarkdown>
                         </div>
                         <div className="review-answers">
                           <div className="review-answer">
@@ -731,7 +734,8 @@ const ThuThachKhoiDau = () => {
                         </div>
                         {review.explanation && review.explanation !== 'Chưa có giải thích (backend chưa trả về dữ liệu)' && (
                           <div className="review-explanation">
-                            <strong>💡 Giải thích:</strong> {review.explanation}
+                            <strong>💡 Giải thích:</strong>{' '}
+                            <ReactMarkdown>{review.explanation}</ReactMarkdown>
                           </div>
                         )}
                       </div>
@@ -912,7 +916,9 @@ const ThuThachKhoiDau = () => {
           {/* Question Content */}
           <div className="question-content">
             <div className="question-text">
-              {currentQuestion.question || currentQuestion.question_text || 'Không có nội dung câu hỏi'}
+              <ReactMarkdown>
+                {currentQuestion.question || currentQuestion.question_text || 'Không có nội dung câu hỏi'}
+              </ReactMarkdown>
             </div>
 
             {/* Answer Options */}
@@ -924,7 +930,9 @@ const ThuThachKhoiDau = () => {
                   onClick={() => handleAnswerSelect(currentQuestion.id, index)}
                 >
                   <span className="option-letter">{String.fromCharCode(65 + index)}</span>
-                  <span className="option-text">{option}</span>
+                  <span className="option-text">
+                    <ReactMarkdown>{option}</ReactMarkdown>
+                  </span>
                   {currentAnswer === index && <span className="option-check">✓</span>}
                 </button>
               ))}

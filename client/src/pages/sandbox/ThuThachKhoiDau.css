@@ -530,6 +530,23 @@
   padding: 0 8px;
 }
 
+/* Markdown styles in question text */
+.question-text p {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.question-text strong {
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.question-text em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
 /* Answer Options */
 .answer-options {
   display: flex;
@@ -586,6 +603,21 @@
   flex: 1;
   font-size: 1rem; /* Giảm từ 1.1rem */
   font-weight: 600;
+}
+
+/* Markdown styles in option text */
+.option-text p {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.option-text strong {
+  font-weight: 800;
+}
+
+.option-text em {
+  font-style: italic;
 }
 
 .option-check {
@@ -918,6 +950,23 @@
   gap: var(--spacing-sm, 8px);
 }
 
+/* Markdown styles in review question text */
+.review-question-text p {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.review-question-text strong {
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.review-question-text em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
 .subject-tag {
   display: inline-block;
   padding: var(--spacing-xs, 4px) var(--spacing-sm, 12px);
@@ -966,6 +1015,18 @@
 
 .review-explanation strong {
   color: var(--color-primary);
+}
+
+/* Markdown styles in review explanation */
+.review-explanation p {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.review-explanation em {
+  font-style: italic;
+  color: var(--color-accent);
 }
 
 /* Results Actions */
