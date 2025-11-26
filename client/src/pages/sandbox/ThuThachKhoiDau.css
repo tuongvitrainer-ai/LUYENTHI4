@@ -1344,10 +1344,13 @@
 }
 
 @media (max-width: 480px) {
+  /* ===== MOBILE OPTIMIZATIONS ===== */
+
+  /* Containers - Rộng hơn, gọn gàng hơn */
   .game-container,
   .results-container,
   .test-content {
-    padding: var(--spacing-lg, 16px);
+    padding: var(--spacing-md, 12px); /* Giảm padding */
   }
 
   .game-title,
@@ -1359,22 +1362,139 @@
     font-size: 1rem;
   }
 
-  .level-card {
-    padding: var(--spacing-lg, 20px);
+  /* ===== HÌNH 1: Các ô chọn rộng hơn, gọn gàng ===== */
+
+  /* Level selection - Rộng full width */
+  .level-selection {
+    grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+    gap: var(--spacing-xs);
+    max-width: 100%;
   }
 
+  .level-card {
+    padding: var(--spacing-sm, 10px); /* Compact hơn */
+  }
+
+  .level-icon {
+    font-size: 1.8rem;
+  }
+
+  .level-number {
+    font-size: 0.9rem;
+  }
+
+  /* Difficulty & Subject selection boxes - Rộng ra */
+  .game-container > div[style*="margin-top"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Subject filter buttons - 2 cột trên mobile */
+  .game-container button[style*="padding: 10px 20px"] {
+    flex: 0 0 calc(50% - 5px); /* 2 cột */
+    min-width: calc(50% - 5px);
+  }
+
+  /* ===== HÌNH 2: Question lên đầu (đã có column-reverse) ===== */
+  .test-container {
+    flex-direction: column-reverse; /* Navigation xuống dưới, question lên trên */
+  }
+
+  .test-content {
+    order: 1; /* Content (question) ở trên */
+    padding: var(--spacing-sm, 10px);
+  }
+
+  .test-navigation {
+    order: 2; /* Navigation ở dưới */
+  }
+
+  /* Question text - To hơn, nổi bật */
+  .question-title {
+    font-size: 1.4rem;
+  }
+
+  .question-text {
+    font-size: 1.1rem;
+    padding: var(--spacing-md, 12px);
+  }
+
+  .answer-option {
+    padding: var(--spacing-sm, 10px);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .option-text {
+    font-size: 0.95rem;
+  }
+
+  /* ===== HÌNH 3: Navigation buttons layout ===== */
+  .test-navigation-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm, 10px);
+    justify-content: space-between;
+  }
+
+  /* Câu trước & Câu sau cùng 1 hàng */
+  .test-navigation-buttons .btn-nav:nth-child(1),
+  .test-navigation-buttons .btn-nav:nth-child(3) {
+    flex: 1 1 48%; /* Mỗi button chiếm ~48% */
+    min-width: 0;
+  }
+
+  /* Nộp bài xuống dòng mới, full width */
+  .test-navigation-buttons .btn-nav:nth-child(2) {
+    flex: 1 1 100%; /* Full width */
+    order: 3; /* Xuống dưới cùng */
+  }
+
+  /* Đảm bảo order đúng */
+  .test-navigation-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Start button & results buttons */
   .btn-start-test,
   .btn-retry,
   .btn-home {
     width: 100%;
+    font-size: 1rem;
+    padding: var(--spacing-md) var(--spacing-lg);
   }
 
+  /* Question grid - Compact hơn */
   .question-numbers {
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xs);
   }
 
+  .question-number-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  /* Results actions */
   .results-actions {
     flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  /* Subject progress box - Compact */
+  .subject-item {
+    font-size: 0.7rem;
+    padding: var(--spacing-xs) 0;
+  }
+
+  /* Timer - Smaller */
+  .timer-value {
+    font-size: 1.3rem;
+  }
+
+  .timer-label {
+    font-size: 0.65rem;
   }
 }
 
