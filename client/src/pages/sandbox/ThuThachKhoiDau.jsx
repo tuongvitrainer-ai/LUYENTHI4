@@ -140,7 +140,7 @@ const SUBJECT_CONFIG = {
 };
 
 const ThuThachKhoiDau = () => {
-  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState(3); // Mặc định chọn lớp 3
   const [questionCount, setQuestionCount] = useState(15); // NEW: Số câu hỏi
   const [difficultyLevel, setDifficultyLevel] = useState(4); // NEW: Mức độ khó (1-10, mặc định 4)
   const [selectedSubjects, setSelectedSubjects] = useState(['all']); // NEW: Môn học đã chọn (mặc định: tất cả)
@@ -517,40 +517,17 @@ const ThuThachKhoiDau = () => {
     return (
       <div className="thu-thach-khoi-dau">
         <div className="game-container">
-          {/* Header with Home Button */}
-          <div style={{
-            position: 'relative',
-            marginBottom: '20px'
+          {/* Header */}
+          <h1 style={{
+            textAlign: 'center',
+            fontSize: '36px',
+            fontWeight: '700',
+            color: '#4A90E2',
+            margin: '0 0 20px 0',
+            padding: '10px 0'
           }}>
-            <GameButton
-              variant="primary"
-              size="small"
-              icon="🏠"
-              iconPosition="left"
-              onClick={() => {
-                playClick();
-                window.history.back();
-              }}
-              style={{
-                position: 'absolute',
-                left: '0',
-                top: '0'
-              }}
-            >
-              Về trang chủ
-            </GameButton>
-
-            <h1 style={{
-              textAlign: 'center',
-              fontSize: '36px',
-              fontWeight: '700',
-              color: '#4A90E2',
-              margin: '0',
-              padding: '10px 0'
-            }}>
-              KHỞI ĐỘNG THỬ THÁCH
-            </h1>
-          </div>
+            KHỞI ĐỘNG THỬ THÁCH
+          </h1>
 
           {/* Question for Level Selection */}
           <div style={{
@@ -571,25 +548,34 @@ const ThuThachKhoiDau = () => {
           <div className="level-selection">
             <div
               className={`level-card ${selectedLevel === 3 ? 'selected' : ''}`}
-              onClick={() => handleLevelSelect(3)}
+              onClick={() => {
+                playClick();
+                handleLevelSelect(3);
+              }}
             >
-              <div className="level-icon">🎓</div>
+              <div className="level-icon">👦</div>
               <div className="level-number">Lớp 3</div>
             </div>
 
             <div
               className={`level-card ${selectedLevel === 4 ? 'selected' : ''}`}
-              onClick={() => handleLevelSelect(4)}
+              onClick={() => {
+                playClick();
+                handleLevelSelect(4);
+              }}
             >
-              <div className="level-icon">📚</div>
+              <div className="level-icon">🧒</div>
               <div className="level-number">Lớp 4</div>
             </div>
 
             <div
               className={`level-card ${selectedLevel === 5 ? 'selected' : ''}`}
-              onClick={() => handleLevelSelect(5)}
+              onClick={() => {
+                playClick();
+                handleLevelSelect(5);
+              }}
             >
-              <div className="level-icon">🏆</div>
+              <div className="level-icon">👨‍🎓</div>
               <div className="level-number">Lớp 5</div>
             </div>
           </div>
