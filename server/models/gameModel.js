@@ -206,9 +206,9 @@ const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], dif
     // Easy questions
     if (easyCount > 0) {
       const easyResult = await db.query(`
-        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty_level
+        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty
         FROM questions
-        WHERE grade_level = $1 ${subjectFilter} AND difficulty_level IN (1, 2, 3)
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty IN (1, 2, 3)
         ORDER BY RANDOM()
         LIMIT $${paramIndex}
       `, [...queryParams, easyCount]);
@@ -218,9 +218,9 @@ const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], dif
     // Medium questions
     if (mediumCount > 0) {
       const mediumResult = await db.query(`
-        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty_level
+        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty
         FROM questions
-        WHERE grade_level = $1 ${subjectFilter} AND difficulty_level IN (4, 5, 6, 7)
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty IN (4, 5, 6, 7)
         ORDER BY RANDOM()
         LIMIT $${paramIndex}
       `, [...queryParams, mediumCount]);
@@ -230,9 +230,9 @@ const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], dif
     // Hard questions
     if (hardCount > 0) {
       const hardResult = await db.query(`
-        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty_level
+        SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty
         FROM questions
-        WHERE grade_level = $1 ${subjectFilter} AND difficulty_level IN (8, 9, 10)
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty IN (8, 9, 10)
         ORDER BY RANDOM()
         LIMIT $${paramIndex}
       `, [...queryParams, hardCount]);
