@@ -11,6 +11,8 @@ import SoundDemo from './components/demo/SoundDemo';
 // Import ở đầu file
 import ThuThachKhoiDau from './pages/sandbox/ThuThachKhoiDau';
 
+import OnTap1 from './pages/learn/lop2/toan/OnTap1';
+
 // Các trang giả lập (Placeholder Pages)
 const HomePage = () => {
   const { isAuthenticated, user } = useAuth();
@@ -74,9 +76,8 @@ function App() {
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
                   <Route path="/demo/sound" element={<SoundDemo />} />
 
-                  
                   <Route path="/sandbox/thu-thach" element={<ThuThachKhoiDau />} />
-
+                  <Route path="/learn/lop-2/toan/on-tap-1" element={<OnTap1 />} />
                   <Route
                     path="/profile"
                     element={
