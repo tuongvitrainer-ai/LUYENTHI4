@@ -161,6 +161,70 @@ const getChallengeQuestions = async (gradeLevel, limit = 15) => {
   }
 };
 
+/**
+ * Lấy chi tiết câu hỏi theo danh sách IDs
+ * @param {Array<number>} questionIds - Mảng IDs của câu hỏi
+ * @returns {Promise<Array>} Danh sách câu hỏi chi tiết
+ */
+const getQuestionsByIds = async (questionIds) => {
+  try {
+    if (!questionIds || questionIds.length === 0) {
+      return [];
+    }
+
+    const result = await db.query(`
+      SELECT
+        id,
+        question_text,
+        options_json,
+        correct_answer,
+        subject,
+        topic,
+        explanation,
+        grade_level
+      FROM questions
+      WHERE id = ANY($1::int[])
+    `, [questionIds]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
+ * Lưu kết quả challenge test
+ * @param {Object} data - { userId, gradeLevel, correctAnswers, totalQuestions, score, timeTaken }
+ * @returns {Promise<Object>} Challenge test result object
+ */
+const saveChallengeResult = async ({ userId, gradeLevel, correctAnswers, totalQuestions, score, timeTaken }) => {
+  try {
+    const result = await db.query(`
+      INSERT INTO challenge_tests (user_id, grade_level, correct_answers, total_questions, score, time_taken, completed_at)
+      VALUES ($1, $2, $3, $4, $5, $6, CURRENT_TIMESTAMP)
+      RETURNING *
+    `, [userId, gradeLevel, correctAnswers, totalQuestions, score, timeTaken]);
+    return result.rows[0];
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
+ * Lưu chi tiết câu trả lời của challenge test
+ * @param {Object} data - { testId, questionId, userAnswer, correctAnswer, isCorrect }
+ * @returns {Promise<void>}
+ */
+const saveChallengeAnswer = async ({ testId, questionId, userAnswer, correctAnswer, isCorrect }) => {
+  try {
+    await db.query(`
+      INSERT INTO challenge_answers (test_id, question_id, user_answer, correct_answer, is_correct)
+      VALUES ($1, $2, $3, $4, $5)
+    `, [testId, questionId, userAnswer, correctAnswer, isCorrect]);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllGames,
   getGameById,
@@ -168,5 +232,8 @@ module.exports = {
   createAttempt,
   saveAttemptAnswer,
   getUserAttempts,
-  getChallengeQuestions, // Export function mới
+  getChallengeQuestions,
+  getQuestionsByIds,
+  saveChallengeResult,
+  saveChallengeAnswer,
 };
