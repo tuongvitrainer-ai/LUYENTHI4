@@ -8,6 +8,9 @@ import GameListPage from './pages/game/GameListPage';
 import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
 
+// Import ở đầu file
+import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
+
 // Các trang giả lập (Placeholder Pages)
 const HomePage = () => {
   const { isAuthenticated, user } = useAuth();
@@ -70,6 +73,10 @@ function App() {
                   <Route path="/game/:id" element={<GamePlayPage />} />
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
                   <Route path="/demo/sound" element={<SoundDemo />} />
+
+                  {/* Exam Routes */}
+                  <Route path="/exam/thu-thach" element={<ThuThachKhoiDau />} />
+
                   <Route
                     path="/profile"
                     element={

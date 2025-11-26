@@ -28,6 +28,10 @@ app.use('/api/auth', authRoutes);
 // Game Routes (Support Public Play)
 app.use('/api/games', gameRoutes);
 
+// Challenge Routes (Game "Thử Thách Khởi Đầu")
+const gameController = require('./controllers/gameController');
+app.post('/api/challenge/submit', gameController.submitChallenge);
+
 // Test DB Route
 app.get('/api/test-db', async (req, res) => {
   try {
