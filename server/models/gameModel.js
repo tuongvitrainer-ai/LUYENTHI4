@@ -208,7 +208,7 @@ const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], dif
       const easyResult = await db.query(`
         SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty
         FROM questions
-        WHERE grade_level = $1 ${subjectFilter} AND difficulty IN (1, 2, 3)
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty::integer IN (1, 2, 3)
         ORDER BY RANDOM()
         LIMIT $${paramIndex}
       `, [...queryParams, easyCount]);
@@ -220,7 +220,7 @@ const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], dif
       const mediumResult = await db.query(`
         SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty
         FROM questions
-        WHERE grade_level = $1 ${subjectFilter} AND difficulty IN (4, 5, 6, 7)
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty::integer IN (4, 5, 6, 7)
         ORDER BY RANDOM()
         LIMIT $${paramIndex}
       `, [...queryParams, mediumCount]);
@@ -232,7 +232,7 @@ const getChallengeQuestionsWithFilters = async ({ gradeLevel, subjects = [], dif
       const hardResult = await db.query(`
         SELECT id, question_text, options_json, correct_answer, subject, topic, grade_level, difficulty
         FROM questions
-        WHERE grade_level = $1 ${subjectFilter} AND difficulty IN (8, 9, 10)
+        WHERE grade_level = $1 ${subjectFilter} AND difficulty::integer IN (8, 9, 10)
         ORDER BY RANDOM()
         LIMIT $${paramIndex}
       `, [...queryParams, hardCount]);
