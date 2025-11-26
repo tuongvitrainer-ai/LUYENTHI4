@@ -360,13 +360,13 @@ const ThuThachKhoiDau = () => {
           {/* Header */}
           <h1 style={{
             textAlign: 'center',
-            fontSize: '36px',
+            fontSize: '40px',
             fontWeight: '700',
             color: '#4A90E2',
             margin: '0 0 20px 0',
             padding: '10px 0'
           }}>
-            KHỞI ĐỘNG THỬ THÁCH
+            THỬ THÁCH KHỞI ĐỘNG
           </h1>
 
           {/* Question for Level Selection */}
