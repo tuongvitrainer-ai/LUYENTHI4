@@ -1128,25 +1128,32 @@
 ======================================== */
 @media (max-width: 1024px) {
   .test-container {
-    flex-direction: column;
-    height: auto; /* Bỏ 100vh để scroll được */
+    flex-direction: column-reverse; /* Đảo ngược: content lên trên, navigation xuống dưới */
+    height: auto;
   }
 
   .test-navigation {
     width: 100%;
-    flex-direction: row; /* Nằm ngang 1 hàng */
-    flex-wrap: nowrap; /* Không wrap, gom 1 hàng */
-    gap: var(--spacing-xs, 6px);
-    overflow-x: auto; /* Scroll ngang nếu cần */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: var(--spacing-xs);
+    overflow-x: auto;
+    order: 2; /* Đảm bảo navigation ở dưới */
+  }
+
+  .test-content {
+    flex: 1;
+    min-height: 60vh;
+    order: 1; /* Đảm bảo content ở trên */
   }
 
   .timer-box,
   .question-grid,
   .subject-progress-box {
-    flex: 0 0 auto; /* Không grow, giữ kích thước */
-    min-width: 180px; /* Thu nhỏ lại */
+    flex: 0 0 auto;
+    min-width: 180px;
     max-width: 220px;
-    padding: var(--spacing-sm, 8px); /* Giảm padding */
+    padding: var(--spacing-sm);
   }
 
   .timer-icon {
@@ -1164,28 +1171,22 @@
   .grid-title,
   .progress-title {
     font-size: 0.8rem;
-    margin-bottom: var(--spacing-xs, 6px);
+    margin-bottom: var(--spacing-xs);
   }
 
   .question-numbers {
-    gap: var(--spacing-xs, 4px);
+    gap: var(--spacing-xs);
   }
 
   .question-number-btn {
-    width: 35px; /* Thu nhỏ */
+    width: 35px;
     height: 35px;
     font-size: 0.8rem;
   }
 
   .subject-item {
     font-size: 0.75rem;
-    margin-bottom: var(--spacing-xs, 4px);
-  }
-
-  /* Ưu tiên Question Content */
-  .test-content {
-    flex: 1;
-    min-height: 60vh; /* Đảm bảo có không gian */
+    margin-bottom: var(--spacing-xs);
   }
 }
 
@@ -1222,8 +1223,19 @@
     padding: var(--spacing-md, 14px) var(--spacing-xl, 36px);
   }
 
+  /* Giữ navigation nằm ngang, cho phép wrap nếu cần */
   .test-navigation {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .timer-box,
+  .question-grid,
+  .subject-progress-box {
+    flex: 1 1 auto;
+    min-width: 150px;
+    max-width: 300px;
   }
 
   .test-content {
