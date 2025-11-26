@@ -9,7 +9,7 @@ import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
 
 // Import ở đầu file
-import ThuThachKhoiDau from './pages/sandbox/ThuThachKhoiDau/ThuThachKhoiDau';
+import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
 
 // Các trang giả lập (Placeholder Pages)
 const HomePage = () => {
@@ -74,8 +74,8 @@ function App() {
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
                   <Route path="/demo/sound" element={<SoundDemo />} />
 
-                  
-                  <Route path="/sandbox/thu-thach" element={<ThuThachKhoiDau />} />
+                  {/* Exam Routes */}
+                  <Route path="/exam/thu-thach" element={<ThuThachKhoiDau />} />
 
                   <Route
                     path="/profile"
