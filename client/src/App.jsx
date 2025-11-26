@@ -9,7 +9,7 @@ import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
 
 // Import ở đầu file
-import ThuThachKhoiDau from './pages/sandbox/ThuThachKhoiDau/ThuThachKhoiDau';
+import ThuThachKhoiDau from './pages/sandbox/ThuThachKhoiDau';
 
 // Các trang giả lập (Placeholder Pages)
 const HomePage = () => {

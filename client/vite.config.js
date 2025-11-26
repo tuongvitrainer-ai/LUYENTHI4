@@ -1,11 +1,39 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+// Định nghĩa __dirname cho môi trường ES Module (fix lỗi __dirname is not defined)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
+  // 1. Cấu hình Alias (Để dùng @ thay cho src)
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+
+  // 2. Cấu hình Server (Để kết nối Backend và mở mạng LAN)
+  server: {
+    port: 5173,
+    host: true, // Mở host để điện thoại có thể truy cập
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000', // Chuyển hướng API về Backend
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+
   plugins: [
     react(),
+    
+    // 3. Cấu hình PWA (Giữ nguyên của bạn)
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['icon-192x192.svg', 'icon-512x512.svg', 'apple-touch-icon.svg'],
@@ -42,74 +70,62 @@ export default defineConfig({
         ],
       },
 
-      // Service Worker configuration
       workbox: {
-        // Caching strategies
         runtimeCaching: [
           {
-            // Cache HTML files
             urlPattern: /^https:\/\/localhost:5173\/.*\.html$/,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'html-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+                maxAgeSeconds: 60 * 60 * 24 * 7,
               },
             },
           },
           {
-            // Cache CSS and JS files
             urlPattern: /\.(?:css|js)$/,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'static-resources',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+                maxAgeSeconds: 60 * 60 * 24 * 30,
               },
             },
           },
           {
-            // Cache images
             urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
             handler: 'CacheFirst',
             options: {
               cacheName: 'image-cache',
               expiration: {
                 maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 60, // 60 days
+                maxAgeSeconds: 60 * 60 * 24 * 60,
               },
             },
           },
           {
-            // Cache API calls
-            urlPattern: /^http:\/\/localhost:5000\/api\/.*/,
+            urlPattern: /^\/api\/.*/, // Sửa lại regex để khớp với proxy
             handler: 'NetworkFirst',
             options: {
               cacheName: 'api-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 5, // 5 minutes
+                maxAgeSeconds: 60 * 5,
               },
               networkTimeoutSeconds: 10,
             },
           },
         ],
-
-        // Precache files
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
-
-        // Clean up old caches
         cleanupOutdatedCaches: true,
-
-        // Skip waiting - activate new service worker immediately
         skipWaiting: true,
         clientsClaim: true,
       },
 
       devOptions: {
-        enabled: true, // Enable PWA in development mode
+        enabled: true,
         type: 'module',
       },
     }),
