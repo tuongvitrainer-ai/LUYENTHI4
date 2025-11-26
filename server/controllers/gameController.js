@@ -145,8 +145,73 @@ const submitGameResult = async (req, res) => {
   }
 };
 
+/**
+ * Lấy câu hỏi cho game "Thử Thách Khởi Đầu"
+ * GET /api/games/challenge/:gradeLevel
+ * Access: Public
+ * Query params: ?limit=15
+ */
+const getChallengeQuestions = async (req, res) => {
+  try {
+    const { gradeLevel } = req.params;
+    const limit = parseInt(req.query.limit) || 15;
+
+    // Validate grade level
+    if (![3, 4, 5].includes(parseInt(gradeLevel))) {
+      return res.status(400).json({
+        success: false,
+        message: 'Grade level phải là 3, 4 hoặc 5',
+      });
+    }
+
+    // Lấy câu hỏi từ database
+    const questionsFromDB = await gameModel.getChallengeQuestions(parseInt(gradeLevel), limit);
+
+    // Transform data: parse options_json và tìm correctAnswerIndex
+    const questions = questionsFromDB.map(q => {
+      // Parse options_json từ string thành array
+      let options = [];
+      try {
+        options = typeof q.options_json === 'string'
+          ? JSON.parse(q.options_json)
+          : q.options_json;
+      } catch (err) {
+        console.error(`Error parsing options_json for question ${q.id}:`, err);
+        options = [];
+      }
+
+      // Tìm index của correct_answer trong mảng options
+      const correctAnswerIndex = options.findIndex(opt => opt === q.correct_answer);
+
+      return {
+        id: q.id,
+        question: q.question_text,
+        options: options,
+        correctAnswer: correctAnswerIndex >= 0 ? correctAnswerIndex : 0, // Fallback to 0 if not found
+        subject: q.subject,
+        topic: q.topic,
+      };
+    });
+
+    return res.status(200).json({
+      success: true,
+      count: questions.length,
+      gradeLevel: parseInt(gradeLevel),
+      questions,
+    });
+  } catch (error) {
+    console.error('Get challenge questions error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Lỗi server khi lấy câu hỏi',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllGames,
   getGameById,
   submitGameResult,
+  getChallengeQuestions, // Export function mới
 };

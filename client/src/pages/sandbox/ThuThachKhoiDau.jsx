@@ -1,136 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import GameButton from '@/components/ui/GameButton';
 import GameCard from '@/components/ui/GameCard';
 import useGameSound from '@/hooks/useGameSound';
 import './ThuThachKhoiDau.css';
-
-// Mock data - 15 câu hỏi phân bổ đều cho lớp 3
-const MOCK_QUESTIONS = [
-  // Toán học - 4 câu
-  {
-    id: 1,
-    subject: 'math',
-    topic: 'Phép cộng',
-    question: '125 + 378 = ?',
-    options: ['493', '503', '513', '523'],
-    correctAnswer: 1
-  },
-  {
-    id: 2,
-    subject: 'math',
-    topic: 'Phép trừ',
-    question: '500 - 247 = ?',
-    options: ['253', '263', '243', '273'],
-    correctAnswer: 0
-  },
-  {
-    id: 3,
-    subject: 'math',
-    topic: 'Phép nhân',
-    question: '8 × 7 = ?',
-    options: ['54', '56', '58', '64'],
-    correctAnswer: 1
-  },
-  {
-    id: 4,
-    subject: 'math',
-    topic: 'Phép chia',
-    question: '72 ÷ 8 = ?',
-    options: ['7', '8', '9', '10'],
-    correctAnswer: 2
-  },
-  // Tiếng Việt - 4 câu
-  {
-    id: 5,
-    subject: 'vietnamese',
-    topic: 'Chính tả',
-    question: 'Từ nào viết đúng?',
-    options: ['Học sịnh', 'Học sinh', 'Hoc sinh', 'Học xịnh'],
-    correctAnswer: 1
-  },
-  {
-    id: 6,
-    subject: 'vietnamese',
-    topic: 'Từ vựng',
-    question: 'Từ trái nghĩa của "cao" là gì?',
-    options: ['Thấp', 'Nhỏ', 'Bé', 'Ngắn'],
-    correctAnswer: 0
-  },
-  {
-    id: 7,
-    subject: 'vietnamese',
-    topic: 'Ngữ pháp',
-    question: 'Câu nào đúng?',
-    options: ['Tôi đi học', 'Tôi học đi', 'Đi tôi học', 'Học đi tôi'],
-    correctAnswer: 0
-  },
-  {
-    id: 8,
-    subject: 'vietnamese',
-    topic: 'Đọc hiểu',
-    question: 'Con vật nào sống ở nước?',
-    options: ['Chó', 'Mèo', 'Cá', 'Gà'],
-    correctAnswer: 2
-  },
-  // Tiếng Anh - 4 câu
-  {
-    id: 9,
-    subject: 'english',
-    topic: 'Vocabulary',
-    question: 'What color is the sky?',
-    options: ['Red', 'Blue', 'Green', 'Yellow'],
-    correctAnswer: 1
-  },
-  {
-    id: 10,
-    subject: 'english',
-    topic: 'Numbers',
-    question: 'How many fingers do you have?',
-    options: ['Five', 'Eight', 'Ten', 'Twelve'],
-    correctAnswer: 2
-  },
-  {
-    id: 11,
-    subject: 'english',
-    topic: 'Grammar',
-    question: 'I ___ a student.',
-    options: ['is', 'am', 'are', 'be'],
-    correctAnswer: 1
-  },
-  {
-    id: 12,
-    subject: 'english',
-    topic: 'Animals',
-    question: 'A cat says:',
-    options: ['Woof', 'Meow', 'Moo', 'Quack'],
-    correctAnswer: 1
-  },
-  // Tư duy Logic - 3 câu
-  {
-    id: 13,
-    subject: 'logic',
-    topic: 'Dãy số',
-    question: 'Tìm số tiếp theo: 2, 4, 6, 8, ?',
-    options: ['9', '10', '11', '12'],
-    correctAnswer: 1
-  },
-  {
-    id: 14,
-    subject: 'logic',
-    topic: 'Hình học',
-    question: 'Hình nào có 4 cạnh bằng nhau?',
-    options: ['Tam giác', 'Hình vuông', 'Hình chữ nhật', 'Hình tròn'],
-    correctAnswer: 1
-  },
-  {
-    id: 15,
-    subject: 'logic',
-    topic: 'So sánh',
-    question: 'Số nào lớn nhất?',
-    options: ['45', '54', '44', '55'],
-    correctAnswer: 3
-  }
-];
 
 const SUBJECT_CONFIG = {
   math: { name: 'Toán học', icon: '🔢', color: '#87CEEB', total: 4 },
@@ -230,73 +103,31 @@ const ThuThachKhoiDau = () => {
     setError(null);
 
     try {
-      // Build query parameters
+      // Call API to get questions
       const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-      const queryParams = new URLSearchParams({
-        count: questionCount,
-        difficulty: difficultyLevel
+      const response = await axios.get(`${API_BASE}/api/games/challenge/${selectedLevel}`, {
+        params: {
+          limit: questionCount
+        }
       });
 
-      // Add subject filters (if not "all")
-      if (!selectedSubjects.includes('all')) {
-        selectedSubjects.forEach(subject => {
-          queryParams.append('subjects', subject);
-        });
-      }
-
-      const response = await fetch(`${API_BASE}/api/challenge/questions/${selectedLevel}?${queryParams.toString()}`);
-
-      if (!response.ok) {
-        throw new Error('Không thể tải câu hỏi');
-      }
-
-      const data = await response.json();
-
-      if (data.success && data.data.questions.length > 0) {
-        // Transform API data to match frontend format
-        const transformedQuestions = data.data.questions.map(q => ({
-          id: q.id,
-          subject: q.subject,
-          topic: q.topic,
-          question: q.question_text,
-          options: q.options,
-          // correctAnswer will be checked on backend
-        }));
-
-        setQuestions(transformedQuestions);
+      if (response.data.success && response.data.questions.length > 0) {
+        // API đã trả về data đúng format: { id, question, options, correctAnswer, subject, topic }
+        setQuestions(response.data.questions);
         setShowTest(true);
         setCurrentQuestionIndex(0);
         setUserAnswers({});
         setTimeRemaining(30 * 60);
         setShowResults(false);
         setStartTime(Date.now());
-        console.log(`✅ Loaded ${transformedQuestions.length} questions from API`);
+        console.log(`✅ Loaded ${response.data.questions.length} questions from database`);
       } else {
         throw new Error('Không có câu hỏi nào');
       }
     } catch (err) {
-      console.error('Error fetching questions:', err);
-      setError(err.message);
-
-      // Fallback to MOCK_QUESTIONS if API fails - filter by selected subjects
-      console.log('⚠️  Using mock data as fallback');
-      let filteredQuestions = MOCK_QUESTIONS;
-
-      // Filter by subject if not "all"
-      if (!selectedSubjects.includes('all')) {
-        filteredQuestions = MOCK_QUESTIONS.filter(q => selectedSubjects.includes(q.subject));
-      }
-
-      // Limit to questionCount
-      filteredQuestions = filteredQuestions.slice(0, questionCount);
-
-      setQuestions(filteredQuestions);
-      setShowTest(true);
-      setCurrentQuestionIndex(0);
-      setUserAnswers({});
-      setTimeRemaining(30 * 60);
-      setShowResults(false);
-      setStartTime(Date.now());
+      console.error('❌ Error fetching questions:', err);
+      setError(err.response?.data?.message || err.message || 'Không thể tải câu hỏi');
+      alert('Lỗi khi tải câu hỏi từ database. Vui lòng kiểm tra kết nối server.');
     } finally {
       setLoading(false);
     }

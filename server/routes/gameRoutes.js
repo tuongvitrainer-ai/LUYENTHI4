@@ -11,6 +11,14 @@ const { verifyToken, optionalAuth } = require('../middlewares/authMiddleware');
 router.get('/', optionalAuth, gameController.getAllGames);
 
 /**
+ * @route   GET /api/games/challenge/:gradeLevel
+ * @desc    Lấy câu hỏi ngẫu nhiên cho game "Thử Thách Khởi Đầu"
+ * @access  Public
+ * @query   ?limit=15
+ */
+router.get('/challenge/:gradeLevel', gameController.getChallengeQuestions);
+
+/**
  * @route   GET /api/games/:id
  * @desc    Lấy chi tiết một game/exam (bao gồm câu hỏi)
  * @access  Public (optionalAuth - Không bắt buộc đăng nhập)
