@@ -104,7 +104,7 @@ const ThuThachKhoiDau = () => {
 
     try {
       // Call API to get questions
-      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       const response = await axios.get(`${API_BASE}/api/games/challenge/${selectedLevel}`, {
         params: {
           limit: questionCount
@@ -194,7 +194,7 @@ const ThuThachKhoiDau = () => {
       console.log('📤 Submitting answers:', answersArray);
 
       // Submit to API
-      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       const response = await fetch(`${API_BASE}/api/challenge/submit`, {
         method: 'POST',
         headers: {
