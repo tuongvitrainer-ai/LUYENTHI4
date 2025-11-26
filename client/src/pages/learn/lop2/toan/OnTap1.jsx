@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../IframeGame.css';
+import '../../IframeGame.css';
 
 const OnTap1 = () => {
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const OnTap1 = () => {
       <div className="iframe-game-title">
         <h2>
           <span>📝</span>
-          Ôn tập Toán Lớp 2 - Bài 1
+          Ôn tập Toán Lớp 2
         </h2>
       </div>
 

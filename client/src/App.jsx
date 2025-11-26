@@ -77,7 +77,7 @@ function App() {
                   <Route path="/demo/sound" element={<SoundDemo />} />
 
                   <Route path="/sandbox/thu-thach" element={<ThuThachKhoiDau />} />
-                  <Route path="/learn/lop-2/toan/on-tap-1" element={<OnTap1 />} />
+                  <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
                   <Route
                     path="/profile"
                     element={
