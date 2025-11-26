@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './thuthachkhoidau.css';
+import GameButton from '@/components/ui/GameButton';
+import GameCard from '@/components/ui/GameCard';
+import useGameSound from '@/hooks/useGameSound';
+import './ThuThachKhoiDau.css';
 
 // Mock data - 15 câu hỏi phân bổ đều cho lớp 3
 const MOCK_QUESTIONS = [
@@ -156,6 +159,9 @@ const ThuThachKhoiDau = () => {
   const [startTime, setStartTime] = useState(null);
   const [reviewQuestions, setReviewQuestions] = useState([]); // NEW: Detailed review
 
+  // Sound hook
+  const { playClick, playCorrect, playWrong } = useGameSound();
+
   // Timer countdown
   useEffect(() => {
     if (showTest && !showResults) {
@@ -297,6 +303,7 @@ const ThuThachKhoiDau = () => {
   };
 
   const handleAnswerSelect = (questionId, answerIndex) => {
+    playClick();
     setUserAnswers({
       ...userAnswers,
       [questionId]: answerIndex
@@ -515,31 +522,23 @@ const ThuThachKhoiDau = () => {
             position: 'relative',
             marginBottom: '20px'
           }}>
-            <button
-              className="btn-home-top"
-              onClick={() => window.history.back()}
+            <GameButton
+              variant="primary"
+              size="small"
+              icon="🏠"
+              iconPosition="left"
+              onClick={() => {
+                playClick();
+                window.history.back();
+              }}
               style={{
                 position: 'absolute',
                 left: '0',
-                top: '0',
-                padding: '10px 20px',
-                background: '#4A90E2',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '600',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                transition: 'all 0.3s ease'
+                top: '0'
               }}
-              onMouseEnter={(e) => e.target.style.background = '#357ABD'}
-              onMouseLeave={(e) => e.target.style.background = '#4A90E2'}
             >
-              🏠 Về trang chủ
-            </button>
+              Về trang chủ
+            </GameButton>
 
             <h1 style={{
               textAlign: 'center',
@@ -624,7 +623,10 @@ const ThuThachKhoiDau = () => {
                   <button
                     key={count}
                     className={`count-option ${questionCount === count ? 'selected' : ''}`}
-                    onClick={() => setQuestionCount(count)}
+                    onClick={() => {
+                      playClick();
+                      setQuestionCount(count);
+                    }}
                     style={{
                       padding: '12px 24px',
                       border: '2px solid',
@@ -732,7 +734,10 @@ const ThuThachKhoiDau = () => {
               }}>
                 <button
                   className={`subject-filter-option ${selectedSubjects.includes('all') ? 'selected' : ''}`}
-                  onClick={() => handleSubjectToggle('all')}
+                  onClick={() => {
+                    playClick();
+                    handleSubjectToggle('all');
+                  }}
                   style={{
                     padding: '10px 20px',
                     border: '2px solid',
@@ -752,7 +757,10 @@ const ThuThachKhoiDau = () => {
                   <button
                     key={key}
                     className={`subject-filter-option ${selectedSubjects.includes(key) ? 'selected' : ''}`}
-                    onClick={() => handleSubjectToggle(key)}
+                    onClick={() => {
+                      playClick();
+                      handleSubjectToggle(key);
+                    }}
                     style={{
                       padding: '10px 20px',
                       border: '2px solid',
@@ -780,26 +788,17 @@ const ThuThachKhoiDau = () => {
             marginTop: '30px',
             marginBottom: '30px'
           }}>
-            <button
-              className="btn-start-test"
-              onClick={startTest}
-              disabled={loading}
-              style={{
-                padding: '16px 48px',
-                fontSize: '18px',
-                fontWeight: '700',
-                background: loading ? '#ccc' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '12px',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
-                transition: 'all 0.3s ease',
-                minWidth: '250px'
+            <GameButton
+              variant="primary"
+              size="large"
+              onClick={() => {
+                playClick();
+                startTest();
               }}
+              disabled={loading}
             >
               {loading ? 'Đang tải câu hỏi...' : 'Bắt đầu thử thách! 🚀'}
-            </button>
+            </GameButton>
           </div>
         </div>
       </div>
@@ -952,9 +951,11 @@ const ThuThachKhoiDau = () => {
 
             {/* Action Buttons */}
             <div className="results-actions">
-              <button
-                className="btn-retry"
+              <GameButton
+                variant="warning"
+                size="large"
                 onClick={() => {
+                  playClick();
                   setShowTest(false);
                   setShowResults(false);
                   setSelectedLevel(null);
@@ -962,13 +963,19 @@ const ThuThachKhoiDau = () => {
                 }}
               >
                 Làm lại bài test
-              </button>
-              <button
-                className="btn-home"
-                onClick={() => window.history.back()}
+              </GameButton>
+              <GameButton
+                variant="secondary"
+                size="large"
+                icon="🏠"
+                iconPosition="left"
+                onClick={() => {
+                  playClick();
+                  window.history.back();
+                }}
               >
                 Về trang chủ
-              </button>
+              </GameButton>
             </div>
           </div>
         </div>
@@ -1109,28 +1116,40 @@ const ThuThachKhoiDau = () => {
 
           {/* Navigation Buttons */}
           <div className="test-navigation-buttons">
-            <button
-              className="btn-nav btn-prev"
-              onClick={handlePrevQuestion}
+            <GameButton
+              variant="secondary"
+              size="medium"
+              onClick={() => {
+                playClick();
+                handlePrevQuestion();
+              }}
               disabled={currentQuestionIndex === 0}
             >
               ← Câu trước
-            </button>
+            </GameButton>
 
-            <button
-              className="btn-nav btn-submit"
-              onClick={handleSubmitClick}
+            <GameButton
+              variant="warning"
+              size="medium"
+              onClick={() => {
+                playClick();
+                handleSubmitClick();
+              }}
             >
               Nộp bài
-            </button>
+            </GameButton>
 
-            <button
-              className="btn-nav btn-next"
-              onClick={handleNextQuestion}
+            <GameButton
+              variant="secondary"
+              size="medium"
+              onClick={() => {
+                playClick();
+                handleNextQuestion();
+              }}
               disabled={currentQuestionIndex === questions.length - 1}
             >
               Câu sau →
-            </button>
+            </GameButton>
           </div>
         </div>
       </div>
@@ -1147,18 +1166,26 @@ const ThuThachKhoiDau = () => {
               <p>Bé có chắc chắn muốn nộp bài không?</p>
             </div>
             <div className="modal-footer">
-              <button
-                className="btn-secondary-action"
-                onClick={() => setShowConfirmDialog(false)}
+              <GameButton
+                variant="secondary"
+                size="medium"
+                onClick={() => {
+                  playClick();
+                  setShowConfirmDialog(false);
+                }}
               >
                 Tiếp tục làm bài
-              </button>
-              <button
-                className="btn-primary-action"
-                onClick={handleSubmit}
+              </GameButton>
+              <GameButton
+                variant="warning"
+                size="medium"
+                onClick={() => {
+                  playClick();
+                  handleSubmit();
+                }}
               >
                 Nộp bài ngay
-              </button>
+              </GameButton>
             </div>
           </div>
         </div>
