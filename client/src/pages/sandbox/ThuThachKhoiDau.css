@@ -520,7 +520,8 @@
   position: relative;
 }
 
-.question-text::before {
+/* Icon removed per user request */
+/* .question-text::before {
   content: '📝';
   position: absolute;
   top: -12px;
@@ -528,7 +529,7 @@
   font-size: 1.5rem;
   background: var(--color-white);
   padding: 0 8px;
-}
+} */
 
 /* Markdown styles in question text */
 .question-text p {
@@ -1182,8 +1183,17 @@
 ======================================== */
 @media (max-width: 1024px) {
   .test-container {
-    flex-direction: column-reverse; /* Đảo ngược: content lên trên, navigation xuống dưới */
+    display: flex;
+    flex-direction: column; /* Stack vertically on tablets */
     height: auto;
+    gap: var(--spacing-sm, 10px);
+  }
+
+  .test-content {
+    flex: 1;
+    min-height: 60vh;
+    order: 1; /* Content (question) ở trên */
+    width: 100%;
   }
 
   .test-navigation {
@@ -1192,13 +1202,7 @@
     flex-wrap: nowrap;
     gap: var(--spacing-xs);
     overflow-x: auto;
-    order: 2; /* Đảm bảo navigation ở dưới */
-  }
-
-  .test-content {
-    flex: 1;
-    min-height: 60vh;
-    order: 1; /* Đảm bảo content ở trên */
+    order: 2; /* Navigation ở dưới */
   }
 
   .timer-box,
@@ -1397,16 +1401,25 @@
 
   /* ===== HÌNH 2: Question lên đầu (đã có column-reverse) ===== */
   .test-container {
-    flex-direction: column-reverse; /* Navigation xuống dưới, question lên trên */
+    display: flex !important;
+    flex-direction: column !important; /* Stack vertically on mobile */
+    gap: var(--spacing-sm, 10px);
   }
 
   .test-content {
-    order: 1; /* Content (question) ở trên */
+    order: 1 !important; /* Content (question) ở trên đầu */
     padding: var(--spacing-sm, 10px);
+    width: 100%;
   }
 
   .test-navigation {
-    order: 2; /* Navigation ở dưới */
+    order: 2 !important; /* Navigation ở dưới */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-xs, 8px);
+    overflow-x: auto;
+    flex-wrap: nowrap;
   }
 
   /* Question text - To hơn, nổi bật */
@@ -1434,25 +1447,21 @@
     flex-wrap: wrap;
     gap: var(--spacing-sm, 10px);
     justify-content: space-between;
+    flex-direction: row;
   }
 
-  /* Câu trước & Câu sau cùng 1 hàng */
-  .test-navigation-buttons .btn-nav:nth-child(1),
-  .test-navigation-buttons .btn-nav:nth-child(3) {
+  /* Câu trước & Câu sau cùng 1 hàng (hàng đầu) */
+  .test-navigation-buttons > *:nth-child(1),
+  .test-navigation-buttons > *:nth-child(3) {
     flex: 1 1 48%; /* Mỗi button chiếm ~48% */
     min-width: 0;
+    order: 1; /* Đảm bảo ở hàng đầu */
   }
 
   /* Nộp bài xuống dòng mới, full width */
-  .test-navigation-buttons .btn-nav:nth-child(2) {
+  .test-navigation-buttons > *:nth-child(2) {
     flex: 1 1 100%; /* Full width */
-    order: 3; /* Xuống dưới cùng */
-  }
-
-  /* Đảm bảo order đúng */
-  .test-navigation-buttons {
-    flex-direction: row;
-    flex-wrap: wrap;
+    order: 2; /* Xuống dòng dưới */
   }
 
   /* Start button & results buttons */
