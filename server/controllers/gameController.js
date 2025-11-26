@@ -209,9 +209,161 @@ const getChallengeQuestions = async (req, res) => {
   }
 };
 
+/**
+ * Nộp bài game "Thử Thách Khởi Đầu"
+ * POST /api/challenge/submit
+ * Access: Public (không yêu cầu auth)
+ * Body: { user_id, grade_level, answers: [{ question_id, user_answer }], time_taken }
+ */
+const submitChallenge = async (req, res) => {
+  try {
+    const { user_id, grade_level, answers, time_taken } = req.body;
+
+    // Validate input
+    if (!user_id || !grade_level || !answers || !Array.isArray(answers)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Thiếu thông tin bắt buộc (user_id, grade_level, answers)',
+      });
+    }
+
+    if (![3, 4, 5].includes(parseInt(grade_level))) {
+      return res.status(400).json({
+        success: false,
+        message: 'Grade level phải là 3, 4 hoặc 5',
+      });
+    }
+
+    // Lấy chi tiết câu hỏi từ database
+    const questionIds = answers.map(a => a.question_id);
+    const questionsFromDB = await gameModel.getQuestionsByIds(questionIds);
+
+    if (questionsFromDB.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Không tìm thấy câu hỏi',
+      });
+    }
+
+    // Tạo map để dễ dàng tra cứu
+    const questionMap = {};
+    questionsFromDB.forEach(q => {
+      // Parse options_json
+      let options = [];
+      try {
+        options = typeof q.options_json === 'string'
+          ? JSON.parse(q.options_json)
+          : q.options_json;
+      } catch (err) {
+        console.error(`Error parsing options_json for question ${q.id}:`, err);
+        options = [];
+      }
+
+      questionMap[q.id] = {
+        ...q,
+        options: options
+      };
+    });
+
+    // Tính điểm và tạo review_questions
+    let correctCount = 0;
+    const subjectScores = {};
+    const reviewQuestions = [];
+
+    answers.forEach(answer => {
+      const question = questionMap[answer.question_id];
+      if (!question) return;
+
+      const userAnswerText = answer.user_answer;
+      const correctAnswerText = question.correct_answer;
+      const isCorrect = userAnswerText === correctAnswerText;
+
+      if (isCorrect) {
+        correctCount++;
+      }
+
+      // Đếm điểm theo môn
+      if (!subjectScores[question.subject]) {
+        subjectScores[question.subject] = { correct: 0, total: 0 };
+      }
+      subjectScores[question.subject].total++;
+      if (isCorrect) {
+        subjectScores[question.subject].correct++;
+      }
+
+      // Thêm vào review_questions
+      reviewQuestions.push({
+        question_id: question.id,
+        question_text: question.question_text,
+        options: question.options,
+        user_answer: userAnswerText,
+        correct_answer: correctAnswerText,
+        is_correct: isCorrect,
+        explanation: question.explanation || 'Chưa có giải thích',
+        subject: question.subject,
+        topic: question.topic,
+      });
+    });
+
+    const totalQuestions = answers.length;
+    const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
+
+    // Tính số sao dựa trên điểm
+    let starsEarned = 0;
+    if (scorePercentage >= 90) starsEarned = 3;
+    else if (scorePercentage >= 70) starsEarned = 2;
+    else if (scorePercentage >= 50) starsEarned = 1;
+
+    // Lưu kết quả vào database
+    const testResult = await gameModel.saveChallengeResult({
+      userId: user_id,
+      gradeLevel: grade_level,
+      correctAnswers: correctCount,
+      totalQuestions: totalQuestions,
+      score: scorePercentage,
+      timeTaken: time_taken || 0,
+    });
+
+    // Lưu chi tiết từng câu trả lời
+    for (const reviewQuestion of reviewQuestions) {
+      await gameModel.saveChallengeAnswer({
+        testId: testResult.id,
+        questionId: reviewQuestion.question_id,
+        userAnswer: reviewQuestion.user_answer,
+        correctAnswer: reviewQuestion.correct_answer,
+        isCorrect: reviewQuestion.is_correct,
+      });
+    }
+
+    // Trả về kết quả với review_questions
+    return res.status(200).json({
+      success: true,
+      message: 'Nộp bài thành công',
+      data: {
+        test_id: testResult.id,
+        correct_answers: correctCount,
+        total_questions: totalQuestions,
+        score: scorePercentage,
+        stars_earned: starsEarned,
+        time_taken: time_taken || 0,
+        subject_scores: subjectScores,
+        review_questions: reviewQuestions, // Trả về mảng review_questions đầy đủ
+      },
+    });
+  } catch (error) {
+    console.error('Submit challenge error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Lỗi server khi nộp bài',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllGames,
   getGameById,
   submitGameResult,
-  getChallengeQuestions, // Export function mới
+  getChallengeQuestions,
+  submitChallenge,
 };
