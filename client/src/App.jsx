@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import MainLayout from './layouts/MainLayout';
+import AdminLayout from './layouts/AdminLayout';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import ProtectedAdminRoute from './components/common/ProtectedAdminRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import GameListPage from './pages/game/GameListPage';
@@ -11,6 +13,13 @@ import SoundDemo from './components/demo/SoundDemo';
 // Import ở đầu file
 import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
 import OnTap1 from './pages/learn/lop2/toan/OnTap1';
+
+// Import Admin Pages
+import Dashboard from './pages/admin/Dashboard';
+import UserManager from './pages/admin/UserManager';
+import LessonManager from './pages/admin/LessonManager';
+import LessonEditor from './pages/admin/LessonEditor';
+import Settings from './pages/admin/Settings';
 
 
 // Các trang giả lập (Placeholder Pages)
@@ -63,6 +72,23 @@ function App() {
           {/* Auth pages - No Layout */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+
+          {/* Admin Routes - Wrapped in AdminLayout & ProtectedAdminRoute */}
+          <Route
+            path="/admin/*"
+            element={
+              <ProtectedAdminRoute>
+                <AdminLayout />
+              </ProtectedAdminRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="users" element={<UserManager />} />
+            <Route path="lessons" element={<LessonManager />} />
+            <Route path="lessons/new" element={<LessonEditor />} />
+            <Route path="lessons/edit/:id" element={<LessonEditor />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
 
           {/* All other routes - Wrapped in MainLayout */}
           <Route
