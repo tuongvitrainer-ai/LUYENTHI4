@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 Chủ đề ôn tập Toán lớp 2</title>
+
+        <!-- 1. Nhúng Font chữ Google (để giống website chính) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 2. Nhúng CSS Chuẩn (Shared Theme) -->
+    <link rel="stylesheet" href="/styles/game-theme.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>11 CHỦ ĐỀ ÔN TẬP TOÁN LỚP 2</h1>
+
+        <div id="topic-selection">
+            <label for="topic-select">Chọn Chủ đề:</label>
+            <select id="topic-select">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            <button onclick="loadTopic()">Bắt đầu</button>
+        </div>
+
+        <div id="quiz-area" style="display: none;">
+            <h2 id="topic-title"></h2>
+            <form id="quiz-form">
+                <!-- Questions will be populated by JavaScript -->
+            </form>
+            <button onclick="checkAnswers()" class="submit-button">Kiểm tra đáp án</button>
+            <button onclick="resetQuiz()" class="reset-button">Làm lại</button>
+            <a href="#" onclick="showTopicSelection()" class="back-link">← Quay lại chọn chủ đề</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
