@@ -10,6 +10,8 @@ import SoundDemo from './components/demo/SoundDemo';
 
 // Import ở đầu file
 import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
+import OnTap1 from './pages/learn/lop2/toan/OnTap1';
+
 
 // Các trang giả lập (Placeholder Pages)
 const HomePage = () => {
@@ -76,6 +78,8 @@ function App() {
 
                   {/* Exam Routes */}
                   <Route path="/exam/thu-thach" element={<ThuThachKhoiDau />} />
+
+                  <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
 
                   <Route
                     path="/profile"
