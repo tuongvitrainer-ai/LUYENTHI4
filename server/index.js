@@ -7,6 +7,7 @@ require('dotenv').config();
 const db = require('./config/db'); // Test DB connection
 const authRoutes = require('./routes/authRoutes'); // Auth routes
 const gameRoutes = require('./routes/gameRoutes'); // Game routes
+const adminRoutes = require('./routes/adminRoutes'); // Admin routes
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,9 @@ app.use('/api/auth', authRoutes);
 
 // Game Routes (Support Public Play)
 app.use('/api/games', gameRoutes);
+
+// Admin Routes (Protected by verifyToken & checkRole(['admin']))
+app.use('/api/admin', adminRoutes);
 
 // Challenge Routes (Game "Thử Thách Khởi Đầu")
 const gameController = require('./controllers/gameController');
