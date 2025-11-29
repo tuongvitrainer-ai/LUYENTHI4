@@ -12,7 +12,7 @@ import {
   MenuUnfoldOutlined,
   StarOutlined,
   FireOutlined,
-  GamepadOutlined,
+  CustomerServiceOutlined,
   EditOutlined,
   ShoppingOutlined,
 } from '@ant-design/icons';
@@ -52,7 +52,7 @@ const MainLayout = ({ children }) => {
     },
     {
       key: '2',
-      icon: <GamepadOutlined />,
+      icon: <CustomerServiceOutlined />,
       label: 'Chơi mà học',
       path: '/games',
     },
