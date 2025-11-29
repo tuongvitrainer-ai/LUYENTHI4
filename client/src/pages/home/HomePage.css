@@ -2,6 +2,8 @@
 .homepage {
   max-width: 1200px;
   margin: 0 auto;
+  padding: var(--spacing-lg);
+  min-height: 100vh;
 }
 
 /* ===== TIER 1: DAILY QUEST BANNER ===== */

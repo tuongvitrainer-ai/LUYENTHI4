@@ -7,6 +7,7 @@ import ProtectedAdminRoute from './components/common/ProtectedAdminRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import HomePage from './pages/home/HomePage';
+import HomePageSimple from './pages/home/HomePageSimple';
 import GameListPage from './pages/game/GameListPage';
 import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
@@ -91,7 +92,8 @@ function App() {
             element={
               <MainLayout>
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
+                  <Route path="/" element={<HomePageSimple />} />
+                  <Route path="/home-full" element={<HomePage />} />
                   <Route path="/games" element={<GameListPage />} />
                   <Route path="/game/:id" element={<GamePlayPage />} />
                   <Route path="/practice" element={<PracticePage />} />
