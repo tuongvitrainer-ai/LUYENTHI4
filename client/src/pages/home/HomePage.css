@@ -7,7 +7,7 @@
 
 /* ===== TIER 1: DAILY QUEST BANNER ===== */
 .daily-quest-banner {
-  background: linear-gradient(135deg, #87CEEB 0%, #4DA6FF 100%);
+  background: linear-gradient(135deg, #87CEEB 0%, #4da6ff 100%);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
