@@ -12,6 +12,8 @@ import './HomePage.css';
 const HomePage = () => {
   const { isAuthenticated, user } = useAuth();
 
+  console.log('HomePage rendered', { isAuthenticated, user });
+
   // Sample game data - replace with real data from API
   const featuredGames = [
     {
