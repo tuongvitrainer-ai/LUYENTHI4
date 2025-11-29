@@ -92,8 +92,7 @@ function App() {
             element={
               <MainLayout>
                 <Routes>
-                  <Route path="/" element={<HomePageSimple />} />
-                  <Route path="/home-full" element={<HomePage />} />
+                  <Route path="/" element={<HomePage />} />
                   <Route path="/games" element={<GameListPage />} />
                   <Route path="/game/:id" element={<GamePlayPage />} />
                   <Route path="/practice" element={<PracticePage />} />

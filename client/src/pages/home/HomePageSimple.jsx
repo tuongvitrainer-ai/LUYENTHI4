@@ -6,11 +6,30 @@ import { useAuth } from '../../context/AuthContext';
 const HomePageSimple = () => {
   const { isAuthenticated, user } = useAuth();
 
+  console.log('HomePageSimple rendered!', { isAuthenticated, user });
+
   return (
-    <div style={{ padding: '20px', background: 'white', minHeight: '100vh' }}>
-      <h1 style={{ color: 'black', fontSize: '32px' }}>Trang Chủ - Test</h1>
-      <p style={{ color: 'black' }}>Authenticated: {isAuthenticated ? 'Yes' : 'No'}</p>
-      <p style={{ color: 'black' }}>User: {user?.username || 'Guest'}</p>
+    <div style={{
+      padding: '20px',
+      background: '#fff',
+      minHeight: '100vh',
+      position: 'relative',
+      zIndex: 1
+    }}>
+      <h1 style={{ color: '#000', fontSize: '32px', marginBottom: '20px' }}>🏠 Trang Chủ - Test Version</h1>
+      <p style={{ color: '#000', fontSize: '18px' }}>Authenticated: {isAuthenticated ? 'Yes ✅' : 'No ❌'}</p>
+      <p style={{ color: '#000', fontSize: '18px' }}>User: {user?.username || 'Guest'}</p>
+
+      <div style={{
+        background: '#ff0000',
+        padding: '10px',
+        color: '#fff',
+        marginTop: '20px',
+        fontSize: '20px',
+        fontWeight: 'bold'
+      }}>
+        🔴 NẾU BẠN THẤY DÒNG NÀY = COMPONENT ĐÃ RENDER OK!
+      </div>
 
       <div style={{
         background: 'linear-gradient(135deg, #87CEEB 0%, #4DA6FF 100%)',

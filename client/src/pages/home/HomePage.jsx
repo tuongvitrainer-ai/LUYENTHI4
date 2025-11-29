@@ -1,20 +1,19 @@
 import { Link } from 'react-router-dom';
-import { Button, Card, Row, Col } from 'antd';
-import {
-  RocketOutlined,
-  EditOutlined,
-  TrophyOutlined,
-  ThunderboltOutlined,
-} from '@ant-design/icons';
 import { useAuth } from '../../context/AuthContext';
+import GameCard from '../../components/ui/GameCard';
+import GameButton from '../../components/ui/GameButton';
+import { useGameSound } from '../../hooks/useGameSound';
 import './HomePage.css';
 
 const HomePage = () => {
   const { isAuthenticated, user } = useAuth();
+  const { playClick } = useGameSound();
 
-  console.log('HomePage rendered', { isAuthenticated, user });
+  const handleQuestClick = () => {
+    playClick();
+    // Navigate to quest
+  };
 
-  // Sample game data - replace with real data from API
   const featuredGames = [
     {
       id: 1,
@@ -55,72 +54,77 @@ const HomePage = () => {
             <p className="quest-description">Nhiệm vụ: Hoàn thành 5 bài toán đố</p>
           </div>
         </div>
-        <Button
-          type="primary"
+        <GameButton
+          variant="primary"
           size="large"
-          icon={<ThunderboltOutlined />}
+          onClick={handleQuestClick}
           className="quest-button"
         >
-          Bắt đầu ngay
-        </Button>
+          ⚡ Bắt đầu ngay
+        </GameButton>
       </div>
 
-      {/* Tier 2: Core Features - Ôn Luyện & Thi Thử */}
-      <Row gutter={[24, 24]} className="core-features">
-        <Col xs={24} md={12}>
-          <Card className="feature-card practice-card" hoverable>
-            <div className="card-icon">
+      {/* Tier 2: Core Features */}
+      <div className="core-features-grid">
+        <GameCard
+          variant="gradient"
+          hoverable
+          className="practice-card"
+        >
+          <div className="feature-content">
+            <div className="feature-icon">
               <span className="icon-large">📚</span>
-              <span className="calculator-icon">🖩</span>
+              <span className="icon-small">🖩</span>
             </div>
-            <div className="card-content">
-              <h3 className="card-title">Ôn Luyện</h3>
-              <Link to="/practice">
-                <Button type="default" size="large" className="card-button">
-                  Vào học
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        </Col>
+            <h3 className="feature-title">Ôn Luyện</h3>
+            <Link to="/practice">
+              <GameButton variant="secondary" size="large" fullWidth onClick={playClick}>
+                Vào học
+              </GameButton>
+            </Link>
+          </div>
+        </GameCard>
 
-        <Col xs={24} md={12}>
-          <Card className="feature-card exam-card" hoverable>
-            <div className="card-icon">
+        <GameCard
+          variant="gradient"
+          hoverable
+          className="exam-card"
+        >
+          <div className="feature-content">
+            <div className="feature-icon">
               <span className="icon-large">📝</span>
-              <span className="pen-icon">✏️</span>
+              <span className="icon-small">✏️</span>
             </div>
-            <div className="card-content">
-              <h3 className="card-title">Thi Thử</h3>
-              <Link to="/exam/thu-thach">
-                <Button type="default" size="large" className="card-button">
-                  Vào học
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        </Col>
-      </Row>
+            <h3 className="feature-title">Thi Thử</h3>
+            <Link to="/exam/thu-thach">
+              <GameButton variant="secondary" size="large" fullWidth onClick={playClick}>
+                Vào học
+              </GameButton>
+            </Link>
+          </div>
+        </GameCard>
+      </div>
 
-      {/* Tier 3: Entertainment Section */}
+      {/* Tier 3: Entertainment */}
       <div className="entertainment-section">
         <h2 className="section-title">Giải lao xíu nào!</h2>
-        <Row gutter={[16, 16]} className="games-grid">
+        <div className="games-grid">
           {featuredGames.map((game) => (
-            <Col xs={12} sm={8} md={6} key={game.id}>
-              <Link to={game.path}>
-                <Card className="game-card" hoverable>
-                  <div className="game-icon">{game.icon}</div>
-                  <div className="game-badge">{game.badge}</div>
-                  <h4 className="game-title">{game.title}</h4>
-                </Card>
-              </Link>
-            </Col>
+            <Link to={game.path} key={game.id}>
+              <GameCard
+                hoverable
+                className="mini-game-card"
+                onClick={playClick}
+              >
+                <div className="game-badge">{game.badge}</div>
+                <div className="game-icon">{game.icon}</div>
+                <h4 className="game-title">{game.title}</h4>
+              </GameCard>
+            </Link>
           ))}
-        </Row>
+        </div>
       </div>
 
-      {/* Guest Message */}
       {!isAuthenticated && (
         <div className="guest-message">
           <p>
