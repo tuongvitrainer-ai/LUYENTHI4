@@ -72,16 +72,24 @@ const HomePage = () => {
           className="practice-card"
         >
           <div className="feature-content">
-            <div className="feature-icon">
-              <span className="icon-large">📚</span>
-              <span className="icon-small">🖩</span>
+            {/* Icon bên trái trong vòng tròn */}
+            <div className="feature-icon-circle">
+              <div className="feature-icon">
+                <span className="icon-large">📚</span>
+                <span className="icon-small">🖩</span>
+              </div>
             </div>
-            <h3 className="feature-title">Ôn Luyện</h3>
-            <Link to="/practice">
-              <GameButton variant="secondary" size="large" fullWidth onClick={playClick}>
-                Vào học
-              </GameButton>
-            </Link>
+
+            {/* 3 dòng chữ bên phải */}
+            <div className="feature-info">
+              <h3 className="feature-title">Ôn Luyện</h3>
+              <p className="feature-description">Luyện tập các dạng toán cơ bản</p>
+              <Link to="/practice">
+                <GameButton variant="secondary" size="medium" onClick={playClick}>
+                  Vào học
+                </GameButton>
+              </Link>
+            </div>
           </div>
         </GameCard>
 
@@ -91,16 +99,24 @@ const HomePage = () => {
           className="exam-card"
         >
           <div className="feature-content">
-            <div className="feature-icon">
-              <span className="icon-large">📝</span>
-              <span className="icon-small">✏️</span>
+            {/* Icon bên trái trong vòng tròn */}
+            <div className="feature-icon-circle">
+              <div className="feature-icon">
+                <span className="icon-large">📝</span>
+                <span className="icon-small">✏️</span>
+              </div>
             </div>
-            <h3 className="feature-title">Thi Thử</h3>
-            <Link to="/exam/thu-thach">
-              <GameButton variant="secondary" size="large" fullWidth onClick={playClick}>
-                Vào học
-              </GameButton>
-            </Link>
+
+            {/* 3 dòng chữ bên phải */}
+            <div className="feature-info">
+              <h3 className="feature-title">Thi Thử</h3>
+              <p className="feature-description">Kiểm tra kiến thức toàn diện</p>
+              <Link to="/exam/thu-thach">
+                <GameButton variant="secondary" size="medium" onClick={playClick}>
+                  Vào học
+                </GameButton>
+              </Link>
+            </div>
           </div>
         </GameCard>
       </div>
