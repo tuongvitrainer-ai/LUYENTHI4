@@ -133,6 +133,7 @@
 
 /* LAYOUT HORIZONTAL: Icon bên trái + Text bên phải */
 .feature-content {
+  
   display: flex;
   flex-direction: row; /* Thay đổi từ column sang row */
   align-items: center;
