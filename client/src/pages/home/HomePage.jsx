@@ -27,7 +27,7 @@ const HomePage = () => {
       title: 'Toán Học Vui Nhộn',
       icon: '🎓',
       badge: '5',
-      path: '/games',
+      path: '/learn/lop2/toan/ontap1',
     },
     {
       id: 3,
