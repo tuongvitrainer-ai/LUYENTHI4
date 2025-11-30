@@ -170,6 +170,12 @@
   box-shadow: 0 8px 24px rgba(255, 165, 0, 0.25);
 }
 
+/* XÓA PADDING MẶC ĐỊNH CỦA GAME-CARD__BODY ĐỂ TRÁNH PADDING NHÂN ĐÔI */
+.practice-card .game-card__body,
+.exam-card .game-card__body {
+  padding: 0 !important;
+}
+
 .feature-content {
   
   display: flex;
@@ -180,6 +186,7 @@
   text-align: center;
   min-height: 152px; /* 200px total - 48px padding = 152px */
   justify-content: center;
+  /* TÍNH TOÁN: 152px (content) + 24px (top) + 24px (bottom) = 200px CHÍNH XÁC */
 }
 
 .feature-icon {
@@ -331,11 +338,18 @@
     gap: var(--spacing-md);
   }
 
+  /* XÓA PADDING MẶC ĐỊNH TRÊN MOBILE */
+  .practice-card .game-card__body,
+  .exam-card .game-card__body {
+    padding: 0 !important;
+  }
+
   /* Điều chỉnh chiều cao cards trên mobile */
   .feature-content {
-    min-height: 136px; /* 180px total - 44px padding = 136px */
+    min-height: 140px; /* 180px total - 40px padding = 140px */
     padding: 20px 24px;
     gap: var(--spacing-sm); /* 8px */
+    /* TÍNH TOÁN MOBILE: 140px (content) + 20px (top) + 20px (bottom) = 180px CHÍNH XÁC */
   }
 
   .icon-large {
