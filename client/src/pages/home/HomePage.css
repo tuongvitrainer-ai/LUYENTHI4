@@ -178,6 +178,8 @@
   gap: var(--spacing-lg);
   padding: var(--spacing-xl);
   text-align: center;
+  min-height: 280px; /* Chiều cao tối thiểu */
+  justify-content: center;
 }
 
 .feature-icon {
@@ -327,6 +329,12 @@
   .core-features-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+  }
+
+  /* Điều chỉnh chiều cao cards trên mobile */
+  .feature-content {
+    min-height: 220px;
+    padding: var(--spacing-lg);
   }
 
   .icon-large {
