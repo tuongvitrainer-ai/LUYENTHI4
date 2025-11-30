@@ -11,6 +11,10 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   StarOutlined,
+  FireOutlined,
+  CustomerServiceOutlined,
+  EditOutlined,
+  ShoppingOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import './MainLayout.css';
@@ -48,26 +52,28 @@ const MainLayout = ({ children }) => {
     },
     {
       key: '2',
-      icon: <RocketOutlined />,
-      label: 'Games',
+      icon: <CustomerServiceOutlined />,
+      label: 'Chơi mà học',
       path: '/games',
     },
     {
       key: '3',
+      icon: <EditOutlined />,
+      label: 'Rèn luyện',
+      path: '/practice',
+    },
+    {
+      key: '4',
       icon: <TrophyOutlined />,
-      label: 'Xếp hạng',
+      label: 'Bảng vàng',
       path: '/leaderboard',
     },
-    ...(isAuthenticated
-      ? [
-          {
-            key: '4',
-            icon: <UserOutlined />,
-            label: 'Hồ sơ',
-            path: '/profile',
-          },
-        ]
-      : []),
+    {
+      key: '5',
+      icon: <ShoppingOutlined />,
+      label: 'Cửa hàng',
+      path: '/shop',
+    },
   ];
 
   return (
@@ -76,8 +82,8 @@ const MainLayout = ({ children }) => {
       <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
         <div className="sidebar-header">
           <div className="logo">
-            <RocketOutlined style={{ fontSize: 24, color: 'var(--color-primary)' }} />
-            {!collapsed && <span className="logo-text">Luyện Thi</span>}
+            <span className="logo-icon">🐟</span>
+            {!collapsed && <span className="logo-text">Vượt Vũ Môn</span>}
           </div>
           <button
             className="toggle-btn"
@@ -102,12 +108,25 @@ const MainLayout = ({ children }) => {
         </nav>
 
         <div className="sidebar-footer">
-          {isAuthenticated && user?.wallet && (
-            <div className={`wallet-info ${collapsed ? 'collapsed' : ''}`}>
-              <div className="wallet-item">
-                <StarOutlined style={{ color: '#ffd700' }} />
-                {!collapsed && <span>{user.wallet.stars || 0}</span>}
-              </div>
+          {isAuthenticated && user && (
+            <div className={`student-card ${collapsed ? 'collapsed' : ''}`}>
+              <Avatar
+                size={collapsed ? 40 : 64}
+                icon={<UserOutlined />}
+                src={user?.avatarUrl}
+                style={{ backgroundColor: 'var(--color-accent)' }}
+              />
+              {!collapsed && (
+                <div className="student-info">
+                  <div className="student-name">{user?.fullName || user?.username || 'Bé An'}</div>
+                  <div className="student-level">
+                    <span className="level-text">Level {user?.level || 5}</span>
+                  </div>
+                  <div className="level-progress">
+                    <div className="progress-bar" style={{ width: '60%' }}></div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -118,19 +137,30 @@ const MainLayout = ({ children }) => {
         {/* Header */}
         <header className="header">
           <div className="header-left">
-            {/* Breadcrumb hoặc title có thể thêm ở đây */}
+            {isAuthenticated && (
+              <div className="header-greeting">
+                <h3>Chào buổi sáng, {user?.fullName || user?.username || 'Bé An'}!</h3>
+                <p className="header-subtitle">Hôm nay con muốn chinh phục môn gì?</p>
+              </div>
+            )}
           </div>
 
           <div className="header-right">
             {isAuthenticated ? (
               // User đã đăng nhập
-              <Space size="middle">
+              <Space size="large">
+                {/* Streak Counter */}
+                <div className="header-streak">
+                  <FireOutlined style={{ fontSize: 20, color: '#ff4500' }} />
+                  <span className="streak-count">{user?.streak || 12} ngày</span>
+                </div>
+
+                {/* Stars Display */}
                 {user?.wallet && (
-                  <Badge count={user.wallet.stars || 0} showZero overflowCount={999}>
-                    <div className="header-wallet">
-                      <StarOutlined style={{ fontSize: 20, color: '#ffd700' }} />
-                    </div>
-                  </Badge>
+                  <div className="header-stars">
+                    <StarOutlined style={{ fontSize: 20, color: '#ffd700' }} />
+                    <span className="stars-count">{user.wallet.stars || 350} sao</span>
+                  </div>
                 )}
 
                 <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
@@ -140,7 +170,6 @@ const MainLayout = ({ children }) => {
                       src={user?.avatarUrl}
                       style={{ backgroundColor: 'var(--color-primary)' }}
                     />
-                    <span className="username">{user?.username}</span>
                   </div>
                 </Dropdown>
               </Space>
