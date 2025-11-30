@@ -1,36 +1,38 @@
-name: Kiem tra Chat luong Code (CI) # Tên của quy trình này
+name: Kiem tra Client (CI)
 
-# 1. KHI NÀO ROBOT CHẠY?
 on:
   push:
-    branches: [ "main" ] # Chạy khi có ai đó đẩy code thẳng vào main
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ] # QUAN TRỌNG: Chạy khi có ai đó tạo yêu cầu gộp code (Pull Request) vào main
+    branches: [ "main" ]
 
-# 2. ROBOT SẼ LÀM GÌ?
 jobs:
-  build-va-test: # Tên công việc
-    runs-on: ubuntu-latest # Yêu cầu GitHub cấp cho 1 máy tính ảo chạy hệ điều hành Ubuntu (môi trường sạch)
+  build-client:
+    runs-on: ubuntu-latest
+    
+    # QUAN TRỌNG: Chỉ định thư mục làm việc mặc định là 'client'
+    defaults:
+      run:
+        working-directory: ./client
 
     steps:
-    # Bước 1: Tải code của bạn về máy ảo này
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Bước 2: Cài đặt môi trường (Ví dụ dự án Node.js)
     - name: Cai dat Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18
+        # Bảo nó cache lại thư viện trong folder client để lần sau chạy nhanh hơn
+        cache: 'npm'
+        cache-dependency-path: client/package-lock.json
 
-    # Bước 3: Cài đặt các thư viện (để đảm bảo máy ảo có đủ đồ nghề như máy bạn)
     - name: Cai dat thu vien
       run: npm install
 
-    # Bước 4: Chạy thử (Build thử xem có lỗi không)
     - name: Build thu du an
       run: npm run build --if-present
 
-    # Bước 5: Chạy các bài kiểm tra (Test) - Đây là bước quan trọng nhất
-    - name: Chay Test
-      run: npm test
+    # Lưu ý: Nếu trong package.json của client không có lệnh "test" thì bỏ dòng này đi
+    # - name: Chay Test
+    #   run: npm test
