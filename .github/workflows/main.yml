@@ -10,7 +10,6 @@ jobs:
   build-client:
     runs-on: ubuntu-latest
     
-    # QUAN TRỌNG: Chỉ định thư mục làm việc mặc định là 'client'
     defaults:
       run:
         working-directory: ./client
@@ -23,16 +22,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-        # Bảo nó cache lại thư viện trong folder client để lần sau chạy nhanh hơn
         cache: 'npm'
         cache-dependency-path: client/package-lock.json
 
+    # --- ĐÂY LÀ CHỖ ĐÃ SỬA ---
     - name: Cai dat thu vien
-      run: npm install
+      run: npm install --legacy-peer-deps
+    # -------------------------
 
     - name: Build thu du an
       run: npm run build --if-present
-
-    # Lưu ý: Nếu trong package.json của client không có lệnh "test" thì bỏ dòng này đi
-    # - name: Chay Test
-    #   run: npm test
