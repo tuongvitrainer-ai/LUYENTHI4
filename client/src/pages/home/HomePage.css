@@ -7,7 +7,12 @@
 
 /* ===== TIER 1: DAILY QUEST BANNER ===== */
 .daily-quest-banner {
-  background: linear-gradient(135deg, #87CEEB 0%, #4da6ff 100%);
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.8) 0%, rgba(77, 166, 255, 0.8) 100%),
+    url('/src/assets/images/ocean-wave.jpg') center/cover;
+  background-size: cover;
+  background-position: center;
+
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);

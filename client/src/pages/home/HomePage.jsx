@@ -50,8 +50,8 @@ const HomePage = () => {
             </div>
           </div>
           <div className="quest-info">
-            <h2 className="quest-title">Nhiệm vụ hôm nay</h2>
-            <p className="quest-description">Nhiệm vụ: Hoàn thành 5 bài toán đố</p>
+            <h2 className="quest-title">Thử thách hôm nay</h2>
+            <p className="quest-description">Thử thách: Hoàn thành 5 bài toán đố</p>
           </div>
         </div>
         <GameButton
@@ -83,7 +83,8 @@ const HomePage = () => {
             {/* 3 dòng chữ bên phải */}
             <div className="feature-info">
               <h3 className="feature-title">Ôn Luyện</h3>
-              <p className="feature-description">Luyện tập các dạng toán cơ bản</p>
+              <p className="feature-description">Luyện tập các môn Toán, Văn, Anh...</p>
+              <p className="feature-description">Ôn thi Starters, Movers, Flyers</p>
               <Link to="/practice">
                 <GameButton variant="secondary" size="medium" onClick={playClick}>
                   Vào học
@@ -110,7 +111,8 @@ const HomePage = () => {
             {/* 3 dòng chữ bên phải */}
             <div className="feature-info">
               <h3 className="feature-title">Thi Thử</h3>
-              <p className="feature-description">Kiểm tra kiến thức toàn diện</p>
+              <p className="feature-description">Ôn luyện các dạng đề cũ các năm, đề mẫu</p>
+              <p className="feature-description">Giới hạn thời gian, chấm bài ngay</p>
               <Link to="/exam/thu-thach">
                 <GameButton variant="secondary" size="medium" onClick={playClick}>
                   Vào học
@@ -144,8 +146,7 @@ const HomePage = () => {
       {!isAuthenticated && (
         <div className="guest-message">
           <p>
-            <strong>Chế độ khách:</strong> Bạn có thể xem và chơi game mà không cần đăng nhập.
-            Đăng nhập để lưu điểm số và xem lịch sử!
+            <strong>Chế độ khách:</strong>Hãy đăng nhập để lưu điểm số và xem lịch sử ôn tập nhé!
           </p>
         </div>
       )}
