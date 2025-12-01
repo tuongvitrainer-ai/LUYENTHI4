@@ -381,14 +381,13 @@
    RESULTS SCREEN
 ======================================== */
 .results-container {
-  max-width: 1400px;
-  width: 95%;
+  max-width: 1000px;
+  width: 100%;
   background: var(--color-white);
   border-radius: var(--border-radius-lg);
-  padding: var(--space-2xl);
+  padding: var(--space-xl);
   box-shadow: var(--shadow-lg);
   animation: fadeInUp var(--duration-normal) ease;
-  margin: 0 auto;
 }
 
 .results-header {
@@ -663,17 +662,83 @@
 @media (max-width: 768px) {
   .game-container,
   .results-container {
-    padding: var(--space-xl);
+    padding: var(--space-md);
+    width: 95%;
+    margin: 0 auto;
   }
 
   .score-card {
     flex-direction: column;
     gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+
+  .score-circle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .score-number {
+    font-size: 2.5rem;
   }
 
   .score-right-info {
     align-items: center;
     text-align: center;
+  }
+
+  .score-detail {
+    font-size: 1.1rem;
+  }
+
+  .score-detail strong {
+    font-size: 1.3rem;
+  }
+
+  /* Review Items Mobile */
+  .detailed-review {
+    padding: var(--space-md);
+  }
+
+  .review-item {
+    padding: var(--space-md);
+    border-left-width: 4px;
+    min-height: auto;
+  }
+
+  .review-header {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .review-number {
+    font-size: 0.9rem;
+  }
+
+  .review-badge {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+
+  .review-question-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .review-answers {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .review-answer {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .review-explanation {
+    padding: var(--space-md);
+    margin-top: var(--space-md);
   }
 }
 
@@ -681,7 +746,16 @@
   .game-container,
   .results-container,
   .test-content {
-    padding: var(--space-md);
+    padding: var(--space-sm);
+  }
+
+  .results-container {
+    width: 100%;
+    border-radius: var(--border-radius-md);
+  }
+
+  .results-title {
+    font-size: 1.8rem;
   }
 
   .test-container {
@@ -710,5 +784,95 @@
 
   .results-actions {
     flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  /* Score Card Mobile Small */
+  .score-card {
+    padding: var(--space-md);
+  }
+
+  .score-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .score-number {
+    font-size: 2rem;
+  }
+
+  .score-label {
+    font-size: 0.85rem;
+  }
+
+  .score-detail {
+    font-size: 1rem;
+  }
+
+  .score-detail strong {
+    font-size: 1.2rem;
+  }
+
+  .time-info-inline {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+  }
+
+  /* Review Items Mobile Small */
+  .detailed-review {
+    padding: var(--space-sm);
+    border-radius: var(--border-radius-md);
+  }
+
+  .review-title {
+    font-size: 1.2rem;
+    padding-bottom: var(--space-sm);
+  }
+
+  .review-questions {
+    gap: var(--space-md);
+  }
+
+  .review-item {
+    padding: var(--space-sm);
+    border-left-width: 3px;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .review-header {
+    margin-bottom: var(--space-sm);
+  }
+
+  .review-number {
+    font-size: 0.85rem;
+  }
+
+  .review-badge {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+  }
+
+  .review-question-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+  }
+
+  .review-answers {
+    padding: var(--space-sm);
+    gap: 6px;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .review-answer {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .review-explanation {
+    padding: var(--space-sm);
+    margin-top: var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    border-left-width: 3px;
   }
 }
