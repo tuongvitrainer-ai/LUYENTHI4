@@ -281,6 +281,36 @@ const getQuestionsByIds = async (questionIds) => {
 };
 
 /**
+ * Lấy câu hỏi từ vựng ngẫu nhiên cho game Vocabulary Movers/Flyers/Starters
+ * @param {string} gradeLevel - Cấp độ: movers, flyers, starters
+ * @param {number} limit - Số câu hỏi cần lấy (mặc định 15)
+ * @returns {Promise<Array>} Danh sách câu hỏi từ vựng
+ */
+const getVocabularyQuestions = async (gradeLevel = 'movers', limit = 15) => {
+  try {
+    const result = await db.query(`
+      SELECT
+        id,
+        question_text,
+        options_json,
+        correct_answer,
+        explanation,
+        picture,
+        subject,
+        topic,
+        grade_level
+      FROM vocabulary_questions
+      WHERE grade_level = $1 AND is_active = TRUE
+      ORDER BY RANDOM()
+      LIMIT $2
+    `, [gradeLevel, limit]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
  * Lưu kết quả challenge test
  * @param {Object} data - { userId, gradeLevel, correctAnswers, totalQuestions, score, timeTaken }
  * @returns {Promise<Object>} Challenge test result object
@@ -324,6 +354,7 @@ module.exports = {
   getChallengeQuestions,
   getChallengeQuestionsWithFilters,
   getQuestionsByIds,
+  getVocabularyQuestions,
   saveChallengeResult,
   saveChallengeAnswer,
 };
