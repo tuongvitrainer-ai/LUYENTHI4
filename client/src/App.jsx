@@ -14,6 +14,8 @@ import SoundDemo from './components/demo/SoundDemo';
 import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
 import OnTap1 from './pages/learn/lop2/toan/OnTap1';
 
+import Movers_Quest from './pages/sandbox/vocabulary-movers1';
+
 // Import Admin Pages
 import Dashboard from './pages/admin/Dashboard';
 import UserManager from './pages/admin/UserManager';
@@ -106,6 +108,8 @@ function App() {
                   <Route path="/exam/thu-thach" element={<ThuThachKhoiDau />} />
 
                   <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
+
+                  <Route path="/sandbox/vocabulary-movers" element={<Movers_Quest />} />
 
                   <Route
                     path="/profile"
