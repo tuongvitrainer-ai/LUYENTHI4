@@ -1,4 +1,5 @@
 const gameModel = require('../models/gameModel');
+const cambridgeModel = require('../models/cambridgeModel');
 
 /**
  * Lấy danh sách tất cả games/exams
@@ -386,32 +387,33 @@ const submitChallenge = async (req, res) => {
  * Lấy câu hỏi cho game "Vocabulary Movers" với instant feedback
  * GET /api/games/vocabulary-movers
  * Access: Public
- * Query params: ?limit=15&level=3
+ * Query params: ?limit=15&gradeLevel=movers&topic=Family%20%26%20Friends
  */
 const getVocabularyMoversQuestions = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 15;
-    const level = parseInt(req.query.level) || 3;
+    const gradeLevel = req.query.gradeLevel || 'movers'; // movers, flyers, starters
+    const topic = req.query.topic || null;
 
-    // Validate level
-    if (![3, 4, 5].includes(level)) {
+    // Validate grade level
+    const validLevels = ['movers', 'flyers', 'starters'];
+    if (!validLevels.includes(gradeLevel)) {
       return res.status(400).json({
         success: false,
-        message: 'Level phải là 3, 4 hoặc 5',
+        message: 'Grade level phải là movers, flyers, hoặc starters',
       });
     }
 
-    // Lấy câu hỏi từ database - filter by English subject
-    const questionsFromDB = await gameModel.getChallengeQuestionsWithFilters({
-      gradeLevel: level,
-      subjects: ['english'], // Vocabulary is English subject
-      difficultyLevel: 5, // Medium difficulty
+    // Lấy câu hỏi từ cambridge_questions table
+    const questionsFromDB = await cambridgeModel.getCambridgeQuestions({
+      gradeLevel,
+      topic,
       limit
     });
 
-    // Transform data: parse options_json và trả về correctAnswer dưới dạng TEXT
+    // Transform data: parse options_json nếu cần
     const questions = questionsFromDB.map(q => {
-      // Parse options_json từ string thành array
+      // Parse options_json từ string/jsonb thành array
       let options = [];
       try {
         options = typeof q.options_json === 'string'
@@ -427,15 +429,23 @@ const getVocabularyMoversQuestions = async (req, res) => {
         question: q.question_text,
         options: options,
         correctAnswer: q.correct_answer, // Return as TEXT for instant feedback
+        explanation: q.explanation,
         subject: q.subject,
         topic: q.topic,
+        gradeLevel: q.grade_level,
+        picture: q.picture
       };
     });
+
+    // Get total available questions count
+    const totalAvailable = await cambridgeModel.getCambridgeQuestionsCount(gradeLevel, topic);
 
     return res.status(200).json({
       success: true,
       count: questions.length,
-      level: level,
+      totalAvailable,
+      gradeLevel,
+      topic,
       questions,
     });
   } catch (error) {

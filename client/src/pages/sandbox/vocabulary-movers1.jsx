@@ -80,7 +80,7 @@ const MoversQuest = () => {
       const response = await axios.get(`${API_BASE}/api/games/vocabulary-movers`, {
         params: {
           limit: questionCount,
-          level: 3 // Default to grade 3, can be customized
+          gradeLevel: 'movers' // movers, flyers, or starters
         }
       });
 
