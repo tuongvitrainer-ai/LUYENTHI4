@@ -211,19 +211,19 @@ const MoversQuest = () => {
             fontSize: '36px',
             fontWeight: '700',
             color: 'var(--color-primary)',
-            margin: '0 0 var(--space-lg) 0',
-            padding: 'var(--space-md) 0'
+            margin: '0 0 var(--space-md) 0',
+            padding: '0'
           }}>
             🚀 MOVERS QUEST
           </h1>
 
           <div style={{
             textAlign: 'center',
-            fontSize: '20px',
+            fontSize: '18px',
             fontWeight: '600',
             color: 'var(--text-primary)',
-            marginBottom: 'var(--space-lg)',
-            padding: 'var(--space-md)',
+            marginBottom: 'var(--space-md)',
+            padding: 'var(--space-sm) var(--space-md)',
             background: '#FFE5E5',
             borderRadius: 'var(--border-radius-lg)',
             border: '2px solid var(--color-danger)'
@@ -232,11 +232,11 @@ const MoversQuest = () => {
           </div>
 
           {/* Question Count Selection */}
-          <GameCard variant="default" style={{ marginBottom: 'var(--space-lg)' }}>
+          <GameCard variant="default" style={{ marginBottom: 'var(--space-md)' }}>
             <div style={{
               fontSize: '16px',
               fontWeight: '600',
-              marginBottom: 'var(--space-md)',
+              marginBottom: 'var(--space-sm)',
               color: 'var(--text-primary)',
               textAlign: 'center'
             }}>
@@ -265,11 +265,11 @@ const MoversQuest = () => {
           </GameCard>
 
           {/* Time Limit Selection */}
-          <GameCard variant="default" style={{ marginBottom: 'var(--space-xl)' }}>
+          <GameCard variant="default" style={{ marginBottom: 'var(--space-md)' }}>
             <div style={{
               fontSize: '16px',
               fontWeight: '600',
-              marginBottom: 'var(--space-md)',
+              marginBottom: 'var(--space-sm)',
               color: 'var(--text-primary)',
               textAlign: 'center'
             }}>
@@ -318,7 +318,7 @@ const MoversQuest = () => {
           <div style={{
             display: 'flex',
             justifyContent: 'center',
-            marginTop: 'var(--space-xl)'
+            marginTop: 'var(--space-md)'
           }}>
             <GameButton
               variant="primary"
