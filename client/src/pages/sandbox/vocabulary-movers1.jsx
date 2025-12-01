@@ -228,7 +228,7 @@ const MoversQuest = () => {
             borderRadius: 'var(--border-radius-lg)',
             border: '2px solid var(--color-danger)'
           }}>
-            Sẵn sàng chinh phục từ vựng chưa nào? 📚
+            Ready to master vocabulary? 📚
           </div>
 
           {/* Question Count Selection */}
@@ -240,7 +240,7 @@ const MoversQuest = () => {
               color: 'var(--text-primary)',
               textAlign: 'center'
             }}>
-              📝 Chọn số lượng câu hỏi:
+              📝 Choose number of questions:
             </div>
             <div style={{
               display: 'flex',
@@ -258,7 +258,7 @@ const MoversQuest = () => {
                     setQuestionCount(count);
                   }}
                 >
-                  {count} câu
+                  {count} questions
                 </GameButton>
               ))}
             </div>
@@ -273,7 +273,7 @@ const MoversQuest = () => {
               color: 'var(--text-primary)',
               textAlign: 'center'
             }}>
-              ⏱️ Chọn thời gian:
+              ⏱️ Choose time limit:
             </div>
             <div style={{
               display: 'flex',
@@ -289,7 +289,7 @@ const MoversQuest = () => {
                   setTimeLimit(10);
                 }}
               >
-                10 phút
+                10 minutes
               </GameButton>
               <GameButton
                 variant={timeLimit === 20 ? 'primary' : 'secondary'}
@@ -299,7 +299,7 @@ const MoversQuest = () => {
                   setTimeLimit(20);
                 }}
               >
-                20 phút
+                20 minutes
               </GameButton>
               <GameButton
                 variant={timeLimit === 0 ? 'primary' : 'secondary'}
@@ -309,7 +309,7 @@ const MoversQuest = () => {
                   setTimeLimit(0);
                 }}
               >
-                Không giới hạn
+                No time limit
               </GameButton>
             </div>
           </GameCard>
@@ -329,7 +329,7 @@ const MoversQuest = () => {
               }}
               disabled={loading}
             >
-              {loading ? 'Đang tải câu hỏi...' : 'Bắt đầu! 🚀'}
+              {loading ? 'Loading questions...' : 'Start! 🚀'}
             </GameButton>
           </div>
         </div>
@@ -345,7 +345,7 @@ const MoversQuest = () => {
       <div className="movers-quest">
         <div className="results-container">
           <div className="results-header">
-            <h1 className="results-title">🎉 KẾT QUẢ</h1>
+            <h1 className="results-title">🎉 RESULTS</h1>
           </div>
 
           <div className="results-content">
@@ -353,15 +353,15 @@ const MoversQuest = () => {
             <div className="score-card">
               <div className="score-circle">
                 <div className="score-number">{percentage}%</div>
-                <div className="score-label">Điểm số</div>
+                <div className="score-label">Score</div>
               </div>
               <div className="score-right-info">
                 <div className="score-detail">
-                  Đúng <strong>{score}</strong> / {questions.length} câu
+                  Correct <strong>{score}</strong> / {questions.length} questions
                 </div>
                 {timeLimit > 0 && (
                   <div className="time-info-inline">
-                    ⏱️ Thời gian: {formatTime(timeLimit * 60 - timeRemaining)}
+                    ⏱️ Time: {formatTime(timeLimit * 60 - timeRemaining)}
                   </div>
                 )}
               </div>
@@ -369,38 +369,38 @@ const MoversQuest = () => {
 
             {/* Review Questions */}
             <div className="detailed-review">
-              <h3 className="review-title">📝 Chi tiết bài làm</h3>
+              <h3 className="review-title">📝 Answer Review</h3>
               <div className="review-questions">
                 {questions.map((question, index) => {
                   const userAnswer = userAnswers[question.id];
                   const isCorrect = userAnswer?.isCorrect || false;
                   const userAnswerText = userAnswer
                     ? question.options[userAnswer.answerIndex]
-                    : '(Chưa trả lời)';
+                    : '(Not answered)';
 
                   return (
                     <div key={question.id} className={`review-item ${isCorrect ? 'correct' : 'incorrect'}`}>
                       <div className="review-header">
-                        <span className="review-number">Câu {index + 1}</span>
+                        <span className="review-number">Question {index + 1}</span>
                         <span className={`review-badge ${isCorrect ? 'correct' : 'incorrect'}`}>
-                          {isCorrect ? '✓ Đúng' : '✗ Sai'}
+                          {isCorrect ? '✓ Correct' : '✗ Wrong'}
                         </span>
                       </div>
                       <div className="review-question-text">
                         <ReactMarkdown>
-                          {question.question || question.question_text || 'Không có nội dung'}
+                          {question.question || question.question_text || 'No content'}
                         </ReactMarkdown>
                       </div>
                       <div className="review-answers">
                         <div className="review-answer">
-                          <strong>Câu trả lời của bạn:</strong>{' '}
+                          <strong>Your answer:</strong>{' '}
                           <span className={isCorrect ? 'answer-correct' : 'answer-wrong'}>
                             {userAnswerText}
                           </span>
                         </div>
                         {!isCorrect && (
                           <div className="review-answer">
-                            <strong>Đáp án đúng:</strong>{' '}
+                            <strong>Correct answer:</strong>{' '}
                             <span className="answer-correct">{question.correctAnswer}</span>
                           </div>
                         )}
@@ -418,7 +418,7 @@ const MoversQuest = () => {
                             color: '#666'
                           }}>
                             <span>💡</span>
-                            <span>Giải thích:</span>
+                            <span>Explanation:</span>
                           </div>
                           <div style={{
                             fontSize: '14px',
@@ -447,7 +447,7 @@ const MoversQuest = () => {
                   setShowResults(false);
                 }}
               >
-                Làm lại
+                Try Again
               </GameButton>
               <GameButton
                 variant="secondary"
@@ -457,7 +457,7 @@ const MoversQuest = () => {
                   window.history.back();
                 }}
               >
-                🏠 Về trang chủ
+                🏠 Home
               </GameButton>
             </div>
           </div>
@@ -476,8 +476,8 @@ const MoversQuest = () => {
       <div className="movers-quest test-mode">
         <div className="test-container">
           <div className="test-content" style={{ width: '100%', textAlign: 'center', padding: 'var(--space-xl)' }}>
-            <h2>⏳ Đang tải câu hỏi...</h2>
-            <p>Vui lòng đợi trong giây lát</p>
+            <h2>⏳ Loading questions...</h2>
+            <p>Please wait a moment</p>
           </div>
         </div>
       </div>
@@ -499,13 +499,13 @@ const MoversQuest = () => {
             <div className="timer-box">
               <div className="timer-icon">⏱️</div>
               <div className="timer-value">{formatTime(timeRemaining)}</div>
-              <div className="timer-label">Thời gian còn lại</div>
+              <div className="timer-label">Time Remaining</div>
             </div>
           )}
 
           {/* Question Grid */}
           <div className="question-grid">
-            <div className="grid-title">Danh sách câu hỏi</div>
+            <div className="grid-title">Question List</div>
             <div
               className="question-numbers"
               style={{
@@ -530,11 +530,11 @@ const MoversQuest = () => {
         <div className="test-content">
           {/* Question Header */}
           <div className="question-header">
-            <div className="question-title">CÂU {currentQuestionIndex + 1}</div>
+            <div className="question-title">QUESTION {currentQuestionIndex + 1}</div>
             <div className="question-topic">
               <span className="topic-icon">📚</span>
               <span className="topic-text">
-                Vocabulary: {currentQuestion.topic || 'Từ vựng'}
+                Vocabulary: {currentQuestion.topic || 'Vocabulary'}
               </span>
             </div>
           </div>
@@ -543,7 +543,7 @@ const MoversQuest = () => {
           <div className="question-content">
             <div className="question-text">
               <ReactMarkdown>
-                {currentQuestion.question || currentQuestion.question_text || 'Không có nội dung'}
+                {currentQuestion.question || currentQuestion.question_text || 'No content'}
               </ReactMarkdown>
             </div>
 
@@ -603,7 +603,7 @@ const MoversQuest = () => {
                   <span style={{ fontSize: '20px' }}>
                     {currentAnswer?.isCorrect ? '✓' : 'ℹ️'}
                   </span>
-                  <span>Giải thích:</span>
+                  <span>Explanation:</span>
                 </div>
                 <div style={{
                   fontSize: '15px',
@@ -627,7 +627,7 @@ const MoversQuest = () => {
               }}
               disabled={currentQuestionIndex === 0}
             >
-              ← Câu trước
+              ← Previous
             </GameButton>
 
             {currentQuestionIndex === questions.length - 1 && isLocked ? (
@@ -639,7 +639,7 @@ const MoversQuest = () => {
                   handleFinish();
                 }}
               >
-                Hoàn thành 🎉
+                Finish 🎉
               </GameButton>
             ) : (
               <GameButton
@@ -651,7 +651,7 @@ const MoversQuest = () => {
                 }}
                 disabled={currentQuestionIndex === questions.length - 1}
               >
-                Câu sau →
+                Next →
               </GameButton>
             )}
           </div>
