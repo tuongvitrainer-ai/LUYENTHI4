@@ -382,10 +382,77 @@ const submitChallenge = async (req, res) => {
   }
 };
 
+/**
+ * Lấy câu hỏi cho game "Vocabulary Movers" với instant feedback
+ * GET /api/games/vocabulary-movers
+ * Access: Public
+ * Query params: ?limit=15&level=3
+ */
+const getVocabularyMoversQuestions = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 15;
+    const level = parseInt(req.query.level) || 3;
+
+    // Validate level
+    if (![3, 4, 5].includes(level)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Level phải là 3, 4 hoặc 5',
+      });
+    }
+
+    // Lấy câu hỏi từ database - filter by English subject
+    const questionsFromDB = await gameModel.getChallengeQuestionsWithFilters({
+      gradeLevel: level,
+      subjects: ['english'], // Vocabulary is English subject
+      difficultyLevel: 5, // Medium difficulty
+      limit
+    });
+
+    // Transform data: parse options_json và trả về correctAnswer dưới dạng TEXT
+    const questions = questionsFromDB.map(q => {
+      // Parse options_json từ string thành array
+      let options = [];
+      try {
+        options = typeof q.options_json === 'string'
+          ? JSON.parse(q.options_json)
+          : q.options_json;
+      } catch (err) {
+        console.error(`Error parsing options_json for question ${q.id}:`, err);
+        options = [];
+      }
+
+      return {
+        id: q.id,
+        question: q.question_text,
+        options: options,
+        correctAnswer: q.correct_answer, // Return as TEXT for instant feedback
+        subject: q.subject,
+        topic: q.topic,
+      };
+    });
+
+    return res.status(200).json({
+      success: true,
+      count: questions.length,
+      level: level,
+      questions,
+    });
+  } catch (error) {
+    console.error('Get vocabulary movers questions error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Lỗi server khi lấy câu hỏi',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllGames,
   getGameById,
   submitGameResult,
   getChallengeQuestions,
   submitChallenge,
+  getVocabularyMoversQuestions,
 };

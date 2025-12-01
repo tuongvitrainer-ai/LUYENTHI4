@@ -11,6 +11,14 @@ const { verifyToken, optionalAuth } = require('../middlewares/authMiddleware');
 router.get('/', optionalAuth, gameController.getAllGames);
 
 /**
+ * @route   GET /api/games/vocabulary-movers
+ * @desc    Lấy câu hỏi cho game "Vocabulary Movers" với instant feedback
+ * @access  Public
+ * @query   ?limit=15&level=3
+ */
+router.get('/vocabulary-movers', gameController.getVocabularyMoversQuestions);
+
+/**
  * @route   GET /api/games/challenge/:gradeLevel
  * @desc    Lấy câu hỏi ngẫu nhiên cho game "Thử Thách Khởi Đầu"
  * @access  Public
