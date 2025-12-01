@@ -596,6 +596,15 @@
   font-weight: 700;
 }
 
+/* Review Explanation */
+.review-explanation {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: var(--border-radius-md);
+  border-left: 3px solid #6c757d;
+}
+
 /* Results Actions */
 .results-actions {
   display: flex;

@@ -393,7 +393,7 @@ const MoversQuest = () => {
                       </div>
                       <div className="review-answers">
                         <div className="review-answer">
-                          <strong>Đáp án của bạn:</strong>{' '}
+                          <strong>Câu trả lời của bạn:</strong>{' '}
                           <span className={isCorrect ? 'answer-correct' : 'answer-wrong'}>
                             {userAnswerText}
                           </span>
@@ -405,6 +405,31 @@ const MoversQuest = () => {
                           </div>
                         )}
                       </div>
+                      {/* Show explanation in review */}
+                      {question.explanation && (
+                        <div className="review-explanation">
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            marginBottom: '4px',
+                            fontSize: '13px',
+                            fontWeight: '600',
+                            color: '#666'
+                          }}>
+                            <span>💡</span>
+                            <span>Giải thích:</span>
+                          </div>
+                          <div style={{
+                            fontSize: '14px',
+                            lineHeight: '1.5',
+                            color: '#555',
+                            fontStyle: 'italic'
+                          }}>
+                            {question.explanation}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
@@ -551,6 +576,44 @@ const MoversQuest = () => {
                 );
               })}
             </div>
+
+            {/* Explanation - Show after answer is locked */}
+            {isLocked && currentQuestion.explanation && (
+              <div style={{
+                marginTop: 'var(--space-lg)',
+                padding: 'var(--space-md)',
+                background: currentAnswer?.isCorrect
+                  ? 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)'
+                  : 'linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)',
+                borderRadius: 'var(--border-radius-md)',
+                border: currentAnswer?.isCorrect
+                  ? '2px solid #66BB6A'
+                  : '2px solid #FFA726',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--space-sm)',
+                  marginBottom: 'var(--space-sm)',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  color: currentAnswer?.isCorrect ? '#2E7D32' : '#E65100'
+                }}>
+                  <span style={{ fontSize: '20px' }}>
+                    {currentAnswer?.isCorrect ? '✓' : 'ℹ️'}
+                  </span>
+                  <span>Giải thích:</span>
+                </div>
+                <div style={{
+                  fontSize: '15px',
+                  lineHeight: '1.6',
+                  color: '#424242'
+                }}>
+                  {currentQuestion.explanation}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Navigation Buttons */}
