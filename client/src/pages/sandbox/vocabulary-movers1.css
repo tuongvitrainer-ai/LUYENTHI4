@@ -381,13 +381,14 @@
    RESULTS SCREEN
 ======================================== */
 .results-container {
-  max-width: 1000px;
-  width: 100%;
+  max-width: 1400px;
+  width: 95%;
   background: var(--color-white);
   border-radius: var(--border-radius-lg);
-  padding: var(--space-xl);
+  padding: var(--space-2xl);
   box-shadow: var(--shadow-lg);
   animation: fadeInUp var(--duration-normal) ease;
+  margin: 0 auto;
 }
 
 .results-header {
@@ -494,19 +495,19 @@
 .review-questions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  max-height: 600px;
-  overflow-y: auto;
-  padding-right: var(--space-sm);
+  gap: var(--space-lg);
+  max-height: none;
+  overflow-y: visible;
 }
 
 .review-item {
   background: var(--color-white);
   border-radius: var(--border-radius-md);
-  padding: var(--space-lg);
-  border-left: 5px solid var(--color-gray-300);
-  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  border-left: 6px solid var(--color-gray-300);
+  box-shadow: var(--shadow-md);
   transition: all var(--duration-fast) ease;
+  min-height: 120px;
 }
 
 .review-item:hover {
@@ -558,11 +559,13 @@
 }
 
 .review-question-text {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
-  line-height: 1.6;
-  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .review-question-text p {
@@ -574,16 +577,23 @@
 .review-answers {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  padding: var(--space-md);
+  gap: var(--space-md);
+  padding: var(--space-lg);
   background: var(--color-gray-50);
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-200);
 }
 
 .review-answer {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
 }
 
 .answer-correct {
@@ -598,11 +608,16 @@
 
 /* Review Explanation */
 .review-explanation {
-  margin-top: var(--space-md);
-  padding: var(--space-md);
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: var(--border-radius-md);
-  border-left: 3px solid #6c757d;
+  border-left: 4px solid #6c757d;
+  border: 1px solid #dee2e6;
+  border-left: 4px solid #6c757d;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.7;
 }
 
 /* Results Actions */
