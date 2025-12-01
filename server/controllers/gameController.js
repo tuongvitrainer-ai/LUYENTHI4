@@ -232,6 +232,85 @@ const getChallengeQuestions = async (req, res) => {
 };
 
 /**
+ * Lấy câu hỏi cho game Vocabulary Movers/Flyers/Starters
+ * GET /api/games/vocabulary-movers
+ * Access: Public
+ * Query params: ?limit=15&gradeLevel=movers
+ */
+const getVocabularyQuestions = async (req, res) => {
+  try {
+    const gradeLevel = req.query.gradeLevel || 'movers';
+    const limit = parseInt(req.query.limit) || 15;
+
+    // Validate grade level
+    if (!['movers', 'flyers', 'starters'].includes(gradeLevel)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Grade level phải là movers, flyers hoặc starters',
+      });
+    }
+
+    // Validate limit
+    if (limit < 1 || limit > 100) {
+      return res.status(400).json({
+        success: false,
+        message: 'Limit phải từ 1 đến 100',
+      });
+    }
+
+    // Lấy câu hỏi từ database (đã random trong query)
+    const questionsFromDB = await gameModel.getVocabularyQuestions(gradeLevel, limit);
+
+    if (questionsFromDB.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: `Không tìm thấy câu hỏi nào cho cấp độ ${gradeLevel}`,
+      });
+    }
+
+    // Transform data: parse options_json thành array
+    const questions = questionsFromDB.map(q => {
+      // Parse options_json từ JSONB/string thành array
+      let options = [];
+      try {
+        options = typeof q.options_json === 'string'
+          ? JSON.parse(q.options_json)
+          : q.options_json;
+      } catch (err) {
+        console.error(`Error parsing options_json for question ${q.id}:`, err);
+        options = [];
+      }
+
+      return {
+        id: q.id,
+        question: q.question_text,
+        options: options,
+        correctAnswer: q.correct_answer, // Trả về text của correct answer để frontend check
+        explanation: q.explanation,
+        picture: q.picture,
+        subject: q.subject,
+        topic: q.topic,
+        grade_level: q.grade_level,
+      };
+    });
+
+    return res.status(200).json({
+      success: true,
+      count: questions.length,
+      gradeLevel: gradeLevel,
+      questions,
+    });
+  } catch (error) {
+    console.error('Get vocabulary questions error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Lỗi server khi lấy câu hỏi từ vựng',
+      error: error.message,
+    });
+  }
+};
+
+/**
  * Nộp bài game "Thử Thách Khởi Đầu"
  * POST /api/challenge/submit
  * Access: Public (không yêu cầu auth)
@@ -387,5 +466,6 @@ module.exports = {
   getGameById,
   submitGameResult,
   getChallengeQuestions,
+  getVocabularyQuestions,
   submitChallenge,
 };
