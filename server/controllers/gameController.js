@@ -268,7 +268,17 @@ const getVocabularyQuestions = async (req, res) => {
       });
     }
 
-    // Transform data: parse options_json thành array
+    // Helper function to shuffle array using Fisher-Yates algorithm
+    const shuffleArray = (array) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    // Transform data: parse options_json thành array và shuffle
     const questions = questionsFromDB.map(q => {
       // Parse options_json từ JSONB/string thành array
       let options = [];
@@ -281,10 +291,13 @@ const getVocabularyQuestions = async (req, res) => {
         options = [];
       }
 
+      // Shuffle options để random vị trí đáp án
+      const shuffledOptions = shuffleArray(options);
+
       return {
         id: q.id,
         question: q.question_text,
-        options: options,
+        options: shuffledOptions, // Trả về options đã shuffle
         correctAnswer: q.correct_answer, // Trả về text của correct answer để frontend check
         explanation: q.explanation,
         picture: q.picture,
