@@ -367,6 +367,31 @@ const MoversQuest = () => {
               </div>
             </div>
 
+            {/* Action Buttons - Moved before Answer Review */}
+            <div className="results-actions">
+              <GameButton
+                variant="warning"
+                size="large"
+                onClick={() => {
+                  playClick();
+                  setShowTest(false);
+                  setShowResults(false);
+                }}
+              >
+                Try Again
+              </GameButton>
+              <GameButton
+                variant="secondary"
+                size="large"
+                onClick={() => {
+                  playClick();
+                  window.history.back();
+                }}
+              >
+                🏠 Home
+              </GameButton>
+            </div>
+
             {/* Review Questions */}
             <div className="detailed-review">
               <h3 className="review-title">📝 Answer Review</h3>
@@ -434,31 +459,6 @@ const MoversQuest = () => {
                   );
                 })}
               </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="results-actions">
-              <GameButton
-                variant="warning"
-                size="large"
-                onClick={() => {
-                  playClick();
-                  setShowTest(false);
-                  setShowResults(false);
-                }}
-              >
-                Try Again
-              </GameButton>
-              <GameButton
-                variant="secondary"
-                size="large"
-                onClick={() => {
-                  playClick();
-                  window.history.back();
-                }}
-              >
-                🏠 Home
-              </GameButton>
             </div>
           </div>
         </div>
