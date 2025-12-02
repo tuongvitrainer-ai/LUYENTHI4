@@ -11,6 +11,7 @@ import HomePageSimple from './pages/home/HomePageSimple';
 import GameListPage from './pages/game/GameListPage';
 import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
+import PracticePage from './pages/practice/PracticePage';
 
 // bai tap
 import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
@@ -54,13 +55,6 @@ const ProfilePage = () => {
     </div>
   );
 };
-
-const PracticePage = () => (
-  <div style={{ padding: '2rem' }}>
-    <h1>📝 Rèn Luyện</h1>
-    <p>Tính năng đang được phát triển...</p>
-  </div>
-);
 
 const ShopPage = () => (
   <div style={{ padding: '2rem' }}>
