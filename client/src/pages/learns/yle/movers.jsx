@@ -39,7 +39,7 @@ const MoversKnowledgeBase = () => {
     },
     {
       id: 'reading',
-      title: 'Reading & Writing',
+      title: 'Reading',
       backgroundImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
       link: '/yle/movers/reading',
       icon: '📖'
