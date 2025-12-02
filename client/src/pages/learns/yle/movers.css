@@ -304,6 +304,58 @@
   margin-top: var(--space-xl);
 }
 
+/* Vocabulary Selector Buttons Grid */
+.vocab-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.vocab-selector-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 2px solid;
+  border-radius: var(--border-radius-md);
+  background: white;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.vocab-selector-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(0.95);
+}
+
+.vocab-selector-btn.active {
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.02);
+}
+
+.vocab-selector-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.vocab-selector-title {
+  flex: 1;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+.vocab-selector-btn.active .vocab-selector-title {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Vocabulary Expanded Categories */
 .vocabulary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -335,13 +387,28 @@
   justify-content: space-between;
   padding: var(--space-md);
   border: none;
-  cursor: pointer;
-  transition: all var(--transition-fast);
   font-family: var(--font-family-base);
 }
 
-.vocab-category-header:hover {
-  filter: brightness(0.95);
+.vocab-close-btn {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.vocab-close-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
 }
 
 .vocab-category-left {
@@ -358,16 +425,6 @@
   font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--text-primary);
-}
-
-.vocab-arrow {
-  font-size: var(--font-size-sm);
-  transition: transform var(--transition-base);
-  color: var(--text-primary);
-}
-
-.vocab-arrow.rotated {
-  transform: rotate(180deg);
 }
 
 .vocab-words {
@@ -738,7 +795,7 @@
   }
 
   .lesson-cards-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .lesson-card-icon {
