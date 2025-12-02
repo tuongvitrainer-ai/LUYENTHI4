@@ -28,7 +28,7 @@ jobs:
     # --- ĐÂY LÀ CHỖ ĐÃ SỬA ---
     - name: Cai dat thu vien
       run: npm install --legacy-peer-deps
-      working-directory: .client
+      working-directory: ./client
     # -------------------------
 
     - name: Build thu du an
