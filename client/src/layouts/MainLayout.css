@@ -345,12 +345,40 @@
 }
 
 /* ===== MOBILE DRAWER STYLING ===== */
+
+/* Override Ant Design Drawer - Đồng bộ với sidebar desktop */
+.mobile-menu-drawer .ant-drawer-header {
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.mobile-menu-drawer .ant-drawer-body {
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  padding: var(--spacing-md);
+}
+
+.mobile-menu-drawer .ant-drawer-title {
+  color: var(--text-inverse);
+}
+
+.mobile-menu-drawer .ant-drawer-close {
+  color: var(--text-inverse);
+  font-size: 20px;
+}
+
+.mobile-menu-drawer .ant-drawer-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-inverse);
+}
+
 .mobile-drawer-header {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   font-size: var(--font-size-xl);
   font-weight: 700;
+  color: var(--text-inverse);
 }
 
 .mobile-nav {
@@ -372,7 +400,7 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md) var(--spacing-lg);
-  color: var(--text-primary);
+  color: var(--text-inverse); /* Đổi sang màu trắng để match sidebar */
   text-decoration: none;
   border-radius: var(--border-radius-md);
   transition: all var(--transition-base);
@@ -380,8 +408,12 @@
 }
 
 .mobile-menu-link:hover {
-  background: var(--bg-secondary);
-  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.15); /* Hover effect giống sidebar */
+  color: var(--text-inverse);
+}
+
+.mobile-menu-link:active {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .mobile-menu-link .menu-icon {
@@ -394,12 +426,13 @@
   left: 0;
   right: 0;
   padding: var(--spacing-lg);
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.1); /* Background trong suốt để match drawer */
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-md);
+  backdrop-filter: blur(10px);
 }
 
 .mobile-student-card .student-info {
@@ -410,13 +443,20 @@
 .mobile-student-card h4 {
   margin: 0;
   font-size: var(--font-size-lg);
-  color: var(--text-primary);
+  color: var(--text-inverse); /* Màu trắng */
+  font-weight: 600;
 }
 
 .mobile-student-card .student-level {
   margin: var(--spacing-xs) 0;
   font-size: var(--font-size-sm);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85); /* Màu trắng nhạt hơn */
+}
+
+.mobile-student-card .progress-text {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: var(--spacing-xs);
 }
 
 /* ===== RESPONSIVE ===== */

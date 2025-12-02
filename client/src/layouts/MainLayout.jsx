@@ -142,8 +142,8 @@ const MainLayout = ({ children }) => {
             {/* Hamburger Menu Button - Chỉ hiển thị trên mobile */}
             <button
               className="mobile-menu-btn"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open menu"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <MenuOutlined style={{ fontSize: 24 }} />
             </button>
