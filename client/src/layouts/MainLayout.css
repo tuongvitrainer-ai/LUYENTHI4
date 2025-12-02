@@ -350,35 +350,50 @@
 .mobile-menu-drawer .ant-drawer-header {
   background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-lg); /* Tăng padding để logo không bị che */
+  border-radius: var(--border-radius-lg) 0 0 0; /* Bo góc trái trên */
 }
 
 .mobile-menu-drawer .ant-drawer-body {
   background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg); /* Tăng padding */
 }
 
 .mobile-menu-drawer .ant-drawer-title {
   color: var(--text-inverse);
+  max-width: calc(100% - 60px); /* Đảm bảo logo không bị che bởi nút X */
 }
 
 .mobile-menu-drawer .ant-drawer-close {
   color: var(--text-inverse);
   font-size: 20px;
+  border-radius: 50%; /* Bo tròn nút close */
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobile-menu-drawer .ant-drawer-close:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   color: var(--text-inverse);
+  transform: rotate(90deg); /* Hiệu ứng xoay khi hover */
+  transition: all 0.3s ease;
 }
 
 .mobile-drawer-header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md); /* Tăng gap */
   font-size: var(--font-size-xl);
   font-weight: 700;
   color: var(--text-inverse);
+}
+
+.mobile-drawer-header .logo-icon {
+  font-size: 32px; /* Tăng kích thước icon */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .mobile-nav {
@@ -392,32 +407,39 @@
 }
 
 .mobile-menu-item {
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm); /* Tăng khoảng cách giữa các items */
 }
 
 .mobile-menu-link {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md) var(--spacing-lg);
-  color: var(--text-inverse); /* Đổi sang màu trắng để match sidebar */
+  gap: var(--spacing-lg); /* Tăng gap giữa icon và text */
+  padding: var(--spacing-lg) var(--spacing-xl); /* Tăng padding cho dễ bấm */
+  color: var(--text-inverse);
   text-decoration: none;
-  border-radius: var(--border-radius-md);
-  transition: all var(--transition-base);
-  font-size: var(--font-size-base);
+  border-radius: 20px; /* Bo tròn nhiều hơn - thân thiện với trẻ em */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth animation */
+  font-size: var(--font-size-lg); /* Font lớn hơn cho trẻ em */
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Thêm shadow nhẹ */
 }
 
 .mobile-menu-link:hover {
-  background: rgba(255, 255, 255, 0.15); /* Hover effect giống sidebar */
+  background: rgba(255, 255, 255, 0.2); /* Hover sáng hơn */
   color: var(--text-inverse);
+  transform: translateX(8px); /* Trượt sang phải khi hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Shadow đậm hơn khi hover */
 }
 
 .mobile-menu-link:active {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(8px) scale(0.98); /* Hiệu ứng nhấn */
 }
 
 .mobile-menu-link .menu-icon {
-  font-size: 20px;
+  font-size: 24px; /* Icon lớn hơn cho trẻ em */
+  min-width: 24px; /* Đảm bảo icon không bị méo */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .mobile-student-card {
@@ -425,14 +447,21 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-lg);
-  background: rgba(255, 255, 255, 0.1); /* Background trong suốt để match drawer */
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.15); /* Background sáng hơn */
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px 24px 0 0; /* Bo tròn góc trên */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-md);
   backdrop-filter: blur(10px);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Shadow phía trên */
+}
+
+.mobile-student-card .ant-avatar {
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-student-card .student-info {
@@ -442,21 +471,41 @@
 
 .mobile-student-card h4 {
   margin: 0;
-  font-size: var(--font-size-lg);
-  color: var(--text-inverse); /* Màu trắng */
-  font-weight: 600;
+  font-size: var(--font-size-xl); /* Font lớn hơn */
+  color: var(--text-inverse);
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-student-card .student-level {
   margin: var(--spacing-xs) 0;
-  font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.85); /* Màu trắng nhạt hơn */
+  font-size: var(--font-size-base); /* Font lớn hơn */
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.mobile-student-card .progress-bar {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px; /* Bo tròn progress bar */
+  height: 12px; /* Cao hơn */
+  overflow: hidden;
+  margin: var(--spacing-sm) 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-student-card .progress-fill {
+  background: linear-gradient(90deg, var(--color-accent), var(--color-gold));
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.5s ease;
+  box-shadow: 0 2px 4px rgba(255, 165, 0, 0.3);
 }
 
 .mobile-student-card .progress-text {
-  font-size: var(--font-size-xs);
-  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--font-size-sm); /* Font lớn hơn */
+  color: rgba(255, 255, 255, 0.85);
   margin-top: var(--spacing-xs);
+  font-weight: 500;
 }
 
 /* ===== RESPONSIVE ===== */
