@@ -17,10 +17,10 @@ const HomePage = () => {
   const featuredGames = [
     {
       id: 1,
-      title: 'Cá Chép Hóa Rồng',
+      title: 'Đoán Chữ Vui Nhộn',
       icon: '🐟',
       badge: '5',
-      path: '/games',
+      path: '/game/words/hangman-tv',
     },
     {
       id: 2,
