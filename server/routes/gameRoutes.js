@@ -19,6 +19,14 @@ router.get('/', optionalAuth, gameController.getAllGames);
 router.get('/challenge/:gradeLevel', gameController.getChallengeQuestions);
 
 /**
+ * @route   GET /api/games/vocabulary-movers
+ * @desc    Lấy câu hỏi từ vựng ngẫu nhiên cho game Vocabulary Movers/Flyers/Starters
+ * @access  Public
+ * @query   ?limit=15&gradeLevel=movers
+ */
+router.get('/vocabulary-movers', gameController.getVocabularyQuestions);
+
+/**
  * @route   GET /api/games/:id
  * @desc    Lấy chi tiết một game/exam (bao gồm câu hỏi)
  * @access  Public (optionalAuth - Không bắt buộc đăng nhập)
