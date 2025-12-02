@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Dropdown, Avatar, Space, Badge } from 'antd';
+import { Button, Dropdown, Avatar, Space, Badge, Drawer } from 'antd';
 import {
   HomeOutlined,
   TrophyOutlined,
@@ -10,6 +10,7 @@ import {
   RocketOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  MenuOutlined,
   StarOutlined,
   FireOutlined,
   CustomerServiceOutlined,
@@ -21,6 +22,7 @@ import './MainLayout.css';
 
 const MainLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -137,7 +139,14 @@ const MainLayout = ({ children }) => {
         {/* Header */}
         <header className="header">
           <div className="header-left">
-            {/* Greeting removed */}
+            {/* Hamburger Menu Button - Chỉ hiển thị trên mobile */}
+            <button
+              className="mobile-menu-btn"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <MenuOutlined style={{ fontSize: 24 }} />
+            </button>
           </div>
 
           <div className="header-right">
@@ -194,6 +203,61 @@ const MainLayout = ({ children }) => {
           <p>Luyện Thi © {new Date().getFullYear()} - Học tập vui vẻ mỗi ngày!</p>
         </footer>
       </div>
+
+      {/* Mobile Menu Drawer */}
+      <Drawer
+        title={
+          <div className="mobile-drawer-header">
+            <span className="logo-icon">🐟</span>
+            <span className="logo-text">Vượt Vũ Môn</span>
+          </div>
+        }
+        placement="left"
+        onClose={() => setMobileMenuOpen(false)}
+        open={mobileMenuOpen}
+        className="mobile-menu-drawer"
+        width={280}
+      >
+        <nav className="mobile-nav">
+          <ul className="mobile-menu">
+            {menuItems.map((item) => (
+              <li key={item.key} className="mobile-menu-item">
+                <Link
+                  to={item.path}
+                  className="mobile-menu-link"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="menu-icon">{item.icon}</span>
+                  <span className="menu-label">{item.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Mobile Footer with Student Card */}
+        {isAuthenticated && user && (
+          <div className="mobile-student-card">
+            <Avatar
+              size={64}
+              icon={<UserOutlined />}
+              src={user?.avatarUrl}
+              style={{ backgroundColor: 'var(--color-accent)' }}
+            />
+            <div className="student-info">
+              <h4>{user?.fullName || user?.username || 'Học sinh'}</h4>
+              <p className="student-level">Level {user?.level || 1}</p>
+              <div className="progress-bar">
+                <div
+                  className="progress-fill"
+                  style={{ width: `${user?.progress || 45}%` }}
+                />
+              </div>
+              <p className="progress-text">{user?.progress || 45}% hoàn thành</p>
+            </div>
+          </div>
+        )}
+      </Drawer>
     </div>
   );
 };
