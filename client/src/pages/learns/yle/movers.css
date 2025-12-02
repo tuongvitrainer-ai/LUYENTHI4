@@ -1,0 +1,664 @@
+/* =====================================================
+   Movers Knowledge Base - Main Styles
+   ===================================================== */
+
+.movers-knowledge-base {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+/* =====================================================
+   Header Section
+   ===================================================== */
+
+.mkb-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  animation: fadeInDown 0.6s var(--ease-out);
+}
+
+.mkb-title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-family-heading);
+}
+
+.mkb-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* =====================================================
+   Section Headers
+   ===================================================== */
+
+.mkb-section {
+  margin-bottom: var(--space-3xl);
+  animation: fadeInUp 0.6s var(--ease-out);
+}
+
+.mkb-section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.mkb-section-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+/* =====================================================
+   Exam Overview Cards
+   ===================================================== */
+
+.exam-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.exam-card {
+  padding: var(--space-lg);
+  transition: all var(--transition-base);
+  border-radius: var(--border-radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Color variants for exam cards */
+.exam-card-purple {
+  background: linear-gradient(135deg, #E1BEE7 0%, #CE93D8 100%);
+  border-left: 5px solid #9C27B0;
+}
+
+.exam-card-pink {
+  background: linear-gradient(135deg, #F8BBD0 0%, #F48FB1 100%);
+  border-left: 5px solid #E91E63;
+}
+
+.exam-card-orange {
+  background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+  border-left: 5px solid #FF9800;
+}
+
+.exam-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.exam-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.exam-icon {
+  font-size: 48px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: var(--border-radius-md);
+  backdrop-filter: blur(10px);
+}
+
+.exam-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.exam-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius-md);
+  backdrop-filter: blur(5px);
+}
+
+.exam-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+  min-width: 100px;
+}
+
+.exam-info-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.exam-info-value {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.exam-tasks-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.exam-tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exam-tasks-list li {
+  padding: var(--space-xs) 0;
+  padding-left: var(--space-md);
+  position: relative;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.exam-tasks-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+}
+
+/* =====================================================
+   Knowledge Tabs
+   ===================================================== */
+
+.knowledge-tabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   Vocabulary Section
+   ===================================================== */
+
+.vocabulary-content {
+  margin-top: var(--space-xl);
+}
+
+.vocabulary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.vocab-category {
+  background: white;
+  border-radius: var(--border-radius-md);
+  border: 3px solid transparent;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.vocab-category:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.vocab-category.expanded {
+  box-shadow: var(--shadow-lg);
+}
+
+.vocab-category-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family-base);
+}
+
+.vocab-category-header:hover {
+  filter: brightness(0.95);
+}
+
+.vocab-category-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.vocab-icon {
+  font-size: 28px;
+}
+
+.vocab-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.vocab-arrow {
+  font-size: var(--font-size-sm);
+  transition: transform var(--transition-base);
+  color: var(--text-primary);
+}
+
+.vocab-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.vocab-words {
+  padding: var(--space-md);
+  padding-top: 0;
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  animation: slideDown 0.3s var(--ease-out);
+  background: var(--bg-card);
+}
+
+/* =====================================================
+   Grammar Section
+   ===================================================== */
+
+.grammar-content {
+  margin-top: var(--space-xl);
+}
+
+.grammar-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: var(--space-xl);
+}
+
+.grammar-column {
+  background: white;
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.grammar-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 3px solid var(--color-primary-light);
+}
+
+.grammar-icon {
+  font-size: 28px;
+}
+
+.grammar-section-header h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+
+.grammar-topic {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.grammar-topic:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.grammar-topic-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.grammar-bullet {
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.grammar-topic-header h4 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.grammar-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: var(--space-xs) 0 var(--space-sm) 0;
+  font-style: italic;
+  padding-left: calc(var(--space-sm) + var(--font-size-xl));
+}
+
+.grammar-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-left: calc(var(--space-sm) + var(--font-size-xl));
+}
+
+.grammar-example {
+  background: var(--bg-tertiary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--color-primary);
+}
+
+.grammar-example.irregular {
+  border-left-color: var(--color-danger);
+}
+
+.grammar-example code {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary-dark);
+  font-weight: 500;
+}
+
+.grammar-translation {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.grammar-subcategories {
+  padding-left: calc(var(--space-sm) + var(--font-size-xl));
+  margin-top: var(--space-sm);
+}
+
+.grammar-subcategory {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-xs);
+}
+
+.grammar-subcategory strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* =====================================================
+   Progress Tracking Section
+   ===================================================== */
+
+.progress-card {
+  max-width: 900px;
+  margin: var(--space-lg) auto 0;
+}
+
+.knowledge-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.checklist-item:hover {
+  background: var(--color-gray-100);
+  border-color: var(--color-primary-light);
+}
+
+.checklist-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+  accent-color: var(--color-primary);
+}
+
+.checklist-label {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  flex: 1;
+  line-height: 1.5;
+}
+
+.checklist-item:has(.checklist-checkbox:checked) {
+  background: rgba(77, 166, 255, 0.1);
+  border-color: var(--color-primary);
+}
+
+.checklist-item:has(.checklist-checkbox:checked) .checklist-label {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+.progress-footer {
+  padding-top: var(--space-lg);
+  border-top: 2px solid var(--color-gray-200);
+}
+
+.progress-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  justify-content: center;
+}
+
+.progress-count {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.progress-label {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 16px;
+  background: var(--color-gray-200);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: var(--border-radius-full);
+  transition: width 0.6s var(--ease-out);
+  position: relative;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* =====================================================
+   Animations
+   ===================================================== */
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* =====================================================
+   Responsive Design
+   ===================================================== */
+
+@media (max-width: 968px) {
+  .grammar-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .movers-knowledge-base {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .mkb-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .mkb-section-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .exam-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vocabulary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-tabs {
+    flex-direction: column;
+  }
+
+  .grammar-column {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .exam-icon {
+    font-size: 36px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .exam-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .exam-info {
+    flex-direction: column;
+  }
+
+  .checklist-item {
+    padding: var(--space-sm);
+  }
+
+  .checklist-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* =====================================================
+   Print Styles
+   ===================================================== */
+
+@media print {
+  .movers-knowledge-base {
+    background: white;
+  }
+
+  .exam-card,
+  .vocab-category,
+  .grammar-column {
+    box-shadow: none;
+    border: 1px solid var(--color-gray-300);
+    break-inside: avoid;
+  }
+
+  .knowledge-tabs {
+    display: none;
+  }
+
+  .vocab-category {
+    page-break-inside: avoid;
+  }
+}
