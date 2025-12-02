@@ -213,7 +213,6 @@ const HomePage = () => {
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className="game-badge">{game.badge}</div>
                 </GameCard>
                 <h4 className="game-title">{game.title}</h4>
               </Link>
