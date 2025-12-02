@@ -12,11 +12,14 @@ import GameListPage from './pages/game/GameListPage';
 import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
 
-// Import ở đầu file
+// bai tap
 import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
 import OnTap1 from './pages/learn/lop2/toan/OnTap1';
 
 import Movers_Quest from './pages/learns/english/movers/vocabulary-movers1';
+
+//game
+import HangManTiengViet from './pages/game/words/HangManTiengViet';
 
 // Import Admin Pages
 import Dashboard from './pages/admin/Dashboard';
@@ -104,10 +107,10 @@ function App() {
 
                   {/* Exam Routes */}
                   <Route path="/exam/thu-thach" element={<ThuThachKhoiDau />} />
-
                   <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
-
                   <Route path="/english/movers/vocabulary-movers" element={<Movers_Quest />} />
+
+                  <Route path="/game/words/hangman-tv" element={<HangManTiengViet />} />
 
                   <Route
                     path="/profile"
