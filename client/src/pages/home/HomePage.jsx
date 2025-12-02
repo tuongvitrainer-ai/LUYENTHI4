@@ -45,9 +45,15 @@ const HomePage = () => {
         <div className="quest-content">
           <div className="quest-illustration">
             <div className="student-avatar">
-              <span className="avatar-icon">🧒</span>
+              <img
+                src="/src/assets/images/student.png"
+                alt="Học sinh"
+                className="avatar-icon"
+                style={{ width: '120px', height: '120px', borderRadius: '50%' }}
+              />
               <span className="question-mark">❓</span>
             </div>
+
           </div>
           <div className="quest-info">
             <h2 className="quest-title">Thử thách hôm nay</h2>
@@ -128,7 +134,7 @@ const HomePage = () => {
         <h2 className="section-title">Cambridge Young Learners English (YLE)</h2>
         <div className="yle-grid">
           {/* Starters */}
-          <Link to="/yle/starters">
+          <Link to="./yle/starters">
             <GameCard
               variant="gradient"
               hoverable
@@ -138,7 +144,7 @@ const HomePage = () => {
               <div className="yle-content">
                 <div className="yle-icon">🌱</div>
                 <h3 className="yle-title">Starters</h3>
-                <p className="yle-description">Pre A1 - Khởi đầu</p>
+                
               </div>
             </GameCard>
           </Link>
@@ -152,9 +158,9 @@ const HomePage = () => {
               onClick={playClick}
             >
               <div className="yle-content">
-                <div className="yle-icon">🚀</div>
+                <div className="yle-icon">🚲</div>
                 <h3 className="yle-title">Movers</h3>
-                <p className="yle-description">A1 - Tiến bộ</p>
+                
               </div>
             </GameCard>
           </Link>
@@ -170,7 +176,7 @@ const HomePage = () => {
               <div className="yle-content">
                 <div className="yle-icon">✈️</div>
                 <h3 className="yle-title">Flyers</h3>
-                <p className="yle-description">A2 - Vững chắc</p>
+                
               </div>
             </GameCard>
           </Link>
