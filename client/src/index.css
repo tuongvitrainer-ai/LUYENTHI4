@@ -1,18 +1,19 @@
-/* ===== CSS VARIABLES - BLUE PASTEL THEME ===== */
+/* ===== CSS VARIABLES - VƯỢT VŨ MÔN BLUE THEME ===== */
 :root {
-  /* Primary Colors - Blue Pastel */
-  --color-primary: #a8d5ff;
-  --color-primary-light: #c9e4ff;
-  --color-primary-dark: #7db8f0;
-  --color-primary-hover: #8cc8ff;
+  /* Primary Colors - Sky Blue & Soft Blue */
+  --color-primary: #4DA6FF;
+  --color-primary-light: #87CEEB;
+  --color-primary-dark: #3182CE;
+  --color-primary-hover: #63B3ED;
 
   /* Secondary Colors */
-  --color-secondary: #b8e6ff;
-  --color-accent: #ffd6a5;
+  --color-secondary: #87CEEB;
+  --color-accent: #FFA500;
+  --color-gold: #FFD700;
   --color-success: #a8e6cf;
   --color-warning: #ffd19a;
   --color-danger: #ffb3ba;
-  --color-info: #b8d4ff;
+  --color-info: #87CEEB;
 
   /* Neutral Colors */
   --color-white: #ffffff;
@@ -29,11 +30,11 @@
   --color-black: #000000;
 
   /* Background Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f9ff;
-  --bg-tertiary: #e8f4ff;
+  --bg-primary: #F0F8FF;
+  --bg-secondary: #F0F8FF;
+  --bg-tertiary: #E6F3FF;
   --bg-card: #ffffff;
-  --bg-overlay: rgba(168, 213, 255, 0.1);
+  --bg-overlay: rgba(77, 166, 255, 0.1);
 
   /* Text Colors */
   --text-primary: #2c3e50;

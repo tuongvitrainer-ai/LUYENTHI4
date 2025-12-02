@@ -6,6 +6,8 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 import ProtectedAdminRoute from './components/common/ProtectedAdminRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import HomePage from './pages/home/HomePage';
+import HomePageSimple from './pages/home/HomePageSimple';
 import GameListPage from './pages/game/GameListPage';
 import GamePlayPage from './pages/game/GamePlayPage';
 import SoundDemo from './components/demo/SoundDemo';
@@ -22,26 +24,6 @@ import UserManager from './pages/admin/UserManager';
 import LessonManager from './pages/admin/LessonManager';
 import LessonEditor from './pages/admin/LessonEditor';
 import Settings from './pages/admin/Settings';
-
-
-// Các trang giả lập (Placeholder Pages)
-const HomePage = () => {
-  const { isAuthenticated, user } = useAuth();
-  return (
-    <div className="p-5">
-      <h1>🏠 Trang Chủ - Bản đồ Học Tập</h1>
-      {!isAuthenticated && (
-        <p>
-          <strong>Chế độ khách:</strong> Bạn có thể xem và chơi game mà không cần đăng nhập.
-          Đăng nhập để lưu điểm số và xem lịch sử!
-        </p>
-      )}
-      {isAuthenticated && (
-        <p>Xin chào, <strong>{user?.username}</strong>! Chúc bạn học tập vui vẻ!</p>
-      )}
-    </div>
-  );
-};
 
 const LeaderboardPage = () => (
   <div style={{ padding: '2rem' }}>
@@ -65,6 +47,20 @@ const ProfilePage = () => {
     </div>
   );
 };
+
+const PracticePage = () => (
+  <div style={{ padding: '2rem' }}>
+    <h1>📝 Rèn Luyện</h1>
+    <p>Tính năng đang được phát triển...</p>
+  </div>
+);
+
+const ShopPage = () => (
+  <div style={{ padding: '2rem' }}>
+    <h1>🛒 Cửa Hàng</h1>
+    <p>Tính năng đang được phát triển...</p>
+  </div>
+);
 
 function App() {
   return (
@@ -101,7 +97,9 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/games" element={<GameListPage />} />
                   <Route path="/game/:id" element={<GamePlayPage />} />
+                  <Route path="/practice" element={<PracticePage />} />
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
+                  <Route path="/shop" element={<ShopPage />} />
                   <Route path="/demo/sound" element={<SoundDemo />} />
 
                   {/* Exam Routes */}
