@@ -3,12 +3,20 @@ export const subjectsByGrade = {
   2: [
     {
       id: 'toan-2',
-      name: 'Toán học và Tư duy logic',
-      icon: '➕➖✖️➗',
+      name: 'Toán học',
+      icon: '🔢',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-blue-400 to-blue-600',
-      route: '/learn/lop2/toan/ontap1'
+      color: 'bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500',
+      lessons: [
+        {
+          id: 'toan-2-ontap1',
+          name: 'Ôn tập 1 - Số và phép tính',
+          description: 'Ôn tập số đến 100, phép cộng trừ',
+          route: '/learn/lop2/toan/ontap1',
+          status: 'new'
+        }
+      ]
     },
     {
       id: 'van-2',
@@ -16,8 +24,8 @@ export const subjectsByGrade = {
       icon: '📖',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-orange-400 to-orange-600',
-      route: '/practice/lop2/van'
+      color: 'bg-gradient-to-r from-orange-400 via-orange-500 to-red-400',
+      lessons: []
     },
     {
       id: 'anh-2',
@@ -25,8 +33,16 @@ export const subjectsByGrade = {
       icon: '🌍',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-cyan-400 to-blue-500',
-      route: '/lop2/emg/on-tap-hk1'
+      color: 'bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-500',
+      lessons: [
+        {
+          id: 'emg-lop2-ontap-hk1',
+          name: 'EMG - Ôn tập Học kỳ 1',
+          description: 'Ôn tập từ vựng và ngữ pháp HK1',
+          route: '/lop2/emg/on-tap-hk1',
+          status: 'new'
+        }
+      ]
     }
   ],
   3: [
@@ -36,8 +52,8 @@ export const subjectsByGrade = {
       icon: '📖',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-orange-400 to-orange-600',
-      route: '/practice/lop3/van'
+      color: 'bg-gradient-to-r from-orange-400 via-orange-500 to-red-400',
+      lessons: []
     },
     {
       id: 'toan-3',
@@ -45,8 +61,8 @@ export const subjectsByGrade = {
       icon: '🔢',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-blue-400 to-blue-600',
-      route: '/practice/lop3/toan'
+      color: 'bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500',
+      lessons: []
     },
     {
       id: 'anh-3',
@@ -54,19 +70,19 @@ export const subjectsByGrade = {
       icon: '🌍',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-cyan-400 to-blue-500',
-      route: '/practice/lop3/anh'
+      color: 'bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-500',
+      lessons: []
     }
   ],
   4: [
     {
       id: 'toan-4',
       name: 'Toán học và Tư duy logic',
-      icon: '➕➖✖️➗',
+      icon: '➕➖',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-blue-400 to-blue-600',
-      route: '/practice/lop4/toan'
+      color: 'bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500',
+      lessons: []
     },
     {
       id: 'van-4',
@@ -74,8 +90,8 @@ export const subjectsByGrade = {
       icon: '📖',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-orange-400 to-orange-600',
-      route: '/practice/lop4/van'
+      color: 'bg-gradient-to-r from-orange-400 via-orange-500 to-red-400',
+      lessons: []
     },
     {
       id: 'anh-4',
@@ -83,8 +99,8 @@ export const subjectsByGrade = {
       icon: '🌍',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-cyan-400 to-blue-500',
-      route: '/practice/lop4/anh'
+      color: 'bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-500',
+      lessons: []
     },
     {
       id: 'lichsu-4',
@@ -92,8 +108,8 @@ export const subjectsByGrade = {
       icon: '📜',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-yellow-400 to-yellow-600',
-      route: '/practice/lop4/lichsu'
+      color: 'bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-400',
+      lessons: []
     },
     {
       id: 'dialy-4',
@@ -101,8 +117,8 @@ export const subjectsByGrade = {
       icon: '🗺️',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-green-400 to-green-600',
-      route: '/practice/lop4/dialy'
+      color: 'bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400',
+      lessons: []
     },
     {
       id: 'khoahoc-4',
@@ -110,19 +126,19 @@ export const subjectsByGrade = {
       icon: '🔬',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-purple-400 to-purple-600',
-      route: '/practice/lop4/khoahoc'
+      color: 'bg-gradient-to-r from-purple-400 via-violet-400 to-purple-500',
+      lessons: []
     }
   ],
   5: [
     {
       id: 'toan-5',
       name: 'Toán học và Tư duy logic',
-      icon: '➕➖✖️➗',
+      icon: '➕➖',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-blue-400 to-blue-600',
-      route: '/practice/lop5/toan'
+      color: 'bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500',
+      lessons: []
     },
     {
       id: 'van-5',
@@ -130,8 +146,8 @@ export const subjectsByGrade = {
       icon: '📖',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-orange-400 to-orange-600',
-      route: '/practice/lop5/van'
+      color: 'bg-gradient-to-r from-orange-400 via-orange-500 to-red-400',
+      lessons: []
     },
     {
       id: 'anh-5',
@@ -139,17 +155,17 @@ export const subjectsByGrade = {
       icon: '🌍',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-cyan-400 to-blue-500',
-      route: '/practice/lop5/anh'
+      color: 'bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-500',
+      lessons: []
     },
     {
       id: 'lichsu-5',
       name: 'Lịch sử & Địa lý',
-      icon: '📜🗺️',
+      icon: '🌏',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-yellow-400 to-green-600',
-      route: '/practice/lop5/lichsu-dialy'
+      color: 'bg-gradient-to-r from-yellow-400 via-amber-400 to-green-400',
+      lessons: []
     },
     {
       id: 'khoahoc-5',
@@ -157,8 +173,8 @@ export const subjectsByGrade = {
       icon: '🔬',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-purple-400 to-purple-600',
-      route: '/practice/lop5/khoahoc'
+      color: 'bg-gradient-to-r from-purple-400 via-violet-400 to-purple-500',
+      lessons: []
     },
     {
       id: 'tinhoc-5',
@@ -166,8 +182,48 @@ export const subjectsByGrade = {
       icon: '💻',
       description: 'Luyện miễn phí',
       attempts: '0/3 lượt',
-      color: 'bg-gradient-to-br from-indigo-400 to-indigo-600',
-      route: '/practice/lop5/tinhoc'
+      color: 'bg-gradient-to-r from-indigo-400 via-blue-500 to-cyan-500',
+      lessons: []
+    }
+  ]
+};
+
+// Môn học EMG tích hợp
+export const emgSubject = {
+  id: 'emg-integrated',
+  name: 'Tiếng Anh Tích Hợp (EMG)',
+  icon: '🎓',
+  description: 'Chương trình tích hợp',
+  attempts: '0/3 lượt',
+  color: 'bg-gradient-to-r from-pink-400 via-rose-400 to-red-400',
+  lessons: [
+    {
+      id: 'emg-lop2-ontap-hk1',
+      name: 'Lớp 2 - Ôn tập Học kỳ 1',
+      description: 'Ôn tập từ vựng và ngữ pháp HK1',
+      route: '/lop2/emg/on-tap-hk1',
+      status: 'new'
+    },
+    {
+      id: 'movers-vocab',
+      name: 'Movers - Vocabulary',
+      description: 'Học từ vựng YLE Movers',
+      route: '/english/movers/vocabulary-movers',
+      status: 'new'
+    },
+    {
+      id: 'movers-kb',
+      name: 'Movers - Knowledge Base',
+      description: 'Kho kiến thức YLE Movers',
+      route: '/yle/movers',
+      status: 'new'
+    },
+    {
+      id: 'flyers-kb',
+      name: 'Flyers - Knowledge Base',
+      description: 'Kho kiến thức YLE Flyers',
+      route: '/yle/flyers',
+      status: 'new'
     }
   ]
 };
