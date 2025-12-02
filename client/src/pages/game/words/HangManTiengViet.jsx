@@ -4,16 +4,117 @@ import { RefreshCw, Heart, Trophy, Frown, HelpCircle, Star, Music, Volume2, Volu
 // --- DATA: DANH SÁCH TỪ VỰNG ---
 // Chúng ta lưu từ gốc (có dấu) và từ chuẩn hóa (không dấu) để so sánh
 const WORD_DATA = [
+  // --- CHỦ ĐỀ: ĐỘNG VẬT ---
   { word: "CON MÈO", category: "Động vật", hint: "Thích bắt chuột và kêu meo meo" },
-  { word: "QUẢ CAM", category: "Hoa quả", hint: "Trái tròn, màu cam, nhiều vitamin C" },
-  { word: "CÁI BÀN", category: "Đồ vật", hint: "Dùng để đặt sách vở lên học bài" },
-  { word: "MẶT TRỜI", category: "Thiên nhiên", hint: "Toả nắng ấm áp vào ban ngày" },
+  { word: "CON CHÓ", category: "Động vật", hint: "Người bạn trung thành, hay sủa gâu gâu" },
+  { word: "CON GÀ", category: "Động vật", hint: "Gáy ò ó o gọi mọi người thức dậy" },
   { word: "CON VỊT", category: "Động vật", hint: "Kêu cạp cạp và bơi dưới nước" },
-  { word: "QUYỂN VỞ", category: "Đồ vật", hint: "Dùng để viết bài vào đó" },
-  { word: "XE ĐẠP", category: "Phương tiện", hint: "Có 2 bánh, bé tự lái đi chơi" },
-  { word: "DƯA HẤU", category: "Hoa quả", hint: "Vỏ xanh ruột đỏ, ăn rất mát" },
-  { word: "CÔ GIÁO", category: "Con người", hint: "Người dạy bé học ở trường" },
+  { word: "CON TRÂU", category: "Động vật", hint: "Giúp bác nông dân cày ruộng" },
+  { word: "CON BÒ", category: "Động vật", hint: "Ăn cỏ và cho sữa uống rất ngon" },
+  { word: "CON LỢN", category: "Động vật", hint: "Ăn no rồi ngủ, kêu ủn ỉn" },
   { word: "CÁ HEO", category: "Động vật", hint: "Loài cá thông minh, biết làm xiếc" },
+  { word: "CON VOI", category: "Động vật", hint: "Có cái vòi dài và đôi ngà trắng" },
+  { word: "CON KHỈ", category: "Động vật", hint: "Thích leo trèo và ăn chuối" },
+  { word: "HƯƠU CAO CỔ", category: "Động vật", hint: "Cái cổ rất dài để ăn lá trên cao" },
+  { word: "CON HỔ", category: "Động vật", hint: "Chúa sơn lâm, có vằn đen vàng" },
+  { word: "CON THỎ", category: "Động vật", hint: "Tai dài, đuôi ngắn, thích ăn cà rốt" },
+  { word: "CON RÙA", category: "Động vật", hint: "Bò rất chậm và mang cái mai nặng" },
+  { word: "CON ẾCH", category: "Động vật", hint: "Ngồi trên lá sen, kêu ộp ộp" },
+  { word: "CON ONG", category: "Động vật", hint: "Chăm chỉ đi tìm mật ngọt cho đời" },
+  { word: "CON BƯỚM", category: "Động vật", hint: "Có đôi cánh rực rỡ nhiều màu sắc" },
+  { word: "CON CUA", category: "Động vật", hint: "Có hai cái càng to, bò ngang" },
+  { word: "CON TÔM", category: "Động vật", hint: "Sống dưới nước, bơi lùi" },
+  { word: "CON CÁ", category: "Động vật", hint: "Bơi lội tung tăng dưới nước" },
+
+  // --- CHỦ ĐỀ: HOA QUẢ ---
+  { word: "QUẢ CAM", category: "Hoa quả", hint: "Trái tròn, màu cam, nhiều vitamin C" },
+  { word: "QUẢ TÁO", category: "Hoa quả", hint: "Vỏ đỏ hoặc xanh, ăn giòn ngọt" },
+  { word: "QUẢ CHUỐI", category: "Hoa quả", hint: "Quả dài, vỏ vàng, khỉ rất thích ăn" },
+  { word: "DƯA HẤU", category: "Hoa quả", hint: "Vỏ xanh ruột đỏ, ăn rất mát" },
+  { word: "QUẢ XOÀI", category: "Hoa quả", hint: "Khi chín vỏ vàng, ăn ngọt lịm" },
+  { word: "QUẢ NHO", category: "Hoa quả", hint: "Mọc thành chùm, có màu tím hoặc xanh" },
+  { word: "QUẢ MÍT", category: "Hoa quả", hint: "Vỏ có gai, múi vàng thơm lừng" },
+  { word: "QUẢ DỨA", category: "Hoa quả", hint: "Vỏ có mắt, lá có gai, vị chua ngọt" },
+  { word: "QUẢ ĐU ĐỦ", category: "Hoa quả", hint: "Ruột màu cam đỏ, hạt đen nhỏ xíu" },
+  { word: "QUẢ ỔI", category: "Hoa quả", hint: "Vỏ xanh, ruột trắng hoặc hồng, giòn tan" },
+  { word: "QUẢ CHANH", category: "Hoa quả", hint: "Vị rất chua, dùng để pha nước uống" },
+  { word: "QUẢ DỪA", category: "Hoa quả", hint: "Bên trong có nước ngọt mát lành" },
+  { word: "QUẢ BƯỞI", category: "Hoa quả", hint: "To hơn quả cam, múi tép mọng nước" },
+  { word: "QUẢ NA", category: "Hoa quả", hint: "Vỏ có nhiều mắt, thịt trắng ngọt" },
+  { word: "QUẢ KHẾ", category: "Hoa quả", hint: "Cắt ra có hình ngôi sao năm cánh" },
+
+  // --- CHỦ ĐỀ: ĐỒ VẬT TRONG NHÀ & TRƯỜNG LỚP ---
+  { word: "CÁI BÀN", category: "Đồ vật", hint: "Dùng để đặt sách vở lên học bài" },
+  { word: "CÁI GHẾ", category: "Đồ vật", hint: "Dùng để ngồi học hoặc nghỉ ngơi" },
+  { word: "QUYỂN VỞ", category: "Đồ vật", hint: "Dùng để viết bài vào đó" },
+  { word: "CÁI BÚT", category: "Đồ vật", hint: "Dùng để viết chữ đẹp" },
+  { word: "QUYỂN SÁCH", category: "Đồ vật", hint: "Chứa nhiều kiến thức hay" },
+  { word: "CÁI CẶP", category: "Đồ vật", hint: "Dùng để đựng sách vở đi học" },
+  { word: "CÁI BẢNG", category: "Đồ vật", hint: "Thầy cô viết phấn lên đó" },
+  { word: "VIÊN PHẤN", category: "Đồ vật", hint: "Dùng để viết lên bảng đen" },
+  { word: "CÁI QUẠT", category: "Đồ vật", hint: "Tạo ra gió mát ngày hè" },
+  { word: "TIVI", category: "Đồ vật", hint: "Xem phim hoạt hình trên đó" },
+  { word: "ĐỒNG HỒ", category: "Đồ vật", hint: "Dùng để xem giờ giấc" },
+  { word: "CÁI GIƯỜNG", category: "Đồ vật", hint: "Nơi bé nằm ngủ êm ái" },
+  { word: "CÁI TỦ", category: "Đồ vật", hint: "Dùng để đựng quần áo gọn gàng" },
+  { word: "CÁI CHỔI", category: "Đồ vật", hint: "Dùng để quét nhà sạch sẽ" },
+  { word: "CÁI BÁT", category: "Đồ vật", hint: "Dùng để đựng cơm ăn hàng ngày" },
+  { word: "ĐÔI ĐŨA", category: "Đồ vật", hint: "Dùng để gắp thức ăn" },
+  { word: "CÁI THÌA", category: "Đồ vật", hint: "Dùng để xúc cháo hoặc cơm" },
+  { word: "CÁI NỒI", category: "Đồ vật", hint: "Mẹ dùng để nấu canh" },
+  { word: "ĐÈN HỌC", category: "Đồ vật", hint: "Chiếu sáng cho bé học bài tối" },
+  { word: "CỤC TẨY", category: "Đồ vật", hint: "Xóa những nét chì viết sai" },
+
+  // --- CHỦ ĐỀ: THIÊN NHIÊN ---
+  { word: "MẶT TRỜI", category: "Thiên nhiên", hint: "Toả nắng ấm áp vào ban ngày" },
+  { word: "MẶT TRĂNG", category: "Thiên nhiên", hint: "Toả sáng dịu dàng vào ban đêm" },
+  { word: "NGÔI SAO", category: "Thiên nhiên", hint: "Lấp lánh trên bầu trời đêm" },
+  { word: "ĐÁM MÂY", category: "Thiên nhiên", hint: "Trôi lơ lửng trên bầu trời xanh" },
+  { word: "CƠN MƯA", category: "Thiên nhiên", hint: "Nước rơi từ trên trời xuống" },
+  { word: "CẦU VỒNG", category: "Thiên nhiên", hint: "Xuất hiện sau mưa với 7 màu rực rỡ" },
+  { word: "NGỌN NÚI", category: "Thiên nhiên", hint: "Nơi cao nhất so với mặt đất" },
+  { word: "DÒNG SÔNG", category: "Thiên nhiên", hint: "Nước chảy uốn lượn ra biển" },
+  { word: "BIỂN CẢ", category: "Thiên nhiên", hint: "Mênh mông nước mặn và sóng vỗ" },
+  { word: "BÔNG HOA", category: "Thiên nhiên", hint: "Nở rực rỡ và tỏa hương thơm" },
+  { word: "CÁI CÂY", category: "Thiên nhiên", hint: "Có lá xanh, thân gỗ, rễ bám đất" },
+  { word: "GIÓ", category: "Thiên nhiên", hint: "Thổi bay tóc, làm mát không khí" },
+  { word: "SẤM SÉT", category: "Thiên nhiên", hint: "Tiếng nổ vang trời khi trời mưa to" },
+  { word: "TUYẾT", category: "Thiên nhiên", hint: "Màu trắng, lạnh buốt, rơi mùa đông" },
+  { word: "BÃI BIỂN", category: "Thiên nhiên", hint: "Nơi có cát trắng và sóng vỗ" },
+
+  // --- CHỦ ĐỀ: CON NGƯỜI & NGHỀ NGHIỆP ---
+  { word: "CÔ GIÁO", category: "Con người", hint: "Người dạy bé học ở trường" },
+  { word: "BÁC SĨ", category: "Con người", hint: "Người khám và chữa bệnh cho mọi người" },
+  { word: "CÔNG AN", category: "Con người", hint: "Người bắt kẻ gian, giữ trật tự" },
+  { word: "BỘ ĐỘI", category: "Con người", hint: "Người bảo vệ tổ quốc, cầm súng" },
+  { word: "NÔNG DÂN", category: "Con người", hint: "Người trồng lúa, trồng rau" },
+  { word: "HỌA SĨ", category: "Con người", hint: "Người vẽ tranh rất đẹp" },
+  { word: "CA SĨ", category: "Con người", hint: "Người hát trên sân khấu" },
+  { word: "ĐẦU BẾP", category: "Con người", hint: "Người nấu ăn ngon trong nhà hàng" },
+  { word: "BỐ MẸ", category: "Gia đình", hint: "Người sinh ra và nuôi dưỡng bé" },
+  { word: "ÔNG BÀ", category: "Gia đình", hint: "Bố mẹ của bố mẹ mình" },
+  { word: "EM BÉ", category: "Gia đình", hint: "Thành viên nhỏ tuổi nhất nhà" },
+
+  // --- CHỦ ĐỀ: PHƯƠNG TIỆN GIAO THÔNG ---
+  { word: "XE ĐẠP", category: "Phương tiện", hint: "Có 2 bánh, bé tự lái đi chơi" },
+  { word: "XE MÁY", category: "Phương tiện", hint: "Bố mẹ hay đi làm bằng xe này" },
+  { word: "Ô TÔ", category: "Phương tiện", hint: "Có 4 bánh, che nắng che mưa" },
+  { word: "MÁY BAY", category: "Phương tiện", hint: "Bay trên bầu trời, chở khách đi xa" },
+  { word: "TÀU HỎA", category: "Phương tiện", hint: "Chạy trên đường ray, kêu xình xịch" },
+  { word: "THUYỀN", category: "Phương tiện", hint: "Di chuyển trên mặt nước" },
+  { word: "XE BUÝT", category: "Phương tiện", hint: "Xe to chở được rất nhiều người" },
+  { word: "XE CỨU HỎA", category: "Phương tiện", hint: "Xe màu đỏ, đi dập lửa" },
+  { word: "XE CỨU THƯƠNG", category: "Phương tiện", hint: "Xe chở người bệnh đi viện gấp" },
+
+  // --- CHỦ ĐỀ: CƠ THỂ NGƯỜI ---
+  { word: "ĐÔI MẮT", category: "Cơ thể", hint: "Dùng để nhìn mọi vật xung quanh" },
+  { word: "CÁI MŨI", category: "Cơ thể", hint: "Dùng để thở và ngửi mùi hương" },
+  { word: "CÁI MIỆNG", category: "Cơ thể", hint: "Dùng để ăn và nói chuyện" },
+  { word: "ĐÔI TAI", category: "Cơ thể", hint: "Dùng để nghe âm thanh" },
+  { word: "BÀN TAY", category: "Cơ thể", hint: "Dùng để cầm nắm đồ vật" },
+  { word: "BÀN CHÂN", category: "Cơ thể", hint: "Dùng để đi lại, chạy nhảy" },
+  { word: "CÁI RĂNG", category: "Cơ thể", hint: "Dùng để nhai thức ăn, màu trắng" },
+  { word: "MÁI TÓC", category: "Cơ thể", hint: "Mọc trên đầu, có thể dài hoặc ngắn" }
 ];
 
 // --- HELPER: XỬ LÝ TIẾNG VIỆT ---
@@ -76,8 +177,8 @@ const HangmanDrawing = ({ mistakes }) => {
   const visibleParts = parts.slice(0, FRAME_COUNT + mistakes);
 
   return (
-    <div className="relative flex justify-center items-center p-4 bg-white rounded-3xl shadow-xl border-4 border-sky-200 w-64 h-72">
-      <svg height="260" width="280" className="drop-shadow-sm">
+    <div className="relative flex justify-center items-center p-2 bg-white rounded-3xl shadow-xl border-4 border-sky-200 w-full max-w-[280px] aspect-square">
+      <svg viewBox="0 0 280 280" className="w-full h-full drop-shadow-sm">
         {/* Luôn vẽ khung nền mờ để bé biết vị trí */}
         <line x1="10" y1="250" x2="150" y2="250" stroke="#e0f2fe" strokeWidth="4" strokeLinecap="round" />
         <line x1="80" y1="250" x2="80" y2="20" stroke="#e0f2fe" strokeWidth="4" strokeLinecap="round" />
