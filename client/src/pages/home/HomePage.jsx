@@ -17,44 +17,37 @@ const HomePage = () => {
   const featuredGames = [
     {
       id: 1,
-      title: 'Đoán Chữ Vui Nhộn',
-      icon: '🐟',
+      title: 'Đoán Chữ',
+      image: 'https://images.unsplash.com/photo-1516414447565-b14be0adf13e?w=400&h=400&fit=crop',
       badge: '5',
       path: '/game/words/hangman-tv',
     },
     {
       id: 2,
-      title: 'Toán Học Vui Nhộn',
-      icon: '🎓',
+      title: 'Toán Học',
+      image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=400&fit=crop',
       badge: '5',
       path: '/learn/lop2/toan/ontap1',
     },
     {
       id: 3,
-      title: 'Ghép Chữ Nhanh',
-      icon: '🔤',
+      title: 'Ghép Chữ',
+      image: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=400&h=400&fit=crop',
       badge: '5',
       path: '/games',
     },
     {
       id: 4,
-      title: 'Đua Xe Nhanh',
-      icon: '🏎️',
+      title: 'Đua Xe',
+      image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=400&h=400&fit=crop',
       badge: '8',
       path: '/games',
     },
     {
       id: 5,
       title: 'Ghép Hình',
-      icon: '🧩',
+      image: 'https://images.unsplash.com/photo-1587731556938-38755b4803a6?w=400&h=400&fit=crop',
       badge: '10',
-      path: '/games',
-    },
-    {
-      id: 6,
-      title: 'Trí Nhớ Siêu Đẳng',
-      icon: '🧠',
-      badge: '7',
       path: '/games',
     },
   ];
@@ -214,9 +207,13 @@ const HomePage = () => {
                 <GameCard
                   hoverable
                   className="mini-game-card"
+                  style={{
+                    backgroundImage: `url(${game.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
                 >
                   <div className="game-badge">{game.badge}</div>
-                  <div className="game-icon">{game.icon}</div>
                 </GameCard>
                 <h4 className="game-title">{game.title}</h4>
               </Link>

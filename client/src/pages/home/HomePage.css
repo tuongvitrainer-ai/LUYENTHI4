@@ -297,8 +297,8 @@
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-md);
 }
 
 .game-item {
@@ -318,16 +318,16 @@
 .mini-game-card {
   position: relative;
   text-align: center;
-  padding: var(--spacing-lg);
-  min-height: 180px;
+  padding: 0;
+  width: 100%;
+  aspect-ratio: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
-  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
   border: 2px solid var(--border-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
 }
 
 .mini-game-card:hover {
@@ -337,32 +337,28 @@
 
 .game-badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: var(--color-accent);
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 107, 0, 0.95);
   color: white;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: var(--font-size-sm);
-  box-shadow: var(--shadow-sm);
-}
-
-.game-icon {
-  font-size: 56px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  font-size: var(--font-size-xs);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 .game-title {
-  font-size: var(--font-size-sm);
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
-  margin: var(--spacing-sm) 0 0 0;
-  line-height: 1.3;
+  margin: 6px 0 0 0;
+  line-height: 1.2;
   text-align: center;
 }
 
@@ -462,7 +458,7 @@
 
   .games-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
   }
 
   /* YLE Grid - 1 cột trên tablet */
@@ -504,15 +500,19 @@
 
   .games-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
-  }
-
-  .game-icon {
-    font-size: 40px;
+    gap: 8px;
   }
 
   .game-title {
-    font-size: var(--font-size-xs);
+    font-size: 11px;
+  }
+
+  .game-badge {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    top: 4px;
+    right: 4px;
   }
 
   /* YLE extra small */
