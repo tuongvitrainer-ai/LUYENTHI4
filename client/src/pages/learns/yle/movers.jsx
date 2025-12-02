@@ -39,7 +39,7 @@ const MoversKnowledgeBase = () => {
     },
     {
       id: 'reading',
-      title: 'Reading & Writing',
+      title: 'Reading',
       backgroundImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
       link: '/yle/movers/reading',
       icon: '📖'
@@ -47,6 +47,13 @@ const MoversKnowledgeBase = () => {
     {
       id: 'speaking',
       title: 'Speaking Practice',
+      backgroundImage: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=300&fit=crop',
+      link: '/yle/movers/speaking',
+      icon: '🗣️'
+    },
+    {
+      id: 'writing',
+      title: 'Writing Practice',
       backgroundImage: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=300&fit=crop',
       link: '/yle/movers/speaking',
       icon: '🗣️'

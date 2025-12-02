@@ -91,7 +91,7 @@ const HomePage = () => {
               <h3 className="feature-title">Ôn Luyện</h3>
               <p className="feature-description">Luyện tập các môn Toán, Văn, Anh...</p>
               <p className="feature-description">Ôn thi Starters, Movers, Flyers</p>
-              <Link to="/practice">
+              <Link to="/exam/thu-thach">
                 <GameButton variant="secondary" size="medium" onClick={playClick}>
                   Vào học
                 </GameButton>
