@@ -117,7 +117,7 @@ const HomePage = () => {
             {/* 3 dòng chữ bên phải */}
             <div className="feature-info">
               <h3 className="feature-title">Thi Thử</h3>
-              <p className="feature-description">Ôn luyện các dạng đề cũ các năm, đề mẫu</p>
+              <p className="feature-description">Thi thử đề các năm, đề mẫu</p>
               <p className="feature-description">Giới hạn thời gian, chấm bài ngay</p>
               <Link to="/exam/thu-thach">
                 <GameButton variant="secondary" size="medium" onClick={playClick}>
