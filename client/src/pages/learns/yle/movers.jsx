@@ -419,34 +419,56 @@ const MoversKnowledgeBase = () => {
         {/* Vocabulary Content */}
         {activeTab === 'vocabulary' && (
           <div className="vocabulary-content">
-            <div className="vocabulary-grid">
+            {/* Show all categories as buttons first */}
+            <div className="vocab-selector-grid">
               {vocabularyCategories.map((category) => (
-                <div
+                <button
                   key={category.id}
-                  className={`vocab-category ${expandedCategories[category.id] ? 'expanded' : ''}`}
-                  style={{ borderColor: category.color }}
+                  className={`vocab-selector-btn ${expandedCategories[category.id] ? 'active' : ''}`}
+                  onClick={() => toggleCategory(category.id)}
+                  style={{
+                    backgroundColor: expandedCategories[category.id] ? category.color : 'white',
+                    borderColor: category.color
+                  }}
                 >
-                  <button
-                    className="vocab-category-header"
-                    onClick={() => toggleCategory(category.id)}
-                    style={{ backgroundColor: category.color }}
-                  >
-                    <div className="vocab-category-left">
-                      <span className="vocab-icon">{category.icon}</span>
-                      <span className="vocab-title">{category.title}</span>
-                    </div>
-                    <span className={`vocab-arrow ${expandedCategories[category.id] ? 'rotated' : ''}`}>
-                      ▼
-                    </span>
-                  </button>
+                  <span className="vocab-selector-icon">{category.icon}</span>
+                  <span className="vocab-selector-title">{category.title}</span>
+                </button>
+              ))}
+            </div>
 
-                  {expandedCategories[category.id] && (
+            {/* Show expanded category content */}
+            <div className="vocabulary-grid">
+              {vocabularyCategories
+                .filter((category) => expandedCategories[category.id])
+                .map((category) => (
+                  <div
+                    key={category.id}
+                    className="vocab-category expanded"
+                    style={{ borderColor: category.color }}
+                  >
+                    <div
+                      className="vocab-category-header"
+                      style={{ backgroundColor: category.color }}
+                    >
+                      <div className="vocab-category-left">
+                        <span className="vocab-icon">{category.icon}</span>
+                        <span className="vocab-title">{category.title}</span>
+                      </div>
+                      <button
+                        className="vocab-close-btn"
+                        onClick={() => toggleCategory(category.id)}
+                        aria-label="Close"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
                     <div className="vocab-words">
                       {category.words.join(', ')}
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                ))}
             </div>
           </div>
         )}
