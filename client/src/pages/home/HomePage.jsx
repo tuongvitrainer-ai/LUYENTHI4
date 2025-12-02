@@ -14,44 +14,6 @@ const HomePage = () => {
     // Navigate to quest
   };
 
-  const featuredGames = [
-    {
-      id: 1,
-      title: 'Đoán Chữ',
-      image: 'https://images.unsplash.com/photo-1516414447565-b14be0adf13e?w=400&h=400&fit=crop',
-      badge: '5',
-      path: '/game/words/hangman-tv',
-    },
-    {
-      id: 2,
-      title: 'Toán Học',
-      image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=400&fit=crop',
-      badge: '5',
-      path: '/learn/lop2/toan/ontap1',
-    },
-    {
-      id: 3,
-      title: 'Ghép Chữ',
-      image: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=400&h=400&fit=crop',
-      badge: '5',
-      path: '/games',
-    },
-    {
-      id: 4,
-      title: 'Đua Xe',
-      image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=400&h=400&fit=crop',
-      badge: '8',
-      path: '/games',
-    },
-    {
-      id: 5,
-      title: 'Ghép Hình',
-      image: 'https://images.unsplash.com/photo-1587731556938-38755b4803a6?w=400&h=400&fit=crop',
-      badge: '10',
-      path: '/games',
-    },
-  ];
-
   return (
     <div className="homepage">
       {/* Tier 1: Daily Quest Banner */}
@@ -194,30 +156,6 @@ const HomePage = () => {
               </div>
             </GameCard>
           </Link>
-        </div>
-      </div>
-
-      {/* Tier 3: Entertainment */}
-      <div className="entertainment-section">
-        <h2 className="section-title">Giải lao xíu nào!</h2>
-        <div className="games-grid">
-          {featuredGames.map((game) => (
-            <div key={game.id} className="game-item">
-              <Link to={game.path} onClick={playClick}>
-                <GameCard
-                  hoverable
-                  className="mini-game-card"
-                  style={{
-                    backgroundImage: `url(${game.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                </GameCard>
-                <h4 className="game-title">{game.title}</h4>
-              </Link>
-            </div>
-          ))}
         </div>
       </div>
 
