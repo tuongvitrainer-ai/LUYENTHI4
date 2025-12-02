@@ -297,8 +297,22 @@
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.game-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
 }
 
 .mini-game-card {
@@ -347,8 +361,9 @@
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0;
+  margin: var(--spacing-sm) 0 0 0;
   line-height: 1.3;
+  text-align: center;
 }
 
 /* Guest Message */
@@ -446,7 +461,8 @@
   }
 
   .games-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
   }
 
   /* YLE Grid - 1 cột trên tablet */
@@ -484,6 +500,11 @@
 
   .section-title {
     font-size: var(--font-size-xl);
+  }
+
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
   }
 
   .game-icon {

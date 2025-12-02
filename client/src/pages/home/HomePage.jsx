@@ -36,6 +36,27 @@ const HomePage = () => {
       badge: '5',
       path: '/games',
     },
+    {
+      id: 4,
+      title: 'Đua Xe Nhanh',
+      icon: '🏎️',
+      badge: '8',
+      path: '/games',
+    },
+    {
+      id: 5,
+      title: 'Ghép Hình',
+      icon: '🧩',
+      badge: '10',
+      path: '/games',
+    },
+    {
+      id: 6,
+      title: 'Trí Nhớ Siêu Đẳng',
+      icon: '🧠',
+      badge: '7',
+      path: '/games',
+    },
   ];
 
   return (
@@ -188,17 +209,18 @@ const HomePage = () => {
         <h2 className="section-title">Giải lao xíu nào!</h2>
         <div className="games-grid">
           {featuredGames.map((game) => (
-            <Link to={game.path} key={game.id}>
-              <GameCard
-                hoverable
-                className="mini-game-card"
-                onClick={playClick}
-              >
-                <div className="game-badge">{game.badge}</div>
-                <div className="game-icon">{game.icon}</div>
+            <div key={game.id} className="game-item">
+              <Link to={game.path} onClick={playClick}>
+                <GameCard
+                  hoverable
+                  className="mini-game-card"
+                >
+                  <div className="game-badge">{game.badge}</div>
+                  <div className="game-icon">{game.icon}</div>
+                </GameCard>
                 <h4 className="game-title">{game.title}</h4>
-              </GameCard>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
