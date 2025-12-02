@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import SubjectCard from '../../components/practice/SubjectCard';
-import { subjectsByGrade, emgSubject } from '../../data/subjects';
+import ChapterList from '../../components/practice/ChapterList';
+import ContinueLearning from '../../components/practice/ContinueLearning';
+import { subjectsByGrade, emgSubject, continueLearningSample } from '../../data/subjects';
 
 const PracticePage = () => {
   const { user, isAuthenticated } = useAuth();
@@ -11,6 +13,7 @@ const PracticePage = () => {
   const [subjects, setSubjects] = useState([]);
   const [showGradeDropdown, setShowGradeDropdown] = useState(false);
   const [showEMG, setShowEMG] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState(null);
 
   // Cập nhật danh sách môn học khi thay đổi lớp hoặc EMG
   useEffect(() => {
@@ -22,6 +25,19 @@ const PracticePage = () => {
     }
 
     setSubjects(currentSubjects);
+
+    // Chọn môn đầu tiên mặc định
+    if (currentSubjects.length > 0 && !selectedSubject) {
+      setSelectedSubject(currentSubjects[0]);
+    } else if (selectedSubject) {
+      // Cập nhật selectedSubject nếu nó có trong danh sách mới
+      const found = currentSubjects.find(s => s.id === selectedSubject.id);
+      if (found) {
+        setSelectedSubject(found);
+      } else {
+        setSelectedSubject(currentSubjects[0]);
+      }
+    }
   }, [selectedGrade, showEMG]);
 
   const grades = [
@@ -33,16 +49,20 @@ const PracticePage = () => {
 
   const currentGrade = grades.find(g => g.value === selectedGrade);
 
+  const handleSubjectClick = (subject) => {
+    setSelectedSubject(subject);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header với bộ lọc */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
               📝 Rèn Luyện
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm md:text-base">
               Chọn môn học để bắt đầu luyện tập
             </p>
           </div>
@@ -125,32 +145,79 @@ const PracticePage = () => {
           <div className="bg-gradient-to-r from-yellow-100 to-amber-100 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-6 rounded-lg shadow-md">
             <div className="flex items-center gap-2">
               <span className="text-2xl">💡</span>
-              <p className="font-medium">
+              <p className="font-medium text-sm md:text-base">
                 Bạn đang ở chế độ khách. Đăng nhập để lưu tiến độ học tập của bạn!
               </p>
             </div>
           </div>
         )}
 
-        {/* Grid hiển thị các thẻ môn học */}
-        {subjects.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 mb-8">
-            {subjects.map((subject) => (
-              <SubjectCard key={subject.id} subject={subject} />
-            ))}
+        {/* Layout 2 cột: Left (2/5) + Right (3/5) */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Left Sidebar - Danh sách môn học (2/5) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              KHO TÀNG TRI THỨC
+            </h2>
+            {subjects.length > 0 ? (
+              <div className="space-y-3">
+                {subjects.map((subject) => (
+                  <SubjectCard
+                    key={subject.id}
+                    subject={subject}
+                    isSelected={selectedSubject?.id === subject.id}
+                    onClick={() => handleSubjectClick(subject)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 bg-white rounded-xl shadow-md">
+                <div className="text-4xl mb-2">📚</div>
+                <p className="text-gray-500 text-sm">
+                  Chưa có môn học nào
+                </p>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="text-center py-16 bg-white rounded-2xl shadow-md">
-            <div className="text-6xl mb-4">📚</div>
-            <p className="text-gray-500 text-lg">
-              Chưa có môn học nào cho lớp {selectedGrade}
-            </p>
+
+          {/* Right Content - Chi tiết môn học (3/5) */}
+          <div className="lg:col-span-3">
+            {selectedSubject ? (
+              <div>
+                {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập */}
+                {isAuthenticated && (
+                  <ContinueLearning continueData={continueLearningSample} />
+                )}
+
+                {/* Subject Header */}
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`${selectedSubject.color} w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-md`}>
+                      {selectedSubject.icon}
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800">
+                      {selectedSubject.name.toUpperCase()} - LỚP {selectedGrade}
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Chapters and Lessons */}
+                <ChapterList chapters={selectedSubject.chapters} />
+              </div>
+            ) : (
+              <div className="bg-white rounded-xl p-12 text-center shadow-md">
+                <div className="text-6xl mb-4">📖</div>
+                <p className="text-gray-500 text-lg">
+                  Chọn một môn học để bắt đầu
+                </p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         {/* Thống kê (nếu đã đăng nhập) */}
         {isAuthenticated && (
-          <div className="bg-white rounded-2xl shadow-xl p-6 border-2 border-gray-100">
+          <div className="mt-12 bg-white rounded-2xl shadow-xl p-6 border-2 border-gray-100">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>📊</span>
               Thống Kê Của Bạn
