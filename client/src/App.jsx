@@ -17,6 +17,8 @@ import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
 import OnTap1 from './pages/learn/lop2/toan/OnTap1';
 
 import Movers_Quest from './pages/learns/english/movers/vocabulary-movers1';
+import MoversKnowledgeBase from './pages/learns/yle/movers';
+import FlyersKnowledgeBase from './pages/learns/yle/flyers';
 
 //game
 import HangManTiengViet from './pages/game/words/HangManTiengViet';
@@ -110,6 +112,9 @@ function App() {
                   <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
                   <Route path="/english/movers/vocabulary-movers" element={<Movers_Quest />} />
 
+                  {/* YLE Movers Knowledge Base */}
+                  <Route path="/yle/movers" element={<MoversKnowledgeBase />} />
+                  <Route path="/yle/flyers" element={<FlyersKnowledgeBase />} />
                   <Route path="/game/words/hangman-tv" element={<HangManTiengViet />} />
 
                   <Route
