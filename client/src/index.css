@@ -1,3 +1,8 @@
+/* ===== TAILWIND CSS ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ===== CSS VARIABLES - VƯỢT VŨ MÔN BLUE THEME ===== */
 :root {
   /* Primary Colors - Sky Blue & Soft Blue */
