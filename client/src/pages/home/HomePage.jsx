@@ -123,6 +123,60 @@ const HomePage = () => {
         </GameCard>
       </div>
 
+      {/* Cambridge Young Learners English (YLE) */}
+      <div className="yle-section">
+        <h2 className="section-title">Cambridge Young Learners English (YLE)</h2>
+        <div className="yle-grid">
+          {/* Starters */}
+          <Link to="/yle/starters">
+            <GameCard
+              variant="gradient"
+              hoverable
+              className="yle-card yle-starters"
+              onClick={playClick}
+            >
+              <div className="yle-content">
+                <div className="yle-icon">🌱</div>
+                <h3 className="yle-title">Starters</h3>
+                <p className="yle-description">Pre A1 - Khởi đầu</p>
+              </div>
+            </GameCard>
+          </Link>
+
+          {/* Movers */}
+          <Link to="/yle/movers">
+            <GameCard
+              variant="gradient"
+              hoverable
+              className="yle-card yle-movers"
+              onClick={playClick}
+            >
+              <div className="yle-content">
+                <div className="yle-icon">🚀</div>
+                <h3 className="yle-title">Movers</h3>
+                <p className="yle-description">A1 - Tiến bộ</p>
+              </div>
+            </GameCard>
+          </Link>
+
+          {/* Flyers */}
+          <Link to="/yle/flyers">
+            <GameCard
+              variant="gradient"
+              hoverable
+              className="yle-card yle-flyers"
+              onClick={playClick}
+            >
+              <div className="yle-content">
+                <div className="yle-icon">✈️</div>
+                <h3 className="yle-title">Flyers</h3>
+                <p className="yle-description">A2 - Vững chắc</p>
+              </div>
+            </GameCard>
+          </Link>
+        </div>
+      </div>
+
       {/* Tier 3: Entertainment */}
       <div className="entertainment-section">
         <h2 className="section-title">Giải lao xíu nào!</h2>
