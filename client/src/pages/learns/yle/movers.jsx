@@ -43,13 +43,6 @@ const MoversKnowledgeBase = () => {
       backgroundImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
       link: '/yle/movers/reading',
       icon: '📖'
-    },
-    {
-      id: 'speaking',
-      title: 'Speaking Practice',
-      backgroundImage: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=300&fit=crop',
-      link: '/yle/movers/speaking',
-      icon: '🗣️'
     }
   ];
 
@@ -323,7 +316,7 @@ const MoversKnowledgeBase = () => {
         <p className="mkb-subtitle">Hành trang kiến thức cần thiết cho kỳ thi Movers</p>
       </div>
 
-      {/* Lesson Cards Section - 5 columns */}
+      {/* Lesson Cards Section - 4 columns */}
       <div className="mkb-section">
         <div className="lesson-cards-grid">
           {lessonCards.map((card) => (
