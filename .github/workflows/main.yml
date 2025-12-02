@@ -26,13 +26,13 @@ jobs:
     # Bước 3: Cài đặt các thư viện (để đảm bảo máy ảo có đủ đồ nghề như máy bạn)
     - name: Cai dat thu vien
       run: npm install --legacy-peer-deps
-      working-directory: ./client
+      working-directory: ./LUYENTHI4/client
     # -------------------------
 
     # Bước 4: Chạy thử (Build thử xem có lỗi không)
     - name: Build thu du an
       run: npm run build --if-present
-      working-directory: ./client
+      working-directory: ./LUYENTHI4/client
 
     # Bước 5: Chạy các bài kiểm tra (Test) - Đây là bước quan trọng nhất
     - name: Chay Test
