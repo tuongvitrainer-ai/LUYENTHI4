@@ -14,7 +14,10 @@ import SoundDemo from './components/demo/SoundDemo';
 
 // bai tap
 import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
+
+//LOP 2
 import OnTap1 from './pages/learn/lop2/toan/OnTap1';
+import Emg_Lop2_OnTap_HK1 from './pages/learns/english/EMG/Emg_Lop2_OnTap_HK1';
 
 import Movers_Quest from './pages/learns/english/movers/vocabulary-movers1';
 import MoversKnowledgeBase from './pages/learns/yle/movers';
@@ -108,7 +111,10 @@ function App() {
 
                   {/* Exam Routes */}
                   <Route path="/exam/thu-thach" element={<ThuThachKhoiDau />} />
+
+                  {/* Lop 2 */}
                   <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
+                  <Route path="/lop2/emg/on-tap-hk1" element={<Emg_Lop2_OnTap_HK1 />} />
                   
 
 
