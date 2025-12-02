@@ -137,12 +137,7 @@ const MainLayout = ({ children }) => {
         {/* Header */}
         <header className="header">
           <div className="header-left">
-            {isAuthenticated && (
-              <div className="header-greeting">
-                <h3>Chào buổi sáng, {user?.fullName || user?.username || 'Bé An'}!</h3>
-                <p className="header-subtitle">Hôm nay con muốn chinh phục môn gì?</p>
-              </div>
-            )}
+            {/* Greeting removed */}
           </div>
 
           <div className="header-right">
