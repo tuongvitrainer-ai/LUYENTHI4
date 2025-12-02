@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GameButton from '@/components/ui/GameButton';
 import GameCard from '@/components/ui/GameCard';
 import useGameSound from '@/hooks/useGameSound';
@@ -6,11 +7,51 @@ import './movers.css';
 
 const MoversKnowledgeBase = () => {
   const { playClick, playCorrect } = useGameSound();
+  const navigate = useNavigate();
 
   // State management
   const [activeTab, setActiveTab] = useState('vocabulary'); // vocabulary | grammar
   const [expandedCategories, setExpandedCategories] = useState({});
   const [checkedKnowledge, setCheckedKnowledge] = useState({});
+
+  // Lesson cards data - Easy to customize
+  const lessonCards = [
+    {
+      id: 'vocabulary',
+      title: 'Vocabulary Practice',
+      backgroundImage: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop',
+      link: '/english/movers/vocabulary-movers',
+      icon: '📚'
+    },
+    {
+      id: 'grammar',
+      title: 'Grammar Exercises',
+      backgroundImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop',
+      link: '/yle/movers/grammar',
+      icon: '✏️'
+    },
+    {
+      id: 'listening',
+      title: 'Listening Practice',
+      backgroundImage: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',
+      link: '/yle/movers/listening',
+      icon: '🎧'
+    },
+    {
+      id: 'reading',
+      title: 'Reading & Writing',
+      backgroundImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+      link: '/yle/movers/reading',
+      icon: '📖'
+    },
+    {
+      id: 'speaking',
+      title: 'Speaking Practice',
+      backgroundImage: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=300&fit=crop',
+      link: '/yle/movers/speaking',
+      icon: '🗣️'
+    }
+  ];
 
   // Exam overview data
   const examOverview = [
@@ -263,6 +304,12 @@ const MoversKnowledgeBase = () => {
     setActiveTab(tab);
   };
 
+  // Handle lesson card click
+  const handleLessonClick = (link) => {
+    playClick();
+    navigate(link);
+  };
+
   // Calculate progress
   const checkedCount = Object.values(checkedKnowledge).filter(Boolean).length;
   const totalCount = knowledgeChecklist.length;
@@ -274,6 +321,30 @@ const MoversKnowledgeBase = () => {
       <div className="mkb-header">
         <h1 className="mkb-title">Cambridge YLE - Movers</h1>
         <p className="mkb-subtitle">Hành trang kiến thức cần thiết cho kỳ thi Movers</p>
+      </div>
+
+      {/* Lesson Cards Section - 5 columns */}
+      <div className="mkb-section">
+        <div className="lesson-cards-grid">
+          {lessonCards.map((card) => (
+            <GameCard
+              key={card.id}
+              className="lesson-card"
+              hoverable
+              onClick={() => handleLessonClick(card.link)}
+            >
+              <div
+                className="lesson-card-background"
+                style={{ backgroundImage: `url(${card.backgroundImage})` }}
+              >
+                <div className="lesson-card-overlay">
+                  <div className="lesson-card-icon">{card.icon}</div>
+                  <h3 className="lesson-card-title">{card.title}</h3>
+                </div>
+              </div>
+            </GameCard>
+          ))}
+        </div>
       </div>
 
       {/* Exam Overview Section */}
