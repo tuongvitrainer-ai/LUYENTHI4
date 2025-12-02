@@ -32,6 +32,7 @@ jobs:
     # Bước 4: Chạy thử (Build thử xem có lỗi không)
     - name: Build thu du an
       run: npm run build --if-present
+      working-directory: ./client
 
     # Bước 5: Chạy các bài kiểm tra (Test) - Đây là bước quan trọng nhất
     - name: Chay Test
