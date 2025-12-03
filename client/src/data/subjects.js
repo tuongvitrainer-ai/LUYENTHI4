@@ -182,60 +182,133 @@ export const subjectsByGrade = {
   ]
 };
 
-// Môn học EMG tích hợp
-export const emgSubject = {
-  id: 'emg-integrated',
-  name: 'EMG (Nâng cao)',
-  icon: '🎓',
-  color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
-  chapters: [
-    {
-      id: 'emg-lop2',
-      name: 'Lớp 2 - EMG',
-      lessons: [
-        {
-          id: 'emg-lop2-ontap-hk1',
-          name: 'Lớp 2 - Ôn tập Học kỳ 1',
-          description: 'Ôn tập từ vựng và ngữ pháp HK1',
-          route: '/lop2/emg/on-tap-hk1',
-          status: 'new'
-        }
-      ]
-    },
-    {
-      id: 'emg-movers',
-      name: 'YLE Movers',
-      lessons: [
-        {
-          id: 'movers-vocab',
-          name: 'Movers - Vocabulary',
-          description: 'Học từ vựng YLE Movers',
-          route: '/english/movers/vocabulary-movers',
-          status: 'new'
-        },
-        {
-          id: 'movers-kb',
-          name: 'Movers - Knowledge Base',
-          description: 'Kho kiến thức YLE Movers',
-          route: '/yle/movers',
-          status: 'new'
-        }
-      ]
-    },
-    {
-      id: 'emg-flyers',
-      name: 'YLE Flyers',
-      lessons: [
-        {
-          id: 'flyers-kb',
-          name: 'Flyers - Knowledge Base',
-          description: 'Kho kiến thức YLE Flyers',
-          route: '/yle/flyers',
-          status: 'new'
-        }
-      ]
-    }
-  ]
+// Môn học EMG tích hợp theo từng lớp
+export const emgSubjectsByGrade = {
+  2: {
+    id: 'emg-2',
+    name: 'EMG (Nâng cao)',
+    icon: '🎓',
+    color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
+    chapters: [
+      {
+        id: 'emg-lop2-basics',
+        name: 'Lớp 2 - Tiếng Anh Cơ bản',
+        lessons: [
+          {
+            id: 'emg-lop2-ontap-hk1',
+            name: 'Ôn tập Học kỳ 1',
+            description: 'Ôn tập từ vựng và ngữ pháp HK1',
+            route: '/lop2/emg/on-tap-hk1',
+            status: 'new'
+          }
+        ]
+      }
+    ]
+  },
+  3: {
+    id: 'emg-3',
+    name: 'EMG (Nâng cao)',
+    icon: '🎓',
+    color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
+    chapters: [
+      {
+        id: 'emg-movers-level1',
+        name: 'YLE Movers - Cấp độ 1',
+        lessons: [
+          {
+            id: 'movers-vocab-beginner',
+            name: 'Vocabulary - Beginner',
+            description: 'Học từ vựng YLE Movers cơ bản',
+            route: '/english/movers/vocabulary-movers',
+            status: 'new'
+          },
+          {
+            id: 'movers-kb',
+            name: 'Movers - Knowledge Base',
+            description: 'Kho kiến thức YLE Movers',
+            route: '/yle/movers',
+            status: 'new'
+          }
+        ]
+      }
+    ]
+  },
+  4: {
+    id: 'emg-4',
+    name: 'EMG (Nâng cao)',
+    icon: '🎓',
+    color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
+    chapters: [
+      {
+        id: 'emg-movers-level2',
+        name: 'YLE Movers - Cấp độ 2',
+        lessons: [
+          {
+            id: 'movers-vocab-intermediate',
+            name: 'Vocabulary - Intermediate',
+            description: 'Học từ vựng YLE Movers nâng cao',
+            route: '/english/movers/vocabulary-movers',
+            status: 'new'
+          },
+          {
+            id: 'movers-kb-4',
+            name: 'Movers - Knowledge Base',
+            description: 'Kho kiến thức YLE Movers',
+            route: '/yle/movers',
+            status: 'new'
+          }
+        ]
+      },
+      {
+        id: 'emg-flyers-intro',
+        name: 'YLE Flyers - Giới thiệu',
+        lessons: [
+          {
+            id: 'flyers-intro',
+            name: 'Introduction to Flyers',
+            description: 'Làm quen với YLE Flyers',
+            route: '/yle/flyers',
+            status: 'new'
+          }
+        ]
+      }
+    ]
+  },
+  5: {
+    id: 'emg-5',
+    name: 'EMG (Nâng cao)',
+    icon: '🎓',
+    color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
+    chapters: [
+      {
+        id: 'emg-flyers-advanced',
+        name: 'YLE Flyers - Nâng cao',
+        lessons: [
+          {
+            id: 'flyers-vocab',
+            name: 'Flyers Vocabulary',
+            description: 'Học từ vựng YLE Flyers',
+            route: '/yle/flyers',
+            status: 'new'
+          },
+          {
+            id: 'flyers-reading',
+            name: 'Flyers Reading',
+            description: 'Luyện đọc YLE Flyers',
+            route: '/yle/flyers',
+            status: 'new'
+          },
+          {
+            id: 'flyers-listening',
+            name: 'Flyers Listening',
+            description: 'Luyện nghe YLE Flyers',
+            route: '/yle/flyers',
+            status: 'new'
+          }
+        ]
+      }
+    ]
+  }
 };
 
 // Dữ liệu mẫu cho "Tiếp tục học"
