@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import SubjectCard from '../../components/practice/SubjectCard';
 import ChapterList from '../../components/practice/ChapterList';
 import ContinueLearning from '../../components/practice/ContinueLearning';
-import { subjectsByGrade, emgSubject, continueLearningSample } from '../../data/subjects';
+import { subjectsByGrade, emgSubjectsByGrade, continueLearningSample } from '../../data/subjects';
 
 const PracticePage = () => {
   const { user, isAuthenticated } = useAuth();
@@ -28,9 +28,9 @@ const PracticePage = () => {
   useEffect(() => {
     let currentSubjects = [...(subjectsByGrade[selectedGrade] || [])];
 
-    // Thêm môn EMG nếu checkbox được check
-    if (showEMG) {
-      currentSubjects.push(emgSubject);
+    // Thêm môn EMG theo lớp nếu checkbox được check
+    if (showEMG && emgSubjectsByGrade[selectedGrade]) {
+      currentSubjects.push(emgSubjectsByGrade[selectedGrade]);
     }
 
     setSubjects(currentSubjects);
