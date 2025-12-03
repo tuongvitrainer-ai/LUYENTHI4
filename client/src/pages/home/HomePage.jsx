@@ -194,7 +194,6 @@ const HomePage = () => {
                 className="mini-game-card"
                 onClick={playClick}
               >
-                <div className="game-badge">{game.badge}</div>
                 <div className="game-icon">{game.icon}</div>
                 <h4 className="game-title">{game.title}</h4>
               </GameCard>
