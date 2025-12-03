@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import SubjectCard from '../../components/practice/SubjectCard';
 import ChapterList from '../../components/practice/ChapterList';
 import ContinueLearning from '../../components/practice/ContinueLearning';
-import { subjectsByGrade, emgSubject, continueLearningSample } from '../../data/subjects';
+import { subjectsByGrade, emgSubjectsByGrade, continueLearningSample } from '../../data/subjects';
 
 const PracticePage = () => {
   const { user, isAuthenticated } = useAuth();
@@ -12,16 +12,25 @@ const PracticePage = () => {
   const [selectedGrade, setSelectedGrade] = useState(3);
   const [subjects, setSubjects] = useState([]);
   const [showGradeDropdown, setShowGradeDropdown] = useState(false);
-  const [showEMG, setShowEMG] = useState(false);
+  const [showEMG, setShowEMG] = useState(() => {
+    // Load trạng thái EMG từ localStorage
+    const savedEMG = localStorage.getItem('showEMG');
+    return savedEMG === 'true';
+  });
   const [selectedSubject, setSelectedSubject] = useState(null);
+
+  // Lưu trạng thái EMG vào localStorage khi thay đổi
+  useEffect(() => {
+    localStorage.setItem('showEMG', showEMG.toString());
+  }, [showEMG]);
 
   // Cập nhật danh sách môn học khi thay đổi lớp hoặc EMG
   useEffect(() => {
     let currentSubjects = [...(subjectsByGrade[selectedGrade] || [])];
 
-    // Thêm môn EMG nếu checkbox được check
-    if (showEMG) {
-      currentSubjects.push(emgSubject);
+    // Thêm môn EMG theo lớp nếu checkbox được check
+    if (showEMG && emgSubjectsByGrade[selectedGrade]) {
+      currentSubjects.push(emgSubjectsByGrade[selectedGrade]);
     }
 
     setSubjects(currentSubjects);
@@ -152,10 +161,17 @@ const PracticePage = () => {
           </div>
         )}
 
-        {/* Layout 2 cột: Left (2/5) + Right (3/5) */}
+        {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập - Nằm riêng phía trên */}
+        {isAuthenticated && (
+          <div className="mb-6 lg:w-2/5">
+            <ContinueLearning continueData={continueLearningSample} />
+          </div>
+        )}
+
+        {/* Layout 2 cột: Left (2/5) + Right (3/5) - Ngang hàng với nhau */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left Sidebar - Danh sách môn học (2/5) */}
-          <div className="lg:col-span-2 space-y-3">
+          <div className="lg:col-span-2">
             <h2 className="text-xl font-bold text-gray-800 mb-4">
               KHO TÀNG TRI THỨC
             </h2>
@@ -182,36 +198,34 @@ const PracticePage = () => {
 
           {/* Right Content - Chi tiết môn học (3/5) */}
           <div className="lg:col-span-3">
-            {selectedSubject ? (
-              <div>
-                {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập */}
-                {isAuthenticated && (
-                  <ContinueLearning continueData={continueLearningSample} />
-                )}
-
-                {/* Subject Header */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`${selectedSubject.color} w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-md`}>
-                      {selectedSubject.icon}
+            {/* Padding top để ngang hàng với thẻ môn học đầu tiên */}
+            <div className="lg:pt-[52px]">
+              {selectedSubject ? (
+                <div>
+                  {/* Subject Header */}
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`${selectedSubject.color} w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-md`}>
+                        {selectedSubject.icon}
+                      </div>
+                      <h2 className="text-2xl font-bold text-gray-800">
+                        {selectedSubject.name.toUpperCase()} - LỚP {selectedGrade}
+                      </h2>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-800">
-                      {selectedSubject.name.toUpperCase()} - LỚP {selectedGrade}
-                    </h2>
                   </div>
-                </div>
 
-                {/* Chapters and Lessons */}
-                <ChapterList chapters={selectedSubject.chapters} />
-              </div>
-            ) : (
-              <div className="bg-white rounded-xl p-12 text-center shadow-md">
-                <div className="text-6xl mb-4">📖</div>
-                <p className="text-gray-500 text-lg">
-                  Chọn một môn học để bắt đầu
-                </p>
-              </div>
-            )}
+                  {/* Chapters and Lessons */}
+                  <ChapterList chapters={selectedSubject.chapters} />
+                </div>
+              ) : (
+                <div className="bg-white rounded-xl p-12 text-center shadow-md">
+                  <div className="text-6xl mb-4">📖</div>
+                  <p className="text-gray-500 text-lg">
+                    Chọn một môn học để bắt đầu
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
