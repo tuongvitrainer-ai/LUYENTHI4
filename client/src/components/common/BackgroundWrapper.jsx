@@ -4,8 +4,8 @@ import './BackgroundWrapper.css';
 /**
  * BackgroundWrapper Component
  *
- * Hiển thị background với chủ đề "Cá Chép Vượt Vũ Môn"
- * với hiệu ứng làm mờ và lớp phủ màu xanh dương
+ * Hiển thị background với chủ đề "Đại dương và sóng biển"
+ * với hiệu ứng làm mờ và lớp phủ màu xanh da trời
  */
 const BackgroundWrapper = () => {
   return (
@@ -14,11 +14,11 @@ const BackgroundWrapper = () => {
       <div
         className="background-image"
         style={{
-          backgroundImage: 'url(/assets/koi-dragon-gate.svg)',
+          backgroundImage: 'url(/assets/ocean-waves.svg)',
         }}
       />
 
-      {/* Lớp phủ màu xanh dương bán trong suốt */}
+      {/* Lớp phủ màu xanh da trời bán trong suốt */}
       <div className="background-overlay" />
     </div>
   );

@@ -1,12 +1,17 @@
-# Hướng Dẫn Tùy Chỉnh Background "Cá Chép Vượt Vũ Môn"
+# Hướng Dẫn Tùy Chỉnh Background "Đại Dương và Sóng Biển"
 
 ## Tổng Quan
 
-Background của ứng dụng được thiết kế với chủ đề văn hóa "Cá Chép Vượt Vũ Môn" - biểu tượng của sự nỗ lực và thành công trong học tập.
+Background của ứng dụng được thiết kế với chủ đề đại dương và sóng biển - tạo không gian học tập vui vẻ, tươi sáng và thân thiện cho học sinh tiểu học.
 
 ### Các Thành Phần
 
-1. **Hình ảnh SVG**: `/client/public/assets/koi-dragon-gate.svg`
+1. **Hình ảnh SVG**: `/client/public/assets/ocean-waves.svg`
+   - Các lớp sóng chồng lên nhau (4 lớp)
+   - Mây trắng dễ thương
+   - Bọt sóng và bong bóng
+   - Cá nhỏ trang trí (tùy chọn)
+   - Mặt trời sáng
 2. **Component React**: `/client/src/components/common/BackgroundWrapper.jsx`
 3. **CSS Styling**: `/client/src/components/common/BackgroundWrapper.css`
 
@@ -31,29 +36,35 @@ Mở file `BackgroundWrapper.css` và tìm:
 ```css
 background: linear-gradient(
   135deg,
-  rgba(30, 58, 138, 0.4) 0%,    /* blue-900 */
-  rgba(37, 99, 235, 0.35) 50%,  /* blue-600 */
-  rgba(30, 64, 175, 0.3) 100%   /* blue-700 */
+  rgba(77, 208, 225, 0.25) 0%,    /* #4DD0E1 - cyan-400 */
+  rgba(0, 188, 212, 0.2) 50%,     /* #00BCD4 - cyan-500 */
+  rgba(0, 172, 193, 0.15) 100%    /* #00ACC1 - cyan-600 */
 );
 ```
 
 **Ví dụ thay đổi:**
 
-- **Overlay xanh đậm hơn**: Tăng opacity từ `0.4` lên `0.6`
-- **Overlay màu tím**: Thay đổi RGB thành màu tím
+- **Overlay đậm hơn**: Tăng opacity từ `0.25` lên `0.35` hoặc `0.4`
+- **Overlay xanh lục tươi sáng**:
   ```css
-  rgba(139, 92, 246, 0.4)  /* purple-500 */
+  rgba(74, 222, 128, 0.25)  /* green-400 */
+  rgba(34, 197, 94, 0.2)    /* green-500 */
   ```
-- **Overlay màu xanh lá**:
+- **Overlay màu tím nhạt**:
   ```css
-  rgba(34, 197, 94, 0.4)  /* green-500 */
+  rgba(192, 132, 252, 0.25)  /* purple-400 */
+  rgba(168, 85, 247, 0.2)    /* purple-500 */
   ```
 
 ### 3. Thay Đổi Hình Ảnh
 
-#### Cách 1: Thay thế SVG hiện tại
+#### Cách 1: Chỉnh sửa SVG hiện tại
 
-Chỉnh sửa file `/client/public/assets/koi-dragon-gate.svg` với hình ảnh SVG mới của bạn.
+Chỉnh sửa file `/client/public/assets/ocean-waves.svg`:
+- Thay đổi màu sóng trong các gradient
+- Thêm/bớt lớp sóng
+- Điều chỉnh vị trí mây, bong bóng
+- Thay đổi màu bầu trời
 
 #### Cách 2: Sử dụng hình ảnh khác
 
@@ -98,12 +109,19 @@ Mở `MainLayout.css` và tìm:
 - **0.7 - 0.85**: Bán trong suốt (cân bằng)
 - **0.5 - 0.7**: Rất trong suốt (có thể khó đọc)
 
-## Màu Sắc Tailwind CSS Tham Khảo
+## Màu Sắc Tham Khảo Cho Theme Đại Dương
+
+### Xanh Da Trời / Xanh Ngọc (Cyan - Theme hiện tại)
+- `rgba(224, 247, 250, 0.3)` - #E0F7FA - cyan-50 (rất nhạt)
+- `rgba(179, 229, 252, 0.3)` - #B3E5FC - cyan-100
+- `rgba(77, 208, 225, 0.3)` - #4DD0E1 - cyan-400
+- `rgba(0, 188, 212, 0.25)` - #00BCD4 - cyan-500
+- `rgba(0, 172, 193, 0.2)` - #00ACC1 - cyan-600
 
 ### Xanh Dương (Blue)
-- `rgba(30, 58, 138, 0.4)` - blue-900
-- `rgba(37, 99, 235, 0.4)` - blue-600
-- `rgba(96, 165, 250, 0.4)` - blue-400
+- `rgba(96, 165, 250, 0.3)` - blue-400
+- `rgba(59, 130, 246, 0.3)` - blue-500
+- `rgba(37, 99, 235, 0.25)` - blue-600
 
 ### Xanh Lục (Green)
 - `rgba(21, 128, 61, 0.4)` - green-700
@@ -150,9 +168,10 @@ Thêm vào media query:
 
 ### Background không hiển thị?
 
-1. Kiểm tra đường dẫn hình ảnh trong `BackgroundWrapper.jsx`
+1. Kiểm tra đường dẫn hình ảnh trong `BackgroundWrapper.jsx` (phải là `/assets/ocean-waves.svg`)
 2. Xóa cache browser (Ctrl+Shift+R hoặc Cmd+Shift+R)
-3. Kiểm tra file SVG có tồn tại tại `/client/public/assets/`
+3. Kiểm tra file SVG có tồn tại tại `/client/public/assets/ocean-waves.svg`
+4. Khởi động lại dev server
 
 ### Text khó đọc?
 
@@ -178,36 +197,47 @@ Thêm vendor prefix:
 
 ## Ví Dụ Themes
 
-### Theme Đêm Huyền Bí
+### Theme Biển Nhiệt Đới (Hiện tại)
 
 ```css
 background: linear-gradient(
   135deg,
-  rgba(15, 23, 42, 0.6) 0%,     /* slate-900 */
-  rgba(30, 58, 138, 0.5) 50%,   /* blue-900 */
-  rgba(88, 28, 135, 0.5) 100%   /* purple-900 */
+  rgba(77, 208, 225, 0.25) 0%,    /* cyan-400 */
+  rgba(0, 188, 212, 0.2) 50%,     /* cyan-500 */
+  rgba(0, 172, 193, 0.15) 100%    /* cyan-600 */
 );
 ```
 
-### Theme Bình Minh Tươi Sáng
+### Theme Biển Sâu
 
 ```css
 background: linear-gradient(
   135deg,
-  rgba(252, 165, 165, 0.3) 0%,  /* red-300 */
-  rgba(251, 191, 36, 0.3) 50%,  /* amber-400 */
-  rgba(34, 211, 238, 0.3) 100%  /* cyan-400 */
+  rgba(0, 151, 167, 0.3) 0%,     /* cyan-700 */
+  rgba(0, 121, 107, 0.25) 50%,   /* teal-700 */
+  rgba(0, 96, 100, 0.2) 100%     /* cyan-800 */
 );
 ```
 
-### Theme Rừng Xanh
+### Theme Bình Minh Biển Cả
 
 ```css
 background: linear-gradient(
   135deg,
-  rgba(20, 83, 45, 0.5) 0%,     /* green-800 */
-  rgba(34, 197, 94, 0.4) 50%,   /* green-500 */
-  rgba(74, 222, 128, 0.4) 100%  /* green-400 */
+  rgba(251, 207, 232, 0.2) 0%,   /* pink-200 */
+  rgba(254, 215, 170, 0.2) 50%,  /* orange-200 */
+  rgba(165, 243, 252, 0.2) 100%  /* cyan-200 */
+);
+```
+
+### Theme Rạn San Hô
+
+```css
+background: linear-gradient(
+  135deg,
+  rgba(252, 231, 243, 0.25) 0%,  /* pink-100 */
+  rgba(186, 230, 253, 0.25) 50%, /* sky-200 */
+  rgba(167, 243, 208, 0.25) 100% /* emerald-200 */
 );
 ```
 

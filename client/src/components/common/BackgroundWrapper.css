@@ -31,7 +31,7 @@
   transform: scale(1.1);
 }
 
-/* Lớp phủ màu xanh dương bán trong suốt */
+/* Lớp phủ màu xanh da trời/xanh ngọc bán trong suốt */
 .background-overlay {
   position: absolute;
   top: 0;
@@ -39,16 +39,16 @@
   width: 100%;
   height: 100%;
 
-  /* Gradient xanh dương từ đậm đến nhạt */
+  /* Gradient xanh da trời tươi sáng - phù hợp theme đại dương */
   background: linear-gradient(
     135deg,
-    rgba(30, 58, 138, 0.4) 0%,    /* blue-900 với opacity 0.4 */
-    rgba(37, 99, 235, 0.35) 50%,  /* blue-600 với opacity 0.35 */
-    rgba(30, 64, 175, 0.3) 100%   /* blue-700 với opacity 0.3 */
+    rgba(77, 208, 225, 0.25) 0%,    /* #4DD0E1 - cyan-400 với opacity 0.25 */
+    rgba(0, 188, 212, 0.2) 50%,     /* #00BCD4 - cyan-500 với opacity 0.2 */
+    rgba(0, 172, 193, 0.15) 100%    /* #00ACC1 - cyan-600 với opacity 0.15 */
   );
 
-  /* Thêm một lớp màu xanh đồng nhất để đảm bảo text dễ đọc */
-  backdrop-filter: brightness(0.95);
+  /* Giảm brightness nhẹ để text dễ đọc nhưng vẫn giữ màu tươi sáng */
+  backdrop-filter: brightness(0.97);
 }
 
 /* Responsive: Điều chỉnh blur cho mobile để tối ưu hiệu suất */
