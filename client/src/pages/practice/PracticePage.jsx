@@ -8,8 +8,11 @@ import { subjectsByGrade, emgSubjectsByGrade, continueLearningSample } from '../
 const PracticePage = () => {
   const { user, isAuthenticated } = useAuth();
 
-  // Mặc định lớp 3 cho khách (chưa đăng nhập)
-  const [selectedGrade, setSelectedGrade] = useState(3);
+  // Load lớp đã chọn từ localStorage, mặc định lớp 3
+  const [selectedGrade, setSelectedGrade] = useState(() => {
+    const savedGrade = localStorage.getItem('selectedGrade');
+    return savedGrade ? parseInt(savedGrade) : 3;
+  });
   const [subjects, setSubjects] = useState([]);
   const [showGradeDropdown, setShowGradeDropdown] = useState(false);
   const [showEMG, setShowEMG] = useState(() => {
@@ -18,6 +21,11 @@ const PracticePage = () => {
     return savedEMG === 'true';
   });
   const [selectedSubject, setSelectedSubject] = useState(null);
+
+  // Lưu trạng thái lớp vào localStorage khi thay đổi
+  useEffect(() => {
+    localStorage.setItem('selectedGrade', selectedGrade.toString());
+  }, [selectedGrade]);
 
   // Lưu trạng thái EMG vào localStorage khi thay đổi
   useEffect(() => {
@@ -82,14 +90,14 @@ const PracticePage = () => {
             <div className="relative">
               <button
                 onClick={() => setShowGradeDropdown(!showGradeDropdown)}
-                className="flex items-center gap-2 bg-white rounded-xl shadow-md px-4 py-3 hover:shadow-lg transition-all duration-200 border-2 border-blue-200"
+                className="flex items-center gap-3 bg-white rounded-full shadow-lg px-6 py-3.5 hover:shadow-xl transition-all duration-200 border-3 border-blue-300 hover:border-blue-400"
               >
-                <span className="text-2xl">{currentGrade?.icon}</span>
-                <span className="font-semibold text-gray-700">
+                <span className="text-3xl">{currentGrade?.icon}</span>
+                <span className="font-bold text-gray-800 text-lg">
                   {currentGrade?.label}
                 </span>
                 <svg
-                  className={`w-4 h-4 text-gray-500 transition-transform ${
+                  className={`w-5 h-5 text-gray-600 transition-transform ${
                     showGradeDropdown ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -99,7 +107,7 @@ const PracticePage = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
@@ -107,7 +115,7 @@ const PracticePage = () => {
 
               {/* Dropdown menu */}
               {showGradeDropdown && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border-2 border-gray-100 py-2 z-10">
+                <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border-3 border-blue-200 py-2 z-10">
                   {grades.map((grade) => (
                     <button
                       key={grade.value}
@@ -115,16 +123,16 @@ const PracticePage = () => {
                         setSelectedGrade(grade.value);
                         setShowGradeDropdown(false);
                       }}
-                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors ${
+                      className={`w-full flex items-center gap-3 px-5 py-3.5 transition-colors rounded-xl mx-2 my-1 ${
                         selectedGrade === grade.value
-                          ? 'bg-blue-100 text-blue-700 font-semibold'
-                          : 'text-gray-700'
+                          ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold shadow-md'
+                          : 'text-gray-700 font-semibold hover:bg-blue-50'
                       }`}
                     >
-                      <span className="text-xl">{grade.icon}</span>
-                      <span>{grade.label}</span>
+                      <span className="text-2xl">{grade.icon}</span>
+                      <span className="text-base">{grade.label}</span>
                       {selectedGrade === grade.value && (
-                        <span className="ml-auto text-blue-500">✓</span>
+                        <span className="ml-auto text-white text-xl">✓</span>
                       )}
                     </button>
                   ))}
