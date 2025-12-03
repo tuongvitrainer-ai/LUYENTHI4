@@ -161,42 +161,39 @@ const PracticePage = () => {
           </div>
         )}
 
-        {/* Layout 2 cột: Left (2/5) + Right (3/5) */}
+        {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập - Nằm riêng phía trên */}
+        {isAuthenticated && (
+          <div className="mb-6 lg:w-2/5">
+            <ContinueLearning continueData={continueLearningSample} />
+          </div>
+        )}
+
+        {/* Layout 2 cột: Left (2/5) + Right (3/5) - Ngang hàng với nhau */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left Sidebar - Danh sách môn học (2/5) */}
-          <div className="lg:col-span-2 space-y-4">
-            {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập */}
-            {isAuthenticated && (
-              <div>
-                <ContinueLearning continueData={continueLearningSample} />
+          <div className="lg:col-span-2">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              KHO TÀNG TRI THỨC
+            </h2>
+            {subjects.length > 0 ? (
+              <div className="space-y-3">
+                {subjects.map((subject) => (
+                  <SubjectCard
+                    key={subject.id}
+                    subject={subject}
+                    isSelected={selectedSubject?.id === subject.id}
+                    onClick={() => handleSubjectClick(subject)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 bg-white rounded-xl shadow-md">
+                <div className="text-4xl mb-2">📚</div>
+                <p className="text-gray-500 text-sm">
+                  Chưa có môn học nào
+                </p>
               </div>
             )}
-
-            {/* Danh sách môn học */}
-            <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                KHO TÀNG TRI THỨC
-              </h2>
-              {subjects.length > 0 ? (
-                <div className="space-y-3">
-                  {subjects.map((subject) => (
-                    <SubjectCard
-                      key={subject.id}
-                      subject={subject}
-                      isSelected={selectedSubject?.id === subject.id}
-                      onClick={() => handleSubjectClick(subject)}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8 bg-white rounded-xl shadow-md">
-                  <div className="text-4xl mb-2">📚</div>
-                  <p className="text-gray-500 text-sm">
-                    Chưa có môn học nào
-                  </p>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Right Content - Chi tiết môn học (3/5) */}
