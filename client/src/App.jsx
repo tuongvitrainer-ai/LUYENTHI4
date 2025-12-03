@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import AdminLayout from './layouts/AdminLayout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import ProtectedAdminRoute from './components/common/ProtectedAdminRoute';
+import BackgroundWrapper from './components/common/BackgroundWrapper';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import HomePage from './pages/home/HomePage';
@@ -67,6 +68,9 @@ function App() {
   return (
     <Router>
       <AuthProvider>
+        {/* Background với chủ đề "Cá Chép Vượt Vũ Môn" */}
+        <BackgroundWrapper />
+
         <Routes>
           {/* Auth pages - No Layout */}
           <Route path="/login" element={<LoginPage />} />
