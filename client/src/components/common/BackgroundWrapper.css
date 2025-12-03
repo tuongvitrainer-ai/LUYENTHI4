@@ -25,7 +25,7 @@
   background-repeat: no-repeat;
 
   /* Hiệu ứng làm mờ rất mạnh (heavy blur) */
-  filter: blur(10px);
+  filter: blur(8px);
 
   /* Scale lên một chút để tránh viền trắng khi blur */
   transform: scale(1.1);
@@ -42,9 +42,9 @@
   /* Gradient xanh da trời tươi sáng - phù hợp theme đại dương */
   background: linear-gradient(
     135deg,
-    rgba(77, 208, 225, 0.25) 0%,    /* #4DD0E1 - cyan-400 với opacity 0.25 */
-    rgba(0, 188, 212, 0.2) 50%,     /* #00BCD4 - cyan-500 với opacity 0.2 */
-    rgba(0, 172, 193, 0.15) 100%    /* #00ACC1 - cyan-600 với opacity 0.15 */
+    rgba(252, 231, 243, 0.25) 0%,    /* #4DD0E1 - cyan-400 với opacity 0.25 */
+    rgba(186, 230, 253, 0.25) 50%,     /* #00BCD4 - cyan-500 với opacity 0.2 */
+    rgba(167, 243, 208, 0.25) 100%    /* #00ACC1 - cyan-600 với opacity 0.15 */
   );
 
   /* Giảm brightness nhẹ để text dễ đọc nhưng vẫn giữ màu tươi sáng */
