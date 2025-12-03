@@ -176,8 +176,56 @@ const PracticePage = () => {
           </div>
         )}
 
-        {/* Layout 2 cột: Left (2/5) + Right (3/5) - Ngang hàng với nhau */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        {/* Mobile Layout - Hiển thị chi tiết ngay dưới thẻ được chọn */}
+        <div className="lg:hidden">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">
+            KHO TÀNG TRI THỨC
+          </h2>
+          {subjects.length > 0 ? (
+            <div className="space-y-3">
+              {subjects.map((subject) => (
+                <div key={subject.id}>
+                  {/* Subject Card */}
+                  <SubjectCard
+                    subject={subject}
+                    isSelected={selectedSubject?.id === subject.id}
+                    onClick={() => handleSubjectClick(subject)}
+                  />
+
+                  {/* Chi tiết môn học - Hiển thị ngay dưới thẻ được chọn */}
+                  {selectedSubject?.id === subject.id && (
+                    <div className="mt-3 mb-3">
+                      {/* Subject Header */}
+                      <div className="mb-4">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className={`${selectedSubject.color} w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-md`}>
+                            {selectedSubject.icon}
+                          </div>
+                          <h2 className="text-lg font-bold text-gray-800">
+                            {selectedSubject.name.toUpperCase()} - LỚP {selectedGrade}
+                          </h2>
+                        </div>
+                      </div>
+
+                      {/* Chapters and Lessons */}
+                      <ChapterList chapters={selectedSubject.chapters} />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 bg-white rounded-xl shadow-md">
+              <div className="text-4xl mb-2">📚</div>
+              <p className="text-gray-500 text-sm">
+                Chưa có môn học nào
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Layout - Grid 2 cột như cũ */}
+        <div className="hidden lg:grid lg:grid-cols-5 gap-6">
           {/* Left Sidebar - Danh sách môn học (2/5) */}
           <div className="lg:col-span-2">
             <h2 className="text-xl font-bold text-gray-800 mb-4">
