@@ -25,7 +25,7 @@
   background-repeat: no-repeat;
 
   /* Hiệu ứng làm mờ rất mạnh (heavy blur) */
-  filter: blur(60px);
+  filter: blur(10px);
 
   /* Scale lên một chút để tránh viền trắng khi blur */
   transform: scale(1.1);
