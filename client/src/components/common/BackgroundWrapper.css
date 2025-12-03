@@ -1,0 +1,74 @@
+/*
+ * BackgroundWrapper Styles
+ * Tạo background trang nhã với hiệu ứng mờ ảo (dreamy blur)
+ */
+
+.background-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  overflow: hidden;
+}
+
+/* Hình ảnh background với hiệu ứng blur mạnh */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Hiệu ứng làm mờ rất mạnh (heavy blur) */
+  filter: blur(8px);
+
+  /* Scale lên một chút để tránh viền trắng khi blur */
+  transform: scale(1.1);
+}
+
+/* Lớp phủ màu xanh da trời/xanh ngọc bán trong suốt */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Gradient xanh da trời tươi sáng - phù hợp theme đại dương */
+  background: linear-gradient(
+    135deg,
+    rgba(252, 231, 243, 0.25) 0%,    /* #4DD0E1 - cyan-400 với opacity 0.25 */
+    rgba(186, 230, 253, 0.25) 50%,     /* #00BCD4 - cyan-500 với opacity 0.2 */
+    rgba(167, 243, 208, 0.25) 100%    /* #00ACC1 - cyan-600 với opacity 0.15 */
+  );
+
+  /* Giảm brightness nhẹ để text dễ đọc nhưng vẫn giữ màu tươi sáng */
+  backdrop-filter: brightness(0.97);
+}
+
+/* Responsive: Điều chỉnh blur cho mobile để tối ưu hiệu suất */
+@media (max-width: 768px) {
+  .background-image {
+    /* Giảm độ blur trên mobile để cải thiện performance */
+    filter: blur(40px);
+  }
+}
+
+/* Optional: Animation nhẹ cho background (tạo cảm giác sống động) */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.background-image {
+  animation: breathe 30s ease-in-out infinite;
+}
