@@ -14,29 +14,6 @@ const HomePage = () => {
     // Navigate to quest
   };
 
-  const featuredGames = [
-    {
-      id: 1,
-      title: 'Đoán Chữ Vui Nhộn',
-      icon: '🐟',
-      badge: '5',
-      path: '/game/words/hangman-tv',
-    },
-    {
-      id: 2,
-      title: 'Toán Học Vui Nhộn',
-      icon: '🎓',
-      badge: '5',
-      path: '/learn/lop2/toan/ontap1',
-    },
-    {
-      id: 3,
-      title: 'Ghép Chữ Nhanh',
-      icon: '🔤',
-      badge: '5',
-      path: '/games',
-    },
-  ];
 
   return (
     <div className="homepage">
@@ -180,25 +157,6 @@ const HomePage = () => {
               </div>
             </GameCard>
           </Link>
-        </div>
-      </div>
-
-      {/* Tier 3: Entertainment */}
-      <div className="entertainment-section">
-        <h2 className="section-title">Giải lao xíu nào!</h2>
-        <div className="games-grid">
-          {featuredGames.map((game) => (
-            <Link to={game.path} key={game.id}>
-              <GameCard
-                hoverable
-                className="mini-game-card"
-                onClick={playClick}
-              >
-                <div className="game-icon">{game.icon}</div>
-                <h4 className="game-title">{game.title}</h4>
-              </GameCard>
-            </Link>
-          ))}
         </div>
       </div>
 
