@@ -1,5 +1,7 @@
 // Dữ liệu môn học theo từng lớp
 export const subjectsByGrade = {
+  
+  // KHOI LOP 2
   2: [
     {
       id: 'toan-2',
@@ -8,20 +10,22 @@ export const subjectsByGrade = {
       color: 'bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500',
       chapters: [
         {
-          id: 'chuong-1',
-          name: 'Chương 1: Phép cộng trong phạm vi 100',
+          id: 'ontap',
+          name: 'Ôn Tập',
           lessons: [
             {
-              id: 'toan-2-bai1',
-              name: 'Bài 1: Cộng không nhớ',
-              description: 'Học cách cộng các số không nhớ',
+              id: 'ontap1',
+              name: 'Ôn tập: 11 chủ đề',
+              description: '11 CHỦ ĐỀ ÔN TẬP TOÁN',
               route: '/learn/lop2/toan/ontap1',
               status: 'completed',
               progress: 100
             },
+
+            //demo
             {
               id: 'toan-2-bai2',
-              name: 'Bài 2: Cộng có nhớ',
+              name: 'DEMO - Bài 2: Cộng có nhớ',
               description: 'Vào học',
               route: '/learn/lop2/toan/bai2',
               status: 'in-progress',
@@ -30,7 +34,7 @@ export const subjectsByGrade = {
             },
             {
               id: 'toan-2-bai3',
-              name: 'Bài 3: Luyện tập chung',
+              name: 'DEMO - Bài 3: Luyện tập chung',
               description: '',
               route: '/learn/lop2/toan/bai3',
               status: 'locked',
@@ -55,11 +59,11 @@ export const subjectsByGrade = {
       chapters: [
         {
           id: 'chuong-1-anh',
-          name: 'Chương 1: Greetings',
+          name: 'DEMO - Chương 1: Greetings',
           lessons: [
             {
               id: 'anh-2-bai1',
-              name: 'Lesson 1: Hello',
+              name: 'DEMO - Lesson 1: Hello',
               description: '',
               route: '/learn/lop2/anh/lesson1',
               status: 'new'
@@ -69,6 +73,13 @@ export const subjectsByGrade = {
       ]
     }
   ],
+  
+  
+  
+  
+  
+  
+  // KHOI LOP 3
   3: [
     {
       id: 'van-3',
@@ -92,6 +103,11 @@ export const subjectsByGrade = {
       chapters: []
     }
   ],
+  
+  
+  
+  
+  // KHOI LOP 4
   4: [
     {
       id: 'toan-4',
@@ -136,6 +152,8 @@ export const subjectsByGrade = {
       chapters: []
     }
   ],
+  
+  // KHOI LOP 5
   5: [
     {
       id: 'toan-5',
@@ -184,129 +202,73 @@ export const subjectsByGrade = {
 
 // Môn học EMG tích hợp theo từng lớp
 export const emgSubjectsByGrade = {
+  
+  //KHOI LOP 2
   2: {
     id: 'emg-2',
-    name: 'EMG (Nâng cao)',
+    name: 'Tiếng Anh tích hợp (EMG)',
     icon: '🎓',
     color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
     chapters: [
-      {
-        id: 'emg-lop2-basics',
-        name: 'Lớp 2 - Tiếng Anh Cơ bản',
-        lessons: [
-          {
-            id: 'emg-lop2-ontap-hk1',
-            name: 'Ôn tập Học kỳ 1',
-            description: 'Ôn tập từ vựng và ngữ pháp HK1',
-            route: '/lop2/emg/on-tap-hk1',
-            status: 'new'
-          }
-        ]
-      }
+      
     ]
   },
+  
+  //KHOI LOP 3
   3: {
     id: 'emg-3',
-    name: 'EMG (Nâng cao)',
+    name: 'Tiếng Anh tích hợp (EMG)',
     icon: '🎓',
     color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
     chapters: [
       {
-        id: 'emg-movers-level1',
-        name: 'YLE Movers - Cấp độ 1',
+        id: 'emg-maths',
+        name: 'DEMO - MATHS',
         lessons: [
-          {
-            id: 'movers-vocab-beginner',
-            name: 'Vocabulary - Beginner',
-            description: 'Học từ vựng YLE Movers cơ bản',
-            route: '/english/movers/vocabulary-movers',
-            status: 'new'
-          },
-          {
-            id: 'movers-kb',
-            name: 'Movers - Knowledge Base',
-            description: 'Kho kiến thức YLE Movers',
-            route: '/yle/movers',
-            status: 'new'
-          }
-        ]
-      }
-    ]
-  },
-  4: {
-    id: 'emg-4',
-    name: 'EMG (Nâng cao)',
-    icon: '🎓',
-    color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
-    chapters: [
-      {
-        id: 'emg-movers-level2',
-        name: 'YLE Movers - Cấp độ 2',
-        lessons: [
-          {
-            id: 'movers-vocab-intermediate',
-            name: 'Vocabulary - Intermediate',
-            description: 'Học từ vựng YLE Movers nâng cao',
-            route: '/english/movers/vocabulary-movers',
-            status: 'new'
-          },
-          {
-            id: 'movers-kb-4',
-            name: 'Movers - Knowledge Base',
-            description: 'Kho kiến thức YLE Movers',
-            route: '/yle/movers',
-            status: 'new'
-          }
         ]
       },
       {
-        id: 'emg-flyers-intro',
-        name: 'YLE Flyers - Giới thiệu',
+        id: 'emg-science',
+        name: 'DEMO - SCIENCE',
+        lessons: [
+        ]
+      },
+      
+      {
+        id: 'emg-lop3-ontap',
+        name: 'REVIEW',
         lessons: [
           {
-            id: 'flyers-intro',
-            name: 'Introduction to Flyers',
-            description: 'Làm quen với YLE Flyers',
-            route: '/yle/flyers',
+            id: 'emg-lop2-ontap-hk1',
+            name: 'Review First Semester - Part 1',
+            description: 'EMG GRADE 3 - REVIEW',
+            route: '/lop3/emg/on-tap-hk1',
             status: 'new'
           }
         ]
       }
     ]
   },
-  5: {
-    id: 'emg-5',
-    name: 'EMG (Nâng cao)',
+  
+  //KHOI LOP 4
+  4: {
+    id: 'emg-4',
+    name: 'Tiếng Anh tích hợp (EMG)',
     icon: '🎓',
     color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
     chapters: [
-      {
-        id: 'emg-flyers-advanced',
-        name: 'YLE Flyers - Nâng cao',
-        lessons: [
-          {
-            id: 'flyers-vocab',
-            name: 'Flyers Vocabulary',
-            description: 'Học từ vựng YLE Flyers',
-            route: '/yle/flyers',
-            status: 'new'
-          },
-          {
-            id: 'flyers-reading',
-            name: 'Flyers Reading',
-            description: 'Luyện đọc YLE Flyers',
-            route: '/yle/flyers',
-            status: 'new'
-          },
-          {
-            id: 'flyers-listening',
-            name: 'Flyers Listening',
-            description: 'Luyện nghe YLE Flyers',
-            route: '/yle/flyers',
-            status: 'new'
-          }
-        ]
-      }
+      
+    ]
+  },
+  
+  //KHOI LOP 5
+  5: {
+    id: 'emg-5',
+    name: 'Tiếng Anh tích hợp (EMG)',
+    icon: '🎓',
+    color: 'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500',
+    chapters: [
+      
     ]
   }
 };
