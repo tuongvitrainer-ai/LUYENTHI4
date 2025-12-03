@@ -12,8 +12,17 @@ const PracticePage = () => {
   const [selectedGrade, setSelectedGrade] = useState(3);
   const [subjects, setSubjects] = useState([]);
   const [showGradeDropdown, setShowGradeDropdown] = useState(false);
-  const [showEMG, setShowEMG] = useState(false);
+  const [showEMG, setShowEMG] = useState(() => {
+    // Load trạng thái EMG từ localStorage
+    const savedEMG = localStorage.getItem('showEMG');
+    return savedEMG === 'true';
+  });
   const [selectedSubject, setSelectedSubject] = useState(null);
+
+  // Lưu trạng thái EMG vào localStorage khi thay đổi
+  useEffect(() => {
+    localStorage.setItem('showEMG', showEMG.toString());
+  }, [showEMG]);
 
   // Cập nhật danh sách môn học khi thay đổi lớp hoặc EMG
   useEffect(() => {
@@ -155,40 +164,45 @@ const PracticePage = () => {
         {/* Layout 2 cột: Left (2/5) + Right (3/5) */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left Sidebar - Danh sách môn học (2/5) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              KHO TÀNG TRI THỨC
-            </h2>
-            {subjects.length > 0 ? (
-              <div className="space-y-3">
-                {subjects.map((subject) => (
-                  <SubjectCard
-                    key={subject.id}
-                    subject={subject}
-                    isSelected={selectedSubject?.id === subject.id}
-                    onClick={() => handleSubjectClick(subject)}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 bg-white rounded-xl shadow-md">
-                <div className="text-4xl mb-2">📚</div>
-                <p className="text-gray-500 text-sm">
-                  Chưa có môn học nào
-                </p>
+          <div className="lg:col-span-2 space-y-4">
+            {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập */}
+            {isAuthenticated && (
+              <div>
+                <ContinueLearning continueData={continueLearningSample} />
               </div>
             )}
+
+            {/* Danh sách môn học */}
+            <div>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">
+                KHO TÀNG TRI THỨC
+              </h2>
+              {subjects.length > 0 ? (
+                <div className="space-y-3">
+                  {subjects.map((subject) => (
+                    <SubjectCard
+                      key={subject.id}
+                      subject={subject}
+                      isSelected={selectedSubject?.id === subject.id}
+                      onClick={() => handleSubjectClick(subject)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 bg-white rounded-xl shadow-md">
+                  <div className="text-4xl mb-2">📚</div>
+                  <p className="text-gray-500 text-sm">
+                    Chưa có môn học nào
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Right Content - Chi tiết môn học (3/5) */}
           <div className="lg:col-span-3">
             {selectedSubject ? (
               <div>
-                {/* Continue Learning - Chỉ hiển thị khi đã đăng nhập */}
-                {isAuthenticated && (
-                  <ContinueLearning continueData={continueLearningSample} />
-                )}
-
                 {/* Subject Header */}
                 <div className="mb-6">
                   <div className="flex items-center gap-3 mb-2">
