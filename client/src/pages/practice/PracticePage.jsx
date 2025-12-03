@@ -198,31 +198,34 @@ const PracticePage = () => {
 
           {/* Right Content - Chi tiết môn học (3/5) */}
           <div className="lg:col-span-3">
-            {selectedSubject ? (
-              <div>
-                {/* Subject Header */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`${selectedSubject.color} w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-md`}>
-                      {selectedSubject.icon}
+            {/* Padding top để ngang hàng với thẻ môn học đầu tiên */}
+            <div className="lg:pt-[52px]">
+              {selectedSubject ? (
+                <div>
+                  {/* Subject Header */}
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`${selectedSubject.color} w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-md`}>
+                        {selectedSubject.icon}
+                      </div>
+                      <h2 className="text-2xl font-bold text-gray-800">
+                        {selectedSubject.name.toUpperCase()} - LỚP {selectedGrade}
+                      </h2>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-800">
-                      {selectedSubject.name.toUpperCase()} - LỚP {selectedGrade}
-                    </h2>
                   </div>
-                </div>
 
-                {/* Chapters and Lessons */}
-                <ChapterList chapters={selectedSubject.chapters} />
-              </div>
-            ) : (
-              <div className="bg-white rounded-xl p-12 text-center shadow-md">
-                <div className="text-6xl mb-4">📖</div>
-                <p className="text-gray-500 text-lg">
-                  Chọn một môn học để bắt đầu
-                </p>
-              </div>
-            )}
+                  {/* Chapters and Lessons */}
+                  <ChapterList chapters={selectedSubject.chapters} />
+                </div>
+              ) : (
+                <div className="bg-white rounded-xl p-12 text-center shadow-md">
+                  <div className="text-6xl mb-4">📖</div>
+                  <p className="text-gray-500 text-lg">
+                    Chọn một môn học để bắt đầu
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
