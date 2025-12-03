@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky gradient - Xanh da trời nhạt đến đậm -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E0F7FA;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B3E5FC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81D4FA;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Wave gradients - Từ nhạt đến đậm -->
+    <linearGradient id="wave1Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4DD0E1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#26C6DA;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="wave2Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#26C6DA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BCD4;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="wave3Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00BCD4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ACC1;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="wave4Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ACC1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0097A7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Sky -->
+  <rect width="1920" height="1080" fill="url(#skyGradient)"/>
+
+  <!-- Decorative Clouds - Simple and cute -->
+  <g opacity="0.6">
+    <!-- Cloud 1 -->
+    <ellipse cx="200" cy="150" rx="80" ry="50" fill="#FFFFFF"/>
+    <ellipse cx="240" cy="140" rx="70" ry="45" fill="#FFFFFF"/>
+    <ellipse cx="280" cy="150" rx="60" ry="40" fill="#FFFFFF"/>
+
+    <!-- Cloud 2 -->
+    <ellipse cx="800" cy="100" rx="90" ry="55" fill="#FFFFFF"/>
+    <ellipse cx="850" cy="90" rx="75" ry="50" fill="#FFFFFF"/>
+    <ellipse cx="900" cy="100" rx="70" ry="45" fill="#FFFFFF"/>
+
+    <!-- Cloud 3 -->
+    <ellipse cx="1500" cy="180" rx="70" ry="45" fill="#FFFFFF"/>
+    <ellipse cx="1540" cy="170" rx="65" ry="42" fill="#FFFFFF"/>
+    <ellipse cx="1580" cy="180" rx="55" ry="38" fill="#FFFFFF"/>
+
+    <!-- Cloud 4 -->
+    <ellipse cx="1700" cy="120" rx="85" ry="52" fill="#FFFFFF"/>
+    <ellipse cx="1750" cy="110" rx="70" ry="48" fill="#FFFFFF"/>
+    <ellipse cx="1800" cy="120" rx="65" ry="43" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Wave Layer 4 - Furthest (smallest, highest) -->
+  <path d="M 0,600
+           Q 240,550 480,600
+           T 960,600
+           T 1440,600
+           T 1920,600
+           L 1920,1080 L 0,1080 Z"
+        fill="url(#wave1Gradient)"
+        opacity="0.7"/>
+
+  <!-- Wave foam/bubbles on wave 4 -->
+  <g opacity="0.5">
+    <ellipse cx="300" cy="600" rx="15" ry="8" fill="#FFFFFF"/>
+    <ellipse cx="700" cy="590" rx="12" ry="7" fill="#FFFFFF"/>
+    <ellipse cx="1100" cy="605" rx="18" ry="9" fill="#FFFFFF"/>
+    <ellipse cx="1500" cy="595" rx="14" ry="8" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Wave Layer 3 -->
+  <path d="M 0,680
+           Q 320,620 640,680
+           T 1280,680
+           T 1920,680
+           L 1920,1080 L 0,1080 Z"
+        fill="url(#wave2Gradient)"
+        opacity="0.8"/>
+
+  <!-- Wave foam on wave 3 -->
+  <g opacity="0.6">
+    <ellipse cx="400" cy="675" rx="20" ry="10" fill="#FFFFFF"/>
+    <ellipse cx="800" cy="665" rx="16" ry="9" fill="#FFFFFF"/>
+    <ellipse cx="1200" cy="680" rx="22" ry="11" fill="#FFFFFF"/>
+    <ellipse cx="1600" cy="670" rx="18" ry="10" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Wave Layer 2 -->
+  <path d="M 0,760
+           Q 400,690 800,760
+           T 1600,760
+           T 2400,760
+           L 1920,1080 L 0,1080 Z"
+        fill="url(#wave3Gradient)"
+        opacity="0.9"/>
+
+  <!-- Wave foam on wave 2 -->
+  <g opacity="0.7">
+    <ellipse cx="500" cy="750" rx="25" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="900" cy="740" rx="20" ry="11" fill="#FFFFFF"/>
+    <ellipse cx="1300" cy="755" rx="28" ry="13" fill="#FFFFFF"/>
+    <ellipse cx="1700" cy="745" rx="22" ry="11" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Wave Layer 1 - Closest (largest, lowest) -->
+  <path d="M 0,840
+           Q 480,760 960,840
+           T 1920,840
+           L 1920,1080 L 0,1080 Z"
+        fill="url(#wave4Gradient)"/>
+
+  <!-- Wave foam on wave 1 - More prominent -->
+  <g opacity="0.8">
+    <ellipse cx="600" cy="830" rx="30" ry="15" fill="#FFFFFF"/>
+    <ellipse cx="620" cy="835" rx="20" ry="10" fill="#FFFFFF"/>
+
+    <ellipse cx="1000" cy="820" rx="25" ry="13" fill="#FFFFFF"/>
+    <ellipse cx="1020" cy="825" rx="18" ry="9" fill="#FFFFFF"/>
+
+    <ellipse cx="1400" cy="835" rx="32" ry="16" fill="#FFFFFF"/>
+    <ellipse cx="1425" cy="840" rx="22" ry="11" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Cute floating elements - Simple fish shapes (optional decorative) -->
+  <g opacity="0.4">
+    <!-- Small fish 1 -->
+    <ellipse cx="350" cy="450" rx="30" ry="15" fill="#FFFFFF"/>
+    <path d="M 380,450 L 395,445 L 395,455 Z" fill="#FFFFFF"/>
+    <circle cx="360" cy="448" r="3" fill="#0288D1"/>
+
+    <!-- Small fish 2 -->
+    <ellipse cx="1200" cy="380" rx="35" ry="18" fill="#FFFFFF"/>
+    <path d="M 1235,380 L 1252,374 L 1252,386 Z" fill="#FFFFFF"/>
+    <circle cx="1212" cy="378" r="3" fill="#0288D1"/>
+
+    <!-- Small fish 3 -->
+    <ellipse cx="1600" cy="520" rx="28" ry="14" fill="#FFFFFF"/>
+    <path d="M 1628,520 L 1642,515 L 1642,525 Z" fill="#FFFFFF"/>
+    <circle cx="1610" cy="518" r="3" fill="#0288D1"/>
+  </g>
+
+  <!-- Cute bubbles floating up -->
+  <g opacity="0.3">
+    <circle cx="450" cy="500" r="8" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="2"/>
+    <circle cx="480" cy="450" r="6" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="1.5"/>
+    <circle cx="500" cy="420" r="5" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="1"/>
+
+    <circle cx="1100" cy="550" r="9" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="2"/>
+    <circle cx="1130" cy="500" r="7" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="1.5"/>
+    <circle cx="1150" cy="470" r="5" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="1"/>
+
+    <circle cx="1750" cy="600" r="7" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="2"/>
+    <circle cx="1775" cy="560" r="6" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="1.5"/>
+    <circle cx="1790" cy="530" r="4" fill="#FFFFFF" stroke="#4DD0E1" stroke-width="1"/>
+  </g>
+
+  <!-- Sun or bright spot in sky (optional) -->
+  <g opacity="0.5">
+    <circle cx="1650" cy="200" r="80" fill="#FFF9C4"/>
+    <circle cx="1650" cy="200" r="60" fill="#FFEB3B" opacity="0.8"/>
+  </g>
+</svg>
