@@ -2,7 +2,7 @@
 .main-layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--bg-secondary);
+  background-color: transparent; /* Để hiển thị background mới */
 }
 
 /* ===== SIDEBAR ===== */
@@ -213,7 +213,8 @@
 
 /* Header */
 .header {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.85); /* Bán trong suốt để hiển thị background */
+  backdrop-filter: blur(10px); /* Hiệu ứng glass morphism */
   padding: var(--spacing-md) var(--spacing-xl);
   display: flex;
   align-items: center;
@@ -222,7 +223,7 @@
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header-left {
@@ -312,16 +313,18 @@
   flex: 1;
   padding: var(--spacing-xl);
   min-height: calc(100vh - 180px);
+  background: transparent; /* Trong suốt để hiển thị background */
 }
 
 /* Footer */
 .footer {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.85); /* Bán trong suốt */
+  backdrop-filter: blur(10px); /* Glass morphism */
   padding: var(--spacing-lg) var(--spacing-xl);
   text-align: center;
   color: var(--text-muted);
   font-size: var(--font-size-sm);
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* ===== MOBILE MENU BUTTON ===== */
