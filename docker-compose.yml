@@ -10,6 +10,10 @@ services:
       POSTGRES_USER: ${DB_USER:-luyenthi4}
       POSTGRES_PASSWORD: ${DB_PASS:-changeme}
       POSTGRES_DB: ${DB_NAME:-luyenthi4}
+      # PostgreSQL performance tuning for 4GB RAM VPS
+      POSTGRES_SHARED_BUFFERS: 512MB
+      POSTGRES_EFFECTIVE_CACHE_SIZE: 1GB
+      POSTGRES_MAX_CONNECTIONS: 100
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./server/database:/docker-entrypoint-initdb.d:ro
@@ -17,6 +21,15 @@ services:
       - "5432:5432"
     networks:
       - luyenthi4-network
+    # Resource limits for 4GB RAM VPS
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-luyenthi4}"]
       interval: 10s
@@ -39,6 +52,8 @@ services:
       DB_PASS: ${DB_PASS:-changeme}
       DB_PORT: 5432
       JWT_SECRET: ${JWT_SECRET}
+      # Node.js memory optimization
+      NODE_OPTIONS: --max-old-space-size=768
     depends_on:
       postgres:
         condition: service_healthy
@@ -46,6 +61,15 @@ services:
       - "5000:5000"
     networks:
       - luyenthi4-network
+    # Resource limits for 4GB RAM VPS
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5000/api/health"]
       interval: 30s
@@ -66,6 +90,15 @@ services:
       - backend
     networks:
       - luyenthi4-network
+    # Resource limits for 4GB RAM VPS
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 32M
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/health"]
       interval: 30s
