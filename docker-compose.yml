@@ -10,10 +10,17 @@ services:
       POSTGRES_USER: ${DB_USER:-luyenthi4}
       POSTGRES_PASSWORD: ${DB_PASS:-changeme}
       POSTGRES_DB: ${DB_NAME:-luyenthi4}
-      # PostgreSQL performance tuning for 4GB RAM VPS
-      POSTGRES_SHARED_BUFFERS: 512MB
-      POSTGRES_EFFECTIVE_CACHE_SIZE: 1GB
-      POSTGRES_MAX_CONNECTIONS: 100
+    # PostgreSQL performance tuning via command args
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=256MB"
+      - "-c"
+      - "effective_cache_size=512MB"
+      - "-c"
+      - "max_connections=100"
+      - "-c"
+      - "work_mem=4MB"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./server/database:/docker-entrypoint-initdb.d:ro
@@ -35,6 +42,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 30s
 
   # Backend API
   backend:
