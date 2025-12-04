@@ -17,6 +17,7 @@ import {
   EditOutlined,
   ShoppingOutlined,
   GiftOutlined,
+  BookOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import './MainLayout.css';
@@ -65,15 +66,20 @@ const MainLayout = ({ children }) => {
       label: 'Chơi mà học',
       path: '/games',
     },
-    
     {
       key: '4',
+      icon: <BookOutlined />,
+      label: 'Ebook',
+      path: '/ebook',
+    },
+    {
+      key: '5',
       icon: <TrophyOutlined />,
       label: 'Bảng vàng',
       path: '/leaderboard',
     },
     {
-      key: '5',
+      key: '6',
       icon: <GiftOutlined />,
       label: 'Phần thưởng',
       path: '/shop',

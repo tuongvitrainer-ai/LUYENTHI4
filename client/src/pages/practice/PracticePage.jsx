@@ -150,7 +150,7 @@ const PracticePage = () => {
                   className="w-5 h-5 text-pink-500 rounded focus:ring-2 focus:ring-pink-400 cursor-pointer"
                 />
                 <span className="font-semibold text-gray-700 text-sm md:text-base whitespace-nowrap">
-                  🎓 EMG
+                  🎓 Tiếng Anh tích hợp
                 </span>
               </label>
             </div>
