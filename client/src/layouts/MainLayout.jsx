@@ -16,6 +16,7 @@ import {
   CustomerServiceOutlined,
   EditOutlined,
   ShoppingOutlined,
+  GiftOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import './MainLayout.css';
@@ -54,16 +55,17 @@ const MainLayout = ({ children }) => {
     },
     {
       key: '2',
-      icon: <CustomerServiceOutlined />,
-      label: 'Chơi mà học',
-      path: '/games',
-    },
-    {
-      key: '3',
       icon: <EditOutlined />,
       label: 'Rèn luyện',
       path: '/practice',
     },
+    {
+      key: '3',
+      icon: <CustomerServiceOutlined />,
+      label: 'Chơi mà học',
+      path: '/games',
+    },
+    
     {
       key: '4',
       icon: <TrophyOutlined />,
@@ -72,8 +74,8 @@ const MainLayout = ({ children }) => {
     },
     {
       key: '5',
-      icon: <ShoppingOutlined />,
-      label: 'Cửa hàng',
+      icon: <GiftOutlined />,
+      label: 'Phần thưởng',
       path: '/shop',
     },
   ];

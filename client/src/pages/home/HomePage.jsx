@@ -67,7 +67,7 @@ const HomePage = () => {
             <div className="feature-info">
               <h3 className="feature-title">Ôn Luyện</h3>
               <p className="feature-description">Luyện tập các môn Toán, Văn, Anh...</p>
-              <p className="feature-description">Ôn thi Starters, Movers, Flyers</p>
+              <p className="feature-description">Tiếng Anh tích hợp (EMG)</p>
               <Link to="/practice">
                 <GameButton variant="secondary" size="medium" onClick={playClick}>
                   Vào học
