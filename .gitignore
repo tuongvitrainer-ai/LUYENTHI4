@@ -21,3 +21,39 @@ build/
 dev-dist/
 client/dev-dist/
 **/dev-dist/
+
+# Production environment (IMPORTANT: Don't push production secrets)
+.env.production
+.env.production.local
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# PM2
+.pm2/
+ecosystem.config.js.backup
+
+# Database backups
+backup_*.sql
+*.backup
+*.dump
+
+# Docker
+.docker/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# OS
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Misc
+*.pem
