@@ -11,18 +11,35 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Check if .env.production exists
-if [ ! -f .env.production ]; then
-    echo -e "${RED}Error: .env.production file not found!${NC}"
-    echo "Please copy .env.production template and configure it."
+# Check if .env exists
+if [ ! -f .env ]; then
+    echo -e "${RED}Error: .env file not found!${NC}"
+    echo "Please create .env file from template:"
+    echo "  cp .env.example .env"
+    echo "  nano .env  # Edit the values"
+    echo ""
+    echo "Required values to change:"
+    echo "  - DB_PASS (database password)"
+    echo "  - JWT_SECRET (generate with: openssl rand -base64 32)"
+    echo "  - VITE_API_URL (your VPS IP or domain)"
     exit 1
 fi
 
 # Load environment variables
-export $(cat .env.production | grep -v '^#' | xargs)
+export $(cat .env | grep -v '^#' | xargs)
 
-echo -e "${YELLOW}Step 1: Pulling latest code...${NC}"
-git pull origin main
+echo -e "${YELLOW}Step 1: Checking client .env file...${NC}"
+if [ ! -f client/.env ]; then
+    echo -e "${YELLOW}Warning: client/.env not found${NC}"
+    echo "Creating default client/.env..."
+    if [ -n "$VITE_API_URL" ]; then
+        echo "VITE_API_URL=$VITE_API_URL" > client/.env
+        echo -e "${GREEN}✓ Created client/.env with VITE_API_URL from .env${NC}"
+    else
+        echo -e "${YELLOW}⚠ VITE_API_URL not set in .env, using default${NC}"
+        echo "VITE_API_URL=http://localhost:5000/api" > client/.env
+    fi
+fi
 
 echo -e "${YELLOW}Step 2: Building and starting Docker containers...${NC}"
 docker-compose down
