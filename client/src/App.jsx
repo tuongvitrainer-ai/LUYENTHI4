@@ -19,11 +19,16 @@ import ThuThachKhoiDau from './pages/learns/exam/ThuThachKhoiDau';
 
 //LOP 2
 import OnTap1 from './pages/learn/lop2/toan/OnTap1';
+import OnTapPhepTinh from './pages/learn/lop2/toan/OnTapPhepTinh';
+
+//LOP 3
 import Emg_Lop3_OnTap_HK1 from './pages/learns/english/EMG/Emg_Lop3_OnTap_HK1';
 
+//YLE STARTERS, MOVERS, FLYERS
 import Movers_Quest from './pages/learns/english/movers/vocabulary-movers1';
 import MoversKnowledgeBase from './pages/learns/yle/movers';
 import FlyersKnowledgeBase from './pages/learns/yle/flyers';
+
 //game
 import HangManTiengViet from './pages/game/words/HangManTiengViet';
 
@@ -112,6 +117,7 @@ function App() {
 
                   {/* Lop 2 */}
                   <Route path="/learn/lop2/toan/ontap1" element={<OnTap1 />} />
+                  <Route path="/learn/lop2/toan/on-tap-cong-tru-nhan-chia" element={<OnTapPhepTinh />} />
 
                   {/* Lop 3 */}
                   <Route path="/lop3/emg/on-tap-hk1" element={<Emg_Lop3_OnTap_HK1 />} />
